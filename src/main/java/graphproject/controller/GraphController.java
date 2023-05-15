@@ -2,31 +2,21 @@ package graphproject.controller;
 
 import graphproject.model.Graph;
 import graphproject.model.Node;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
-public class HelloController {
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    private Pane centerPane;
+public class GraphController {
 
     private Graph graph;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    GraphController(){
+        graph = new Graph();
     }
 
-    @FXML
-    protected void initializeGraph(){
+    public void RandomGraph(Pane centerPane){
 
-        graph = new Graph();
         graph.generateRandomNodes(10, centerPane);
         graph.generateRandomLinks();
 
