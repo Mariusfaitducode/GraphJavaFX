@@ -1,5 +1,7 @@
 package graphproject.model;
 
+import javafx.scene.layout.Pane;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +19,10 @@ public class Graph {
 
     public List <Node> getGraph(){return nodes;}
 
-    public void generateRandomNodes(int number){
+    public void generateRandomNodes(int number, Pane pane){
         for(int i = 0; i < number; i++){
-            nodes.add(new Node((int)(Math.random() * (900)), (int)(Math.random() * (750)), i));
+            //System.out.println(pane.getLayoutX());
+            nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
         }
     }
 

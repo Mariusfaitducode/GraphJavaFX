@@ -1,5 +1,7 @@
 package graphproject.model;
 
+import javafx.scene.shape.Circle;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,8 @@ public class Node {
     int y;
     List <Node> linkNodes;
 
+    Circle circle;
+
     public Node(int x, int y, int id)
     {
         this.x = x;
@@ -21,6 +25,8 @@ public class Node {
 
     public int getX(){return x;}
     public int getY(){return y;}
+
+    public void setCircle(Circle circle){this.circle = circle;}
 
     public List <Node> getLinks(){return linkNodes;}
 
