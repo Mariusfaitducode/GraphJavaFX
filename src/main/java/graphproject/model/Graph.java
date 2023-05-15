@@ -33,7 +33,7 @@ public class Graph {
             for (int i = 0; i < links_count; i++){
 
                 //On ajoute un lien avec un node aléatoire
-                node.linkNodes.add(nodes.get((int)(Math.random() * nodes.size())));
+                node.links.add(new Link(nodes.get((int)(Math.random() * nodes.size()))));
             }
 
         }

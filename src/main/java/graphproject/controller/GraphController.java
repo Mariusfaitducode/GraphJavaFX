@@ -1,6 +1,7 @@
 package graphproject.controller;
 
 import graphproject.model.Graph;
+import graphproject.model.Link;
 import graphproject.model.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -46,7 +47,9 @@ public class GraphController {
         //Dessine les links
         for (Node node: graph.getGraph()) {
 
-            for (Node linkedNode: node.getLinks()){
+            for (Link link: node.getLinks()){
+
+                Node linkedNode = link.getNode();
 
                 int startX = node.getX();
                 int startY = node.getY();
@@ -69,7 +72,6 @@ public class GraphController {
 
                 //Calcul des points
 
-
                 double arrowHeadLength = 10; // Longueur de la pointe de la flèche
                 double arrowHeadWidth = 5;
 
@@ -88,7 +90,8 @@ public class GraphController {
                 );
 
                 centerPane.getChildren().addAll(line, arrowHead);
-                node.addLineLink(line);
+
+                link.setOrientedLine(line, arrowHead);
                 //linkedNode.addLineLink(line);
             }
         }
