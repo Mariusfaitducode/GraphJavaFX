@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Graph {
 
+    private String name;
     private List <Node> nodes;
 
     public Graph(){
@@ -19,9 +20,13 @@ public class Graph {
 
     public List <Node> getGraph(){return nodes;}
 
+    public void setName(String name){this.name = name;}
+
+    public String getName(){return this.name;}
+
     public void generateRandomNodes(int number, Pane pane){
         for(int i = 0; i < number; i++){
-            //System.out.println(pane.getLayoutX());
+
             nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
         }
     }

@@ -23,7 +23,7 @@
                <menus>
                   <Menu mnemonicParsing="false" text="File">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="New Graph" />
+                        <MenuItem mnemonicParsing="false" onAction="#createNewGraphPopup" text="New Graph" />
                         <MenuItem mnemonicParsing="false" text="Open Graph" />
                         <MenuItem mnemonicParsing="false" text="Close Graph" />
                         <MenuItem mnemonicParsing="false" text="Save Graph" />
@@ -85,7 +85,7 @@
             </HBox>
          </bottom>
       </BorderPane>
-      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
+      <StackPane fx:id="popupPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" styleClass="popupWindow" stylesheets="@style.css">
                <children>
@@ -95,7 +95,7 @@
                      </font>
                   </Label>
                   <Label alignment="CENTER" layoutX="72.0" layoutY="53.0" prefHeight="31.0" prefWidth="74.0" text="Nom :" />
-                  <TextField layoutX="146.0" layoutY="54.0">
+                  <TextField fx:id="idNameGraph" layoutX="146.0" layoutY="54.0">
                      <font>
                         <Font size="14.0" />
                      </font>
