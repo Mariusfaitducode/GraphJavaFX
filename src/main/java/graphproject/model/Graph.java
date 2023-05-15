@@ -11,10 +11,23 @@ public class Graph {
     private List <Node> nodes;
 
     public Graph(){
-        nodes = new ArrayList<>(0);
+        this.name = "";
+        this.nodes = new ArrayList<>(0);
     }
+
+    public Graph(String name){
+        this.name = name;
+        this.nodes = new ArrayList<>(0);
+    }
+
     public Graph(List <Node> nodes)
     {
+        this.name = "";
+        this.nodes = nodes;
+    }
+    public Graph(String name, List <Node> nodes)
+    {
+        this.name = name;
         this.nodes = nodes;
     }
 
@@ -43,10 +56,14 @@ public class Graph {
 
         }
     }
-    
-    public void displayGraph(){
-        for (Node node: nodes ) {
-            node.displayNode();
-        }
+
+    public void generateRandomGraph(int number, String name, Pane pane) {
+        generateRandomNodes(number, pane);
+        generateRandomLinks();
+        setName(name);
+    }
+
+    public void generateEmptyGraph(String name) {
+        setName(name);
     }
 }

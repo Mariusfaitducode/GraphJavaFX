@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -45,7 +46,12 @@
          <center>
             <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#initializeGraph" text="Button" />
+                  <Button mnemonicParsing="false" text="Button" />
+                  <Label fx:id="graphTitle" layoutX="261.0" layoutY="14.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </center>
@@ -95,21 +101,25 @@
                      </font>
                   </Label>
                   <Label alignment="CENTER" layoutX="72.0" layoutY="53.0" prefHeight="31.0" prefWidth="74.0" text="Nom :" />
-                  <TextField fx:id="idNameGraph" layoutX="146.0" layoutY="54.0">
+                  <TextField fx:id="nameGraph" layoutX="146.0" layoutY="54.0" text="untitled">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <RadioButton layoutX="72.0" layoutY="94.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" selected="true" text="Vide" />
-                  <RadioButton layoutX="72.0" layoutY="136.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Aléatoire" />
-                  <RadioButton layoutX="72.0" layoutY="206.0" mnemonicParsing="false" text="Importer d'un dataset (.txt)" />
+                  <RadioButton fx:id="rbutton1" layoutX="72.0" layoutY="94.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Vide">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="rbuttongroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbutton2" layoutX="72.0" layoutY="136.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Aléatoire" toggleGroup="$rbuttongroup" />
+                  <RadioButton fx:id="rbutton3" layoutX="72.0" layoutY="206.0" mnemonicParsing="false" text="Importer d'un dataset (.txt)" toggleGroup="$rbuttongroup" />
                   <Label alignment="CENTER" layoutX="100.0" layoutY="163.0" prefHeight="31.0" prefWidth="131.0" text="Nbr de nodes :" />
-                  <TextField layoutX="232.0" layoutY="164.0" prefHeight="30.0" prefWidth="42.0">
+                  <TextField fx:id="nodesNumber" layoutX="232.0" layoutY="164.0" prefHeight="30.0" prefWidth="42.0" text="1">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="253.0" layoutY="246.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Générer" />
+                  <Button layoutX="253.0" layoutY="246.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Générer" />
                </children>
             </Pane>
          </children>

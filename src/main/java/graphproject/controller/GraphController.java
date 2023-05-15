@@ -15,11 +15,17 @@ public class GraphController {
         graph = new Graph();
     }
 
-    public void RandomGraph(Pane centerPane){
+    public void generateRandomGraph(int number, String name, Pane pane){
+        graph.generateRandomGraph(number, name, pane);
+        displayGraph(pane);
+    }
 
-        graph.generateRandomNodes(10, centerPane);
-        graph.generateRandomLinks();
+    public void generateEmptyGraph(String name, Pane pane){
+        graph.generateEmptyGraph(name);
+        displayGraph(pane);
+    }
 
+    public void displayGraph(Pane pane) {
         for (Node node: graph.getGraph()) {
 
             Circle circle = new Circle(10); // Crée un cercle avec un rayon de 50 pixels
@@ -33,7 +39,7 @@ public class GraphController {
             });
             node.setCircle(circle);
 
-            centerPane.getChildren().add(circle);
+            pane.getChildren().add(circle);
         }
         for (Node node: graph.getGraph()) {
 
@@ -41,7 +47,7 @@ public class GraphController {
                 Line line = new Line(node.getX(), node.getY(), linkedNode.getX(), linkedNode.getY());
                 line.setFill(Color.WHITE);
 
-                centerPane.getChildren().add(line);
+                pane.getChildren().add(line);
             }
         }
     }
