@@ -17,10 +17,18 @@ public class GraphController {
         graph = new Graph();
     }
 
-    public void RandomGraph(Pane centerPane){
+    public void generateRandomGraph(int number, String name, Pane pane) {
 
-        graph.generateRandomNodes(10, centerPane);
-        graph.generateRandomLinks();
+        graph.generateRandomGraph(number, name, pane);
+        displayGraph(pane);
+    }
+
+    public void generateEmptyGraph(String name, Pane pane) {
+        graph.generateEmptyGraph(name);
+        displayGraph(pane);
+    }
+
+    public void displayGraph(Pane pane) {
 
         int radiusCircle = 10;
 
@@ -42,7 +50,7 @@ public class GraphController {
 
             node.setCircle(circle);
 
-            centerPane.getChildren().add(circle);
+            pane.getChildren().add(circle);
         }
         //Dessine les links
         for (Node node: graph.getGraph()) {
@@ -89,7 +97,7 @@ public class GraphController {
                         arrowPoint3X, arrowPoint3Y
                 );
 
-                centerPane.getChildren().addAll(line, arrowHead);
+                pane.getChildren().addAll(line, arrowHead);
 
                 link.setOrientedLine(line, arrowHead);
                 //linkedNode.addLineLink(line);
