@@ -9,6 +9,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 
+
+//Permet de modifier un graphe
 public class GraphController {
 
     private Graph graph;

@@ -6,42 +6,45 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
+//Regroupe la gestion de toutes les interactions de l'utilisateur
+
 public class AppController {
 
-
+    //Tout les attributs de la scène qu'on va modifier
+    //id des éléments
     @FXML
-    private Pane centerPane, popupPane;
-
-    @FXML
-    private RadioButton rbutton1, rbutton2, rbutton3;
+    private Pane centerPane;
 
     @FXML
     private Label graphTitle;
 
+    //id des objets de la popup
+    @FXML
+    private Pane popupPane;
+    @FXML
+    private RadioButton rbutton1, rbutton2, rbutton3;
     @FXML
     private TextField nameGraph, nodesNumber;
 
-//    AppController() {
-//        popupPane.setVisible(false);
-//    }
+    //Tout ce qui contient les actions
 
     private final GraphController graphController = new GraphController();
 
+    private PopupController popupController;
+
+    //Tout ce qui déclenche les actions
+    //
     @FXML
     protected void createNewGraphPopup() {
-        popupPane.setVisible(true);
+        popupController = new PopupController(popupPane, rbutton1, rbutton2, rbutton3, nameGraph, nodesNumber);
+        popupController.getPopupPane().setVisible(true);
     }
 
     public void generateGraph() {
-        graphTitle.setText(nameGraph.getText());
-        if (rbutton1.isSelected()) {
-            graphController.generateEmptyGraph(nameGraph.getText(), centerPane);
-        } else if (rbutton2.isSelected()) {
-            graphController.generateRandomGraph(Integer.parseInt(nodesNumber.getText()), nameGraph.getText(), centerPane);
-        } else if (rbutton3.isSelected()) {
-            popupPane.setVisible(false);
-        }
-        popupPane.setVisible(false);
+        //graphTitle.setText(nameGraph.getText());
+
+        popupController.generateGraph(graphController, centerPane);
+
     }
 
 }
