@@ -13,24 +13,21 @@ import javafx.scene.shape.Polygon;
 //Permet de modifier un graphe
 public class GraphController {
 
+    // Graphic Attributes of the graph
+    private Pane pane;
+
+    // App attribute
     private Graph graph;
 
-    GraphController(){
-        graph = new Graph();
+    // Contruct the controller for the opened graph
+    GraphController(Pane pane, Graph graph){
+
+        this.pane = pane;
+        this.graph = graph;
     }
 
-    public void generateRandomGraph(int number, String name, Pane pane) {
-
-        graph.generateRandomGraph(number, name, pane);
-        displayGraph(pane);
-    }
-
-    public void generateEmptyGraph(String name, Pane pane) {
-        graph.generateEmptyGraph(name);
-        displayGraph(pane);
-    }
-
-    public void displayGraph(Pane pane) {
+    // Display graph on the graphic window
+    public void displayGraph() {
 
         int radiusCircle = 10;
 

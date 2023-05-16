@@ -1,6 +1,7 @@
 package graphproject;
 
 
+import graphproject.model.App;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +23,8 @@ public class StartApplication extends Application {
     }
 
     public static void main(String[] args) {
+
+        // Launch the JavaFX application
         launch();
     }
 }

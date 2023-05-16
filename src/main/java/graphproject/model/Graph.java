@@ -10,25 +10,9 @@ public class Graph {
     private String name;
     private List <Node> nodes;
 
-    public Graph(){
-        this.name = "";
-        this.nodes = new ArrayList<>(0);
-    }
-
     public Graph(String name){
         this.name = name;
         this.nodes = new ArrayList<>(0);
-    }
-
-    public Graph(List <Node> nodes)
-    {
-        this.name = "";
-        this.nodes = nodes;
-    }
-    public Graph(String name, List <Node> nodes)
-    {
-        this.name = name;
-        this.nodes = nodes;
     }
 
     public List <Node> getGraph(){return nodes;}
@@ -37,10 +21,12 @@ public class Graph {
 
     public String getName(){return this.name;}
 
-    public void generateRandomNodes(int number, Pane pane){
+    public void generateRandomNodes(int number){
         for(int i = 0; i < number; i++){
 
-            nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
+//            nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
+            nodes.add(new Node((int)(Math.random() * (300)), (int)(Math.random() * (450)), i));
+
         }
     }
 
@@ -57,13 +43,13 @@ public class Graph {
         }
     }
 
-    public void generateRandomGraph(int number, String name, Pane pane) {
-        generateRandomNodes(number, pane);
+    public void setRandomNodesAndLinks(int number) {
+        generateRandomNodes(number);
         generateRandomLinks();
-        setName(name);
     }
 
-    public void generateEmptyGraph(String name) {
-        setName(name);
+
+    public void displayGraph() {
+        System.out.println("Name of graph : " + name);
     }
 }

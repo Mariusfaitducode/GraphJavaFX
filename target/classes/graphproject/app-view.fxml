@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphproject.controller.AppController" >
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphproject.controller.AppController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -25,7 +25,11 @@
                   <Menu mnemonicParsing="false" text="File">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#createNewGraphPopup" text="New Graph" />
-                        <MenuItem mnemonicParsing="false" text="Open Graph" />
+                        <Menu fx:id="graphsMenu" mnemonicParsing="false" onMenuValidation="#openGraphs" text="Open Graph">
+                          <items>
+                            <MenuItem fx:id="noRecentGraphMenuItem" mnemonicParsing="false" text="No Recent Graph" />
+                          </items>
+                        </Menu>
                         <MenuItem mnemonicParsing="false" text="Close Graph" />
                         <MenuItem mnemonicParsing="false" text="Save Graph" />
                      </items>
@@ -91,7 +95,7 @@
             </HBox>
          </bottom>
       </BorderPane>
-      <StackPane fx:id="popupPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0" >
+      <StackPane fx:id="popupPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" styleClass="popupWindow" stylesheets="@style.css">
                <children>
