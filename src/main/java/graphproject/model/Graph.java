@@ -7,21 +7,39 @@ import java.util.List;
 
 public class Graph {
 
+    private String name;
     private List <Node> nodes;
 
     public Graph(){
-        nodes = new ArrayList<>(0);
+        this.name = "";
+        this.nodes = new ArrayList<>(0);
     }
+
+    public Graph(String name){
+        this.name = name;
+        this.nodes = new ArrayList<>(0);
+    }
+
     public Graph(List <Node> nodes)
     {
+        this.name = "";
+        this.nodes = nodes;
+    }
+    public Graph(String name, List <Node> nodes)
+    {
+        this.name = name;
         this.nodes = nodes;
     }
 
     public List <Node> getGraph(){return nodes;}
 
+    public void setName(String name){this.name = name;}
+
+    public String getName(){return this.name;}
+
     public void generateRandomNodes(int number, Pane pane){
         for(int i = 0; i < number; i++){
-            //System.out.println(pane.getLayoutX());
+
             nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
         }
     }
@@ -38,10 +56,14 @@ public class Graph {
 
         }
     }
-    
-    public void displayGraph(){
-        for (Node node: nodes ) {
-            node.displayNode();
-        }
+
+    public void generateRandomGraph(int number, String name, Pane pane) {
+        generateRandomNodes(number, pane);
+        generateRandomLinks();
+        setName(name);
+    }
+
+    public void generateEmptyGraph(String name) {
+        setName(name);
     }
 }

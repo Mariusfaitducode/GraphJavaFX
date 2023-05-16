@@ -6,73 +6,124 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphproject.controller.AppController">
-   <top>
-      <MenuBar prefWidth="566.0" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                <MenuItem mnemonicParsing="false" text="New Graph" />
-                <MenuItem mnemonicParsing="false" text="Open Graph" />
-                <MenuItem mnemonicParsing="false" text="Close Graph" />
-                <MenuItem mnemonicParsing="false" text="Save Graph" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <center>
-      <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphproject.controller.AppController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <MenuBar prefWidth="566.0" BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#createNewGraphPopup" text="New Graph" />
+                        <MenuItem mnemonicParsing="false" text="Open Graph" />
+                        <MenuItem mnemonicParsing="false" text="Close Graph" />
+                        <MenuItem mnemonicParsing="false" text="Save Graph" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" text="Button" />
+                  <Label fx:id="graphTitle" layoutX="261.0" layoutY="14.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </center>
+         <right>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <HBox prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #333; -fx-padding: 10px;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Tools : " textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" text="Create Node">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Create Link">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="114.0" text="Search Path">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </HBox>
+         </bottom>
+      </BorderPane>
+      <StackPane fx:id="popupPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#initializeGraph" text="Button" />
+            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="popupWindow" stylesheets="@style.css">
+               <children>
+                  <Label alignment="CENTER" layoutX="123.0" layoutY="14.0" prefHeight="39.0" prefWidth="154.0" text="Create New Graph" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="72.0" layoutY="53.0" prefHeight="31.0" prefWidth="74.0" text="Nom :" />
+                  <TextField fx:id="nameGraph" layoutX="146.0" layoutY="54.0" text="untitled">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <RadioButton fx:id="rbutton1" layoutX="72.0" layoutY="94.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Vide">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="rbuttongroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbutton2" layoutX="72.0" layoutY="136.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Aléatoire" toggleGroup="$rbuttongroup" />
+                  <RadioButton fx:id="rbutton3" layoutX="72.0" layoutY="206.0" mnemonicParsing="false" text="Importer d'un dataset (.txt)" toggleGroup="$rbuttongroup" />
+                  <Label alignment="CENTER" layoutX="100.0" layoutY="163.0" prefHeight="31.0" prefWidth="131.0" text="Nbr de nodes :" />
+                  <TextField fx:id="nodesNumber" layoutX="232.0" layoutY="164.0" prefHeight="30.0" prefWidth="42.0" text="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="253.0" layoutY="246.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Générer" />
+               </children>
+            </Pane>
          </children>
-      </Pane>
-   </center>
-   <right>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER" />
-   </right>
-   <bottom>
-      <HBox prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #333; -fx-padding: 10px;" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Tools : " textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </Label>
-            <Button mnemonicParsing="false" text="Create Node">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-            <Button mnemonicParsing="false" text="Create Link">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-            <Button mnemonicParsing="false" prefWidth="114.0" text="Search Path">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </HBox>
-   </bottom>
-</BorderPane>
+      </StackPane>
+      
+   </children>
+</AnchorPane>
