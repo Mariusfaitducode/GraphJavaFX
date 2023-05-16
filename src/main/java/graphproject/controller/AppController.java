@@ -42,7 +42,6 @@ public class AppController {
 
     //Tout ce qui contient les actions
 
-//    private final GraphController graphController = new GraphController();
     private GraphController graphController;
 
     private PopupController popupController;
@@ -56,14 +55,17 @@ public class AppController {
     }
 
     public void generateGraph() {
-        graphTitle.setText(nameGraph.getText());
+
         openGraph(popupController.generateGraph(centerPane));
 
     }
 
+    // TODO : revoir si c'est vraiment utile de créer un nouveau controller à chaque fois (pour moi un nouveau graph nécéssite un nouveau controller
     private void openGraph(Graph openedGraph) {
         graphController = new GraphController(centerPane, openedGraph);
+        graphController.clearGraph();
         graphController.displayGraph();
+        graphTitle.setText(openedGraph.getName());
     }
 
     @FXML
@@ -71,17 +73,35 @@ public class AppController {
         if (app.getNumberOfGraphs() > 0) {
             int i = 0;
             for (Graph graph : app.getGraphs()) {
+
                 String graphName = graph.getName();
-                MenuItem menuItem = new MenuItem();
-                menuItem.setText(graphName);
-                menuItem.setOnAction(actionEvent -> openGraph(graph));
-                graphsMenu.getItems().add(menuItem);
+                boolean set = false;
+
+                for (MenuItem item : graphsMenu.getItems()) {
+                    if (item.getText().equals(graphName)) {
+                        set = true;
+                    }
+                }
+
+                if (!set) {
+                    MenuItem menuItem = new MenuItem();
+                    menuItem.setText(graphName);
+                    menuItem.setOnAction(actionEvent -> openGraph(graph));
+                    graphsMenu.getItems().add(menuItem);
+                }
+
+
+
             }
             noRecentGraphMenuItem.setVisible(false);
         } else {
             noRecentGraphMenuItem.setVisible(true);
         }
 
+    }
+
+    public void closeGraph() {
+        graphController.clearGraph();
     }
 
 }

@@ -14,16 +14,20 @@ import javafx.scene.shape.Polygon;
 public class GraphController {
 
     // Graphic Attributes of the graph
-    private Pane pane;
+    private final Pane pane;
 
     // App attribute
-    private Graph graph;
+    private final Graph graph;
 
     // Contruct the controller for the opened graph
     GraphController(Pane pane, Graph graph){
 
         this.pane = pane;
         this.graph = graph;
+    }
+
+    public void clearGraph() {
+        pane.getChildren().clear();
     }
 
     // Display graph on the graphic window

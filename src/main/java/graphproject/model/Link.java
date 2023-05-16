@@ -7,7 +7,7 @@ public class Link {
 
     private Line line;
     private Polygon arrow;
-    private Node linkedNode;
+    private final Node linkedNode;
 
     Link(Node node){
         this.linkedNode = node;

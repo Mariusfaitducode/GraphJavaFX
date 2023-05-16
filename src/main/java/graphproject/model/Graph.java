@@ -1,14 +1,12 @@
 package graphproject.model;
 
-import javafx.scene.layout.Pane;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
 
     private String name;
-    private List <Node> nodes;
+    private final List <Node> nodes;
 
     public Graph(String name){
         this.name = name;
@@ -24,7 +22,8 @@ public class Graph {
     public void generateRandomNodes(int number){
         for(int i = 0; i < number; i++){
 
-//            nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
+    // TODO : refaire avec getWidth(), ps : avec les modifs, pane est nulle
+    //            nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
             nodes.add(new Node((int)(Math.random() * (300)), (int)(Math.random() * (450)), i));
 
         }

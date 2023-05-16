@@ -30,7 +30,7 @@
                             <MenuItem fx:id="noRecentGraphMenuItem" mnemonicParsing="false" text="No Recent Graph" />
                           </items>
                         </Menu>
-                        <MenuItem mnemonicParsing="false" text="Close Graph" />
+                        <MenuItem mnemonicParsing="false" onAction="#closeGraph" text="Close Graph" />
                         <MenuItem mnemonicParsing="false" text="Save Graph" />
                      </items>
                   </Menu>
@@ -48,19 +48,17 @@
             </MenuBar>
          </top>
          <center>
-            <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER">
+            <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER" />
+         </center>
+         <right>
+            <Pane fx:id="rightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Label fx:id="graphTitle" layoutX="261.0" layoutY="14.0" text="Label" textFill="WHITE">
+                  <Label fx:id="graphTitle" layoutX="83.0" layoutY="17.0" text="Label" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
-         </center>
-         <right>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER" />
+               </children></Pane>
          </right>
          <bottom>
             <HBox prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #333; -fx-padding: 10px;" BorderPane.alignment="CENTER">
