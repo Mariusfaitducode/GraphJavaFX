@@ -103,14 +103,14 @@
                         <Label layoutX="36.0" layoutY="228.0" styleClass="labelled" text="X :" />
                         <Label layoutX="36.0" layoutY="278.0" styleClass="labelled" text="Y :" />
                         <Label layoutX="9.0" layoutY="444.0" styleClass="labelled" text="Link &lt;-- :" />
-                        <TextField layoutX="46.0" layoutY="71.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
+                        <TextField id="id-node-id" layoutX="46.0" layoutY="71.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
                         <TextField layoutX="66.0" layoutY="132.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="default name" />
                         <TextField layoutX="58.0" layoutY="222.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
                         <TextField layoutX="58.0" layoutY="272.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
                         <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                      </children>
                   </Pane>
-                  <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
+                  <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
                      <children>
                         <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Link" />
                         <Label layoutX="5.0" layoutY="118.0" styleClass="labelled" text="Node start : " />
@@ -129,7 +129,7 @@
                         <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                      </children>
                   </Pane>
-                  <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
+                  <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
                      <children>
                         <Label layoutX="53.0" layoutY="28.0" styleClass="labelled" text="Search path" />
                         <Label layoutX="10.0" layoutY="229.0" styleClass="labelled" text="Name :" />

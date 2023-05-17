@@ -53,15 +53,15 @@ public class GraphController {
     }
 
 
-    public void openGraph(Graph openedGraph){
+    public void openGraph(Graph openedGraph, SelectionPaneController selectionPane){
         setGraph(openedGraph);
         clearGraph();
-        displayGraph();
+        displayGraph(selectionPane);
         graphTitle.setText(openedGraph.getName());
     }
 
     // Display graph on the graphic window
-    public void displayGraph() {
+    public void displayGraph(SelectionPaneController selectionPane) {
 
         int radiusCircle = 10;
 
@@ -72,9 +72,7 @@ public class GraphController {
 
             //fonctions qui sélectionne une node si on clique dessus
             circle.setOnMouseClicked(event -> {
-                nodeRightPane.setVisible(true);
-                linkRightPane.setVisible(false);
-                searchPathRightPane.setVisible(false);
+                selectionPane.setNodePane(node);
             });
 
             node.setCircle(circle);

@@ -18,7 +18,7 @@ public class MenuController {
         this.noRecentGraphMenuItem = noRecentGraphMenuItem;
     }
 
-    public void openExistingGraphsItem(App app, GraphController graphController){
+    public void openExistingGraphsItem(App app, GraphController graphController, SelectionPaneController selectionPane){
         if (app.getNumberOfGraphs() > 0) {
             int i = 0;
             for (Graph graph : app.getGraphs()) {
@@ -38,7 +38,7 @@ public class MenuController {
 
                     //On déclare ce qui se passe lorsqu'on clique sur les sous menu
                     //(Ouvrir le graphe correspondant)
-                    menuItem.setOnAction(actionEvent -> graphController.openGraph(graph));
+                    menuItem.setOnAction(actionEvent -> graphController.openGraph(graph, selectionPane));
 
                     //on ajoute les sous-menu dans le menu
                     openGraphsMenu.getItems().add(menuItem);

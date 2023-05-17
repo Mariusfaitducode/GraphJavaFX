@@ -26,6 +26,7 @@ public class Node {
         this.links = new ArrayList<>(0);
     }
 
+    public int getId(){return id;}
     public int getX(){return x;}
     public int getY(){return y;}
 

@@ -50,6 +50,8 @@ public class AppController implements Initializable {
 
     private MenuController menuController;
 
+    private SelectionPaneController selectionPaneController;
+
     @Override
     public void initialize(java.net.URL arg0, java.util.ResourceBundle arg1) {
         popupPane.setVisible(false);
@@ -58,6 +60,7 @@ public class AppController implements Initializable {
         searchPathRightPane.setVisible(false);
         graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane);
         menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
+        selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane);
     }
 
     //Tout ce qui déclenche les actions
@@ -69,11 +72,11 @@ public class AppController implements Initializable {
     }
 
     public void generateGraph() {
-        graphController.openGraph(popupController.generateGraph(centerPane));
+        graphController.openGraph(popupController.generateGraph(centerPane), selectionPaneController);
     }
 
     public void openExistingGraphsItems() {
-        menuController.openExistingGraphsItem(app, graphController);
+        menuController.openExistingGraphsItem(app, graphController, selectionPaneController);
     }
 
     public void closeGraph() {
