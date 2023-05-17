@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -20,43 +21,8 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphproject.controller.AppController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <MenuBar prefWidth="566.0" BorderPane.alignment="CENTER">
-               <menus>
-                  <Menu mnemonicParsing="false" text="File">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#createNewGraphPopup" text="New Graph" />
-                        <Menu fx:id="openGraphsMenu" mnemonicParsing="false" onMenuValidation="#openExistingGraphsItems" text="Open Graph">
-                          <items>
-                            <MenuItem fx:id="noRecentGraphMenuItem" mnemonicParsing="false" text="No Recent Graph" />
-                          </items>
-                        </Menu>
-                        <MenuItem mnemonicParsing="false" onAction="#closeGraph" text="Close Graph" />
-                        <MenuItem mnemonicParsing="false" text="Save Graph" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Edit">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-         </top>
          <center>
-            <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="graphTitle" layoutX="379.0" layoutY="14.0" text="Label" textFill="WHITE">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </children></Pane>
+            <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
             <HBox prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #333; -fx-padding: 10px;" BorderPane.alignment="CENTER">
@@ -69,16 +35,28 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Button mnemonicParsing="false" text="Create Node">
+                  <ToggleButton mnemonicParsing="false" style="-fx-background-color: #222;" text="Create Nodes" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Create Link">
+                     <padding>
+                        <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" style="-fx-background-color: #222;" text="Create Links" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
-                  </Button>
+                     <padding>
+                        <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </ToggleButton>
                   <Button mnemonicParsing="false" onAction="#searchPath" prefWidth="114.0" text="Search Path">
                      <HBox.margin>
                         <Insets right="10.0" />
@@ -147,6 +125,48 @@
                </children>
             </StackPane>
          </right>
+         <top>
+            <Pane prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #333;" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar prefHeight="26.0" prefWidth="200.0">
+                     <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#createNewGraphPopup" text="New Graph" />
+                              <Menu fx:id="openGraphsMenu" mnemonicParsing="false" onMenuValidation="#openExistingGraphsItems" text="Open Graph">
+                                 <items>
+                                    <MenuItem fx:id="noRecentGraphMenuItem" mnemonicParsing="false" text="No Recent Graph" />
+                                 </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#closeGraph" text="Close Graph" />
+                              <MenuItem mnemonicParsing="false" text="Save Graph" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Delete" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="About" />
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+                  <Label fx:id="graphTitle" layoutX="500.0" layoutY="3.0" text="untitled" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="408.0" layoutY="3.0" text="Graph Editor - " textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </top>
       </BorderPane>
       <StackPane fx:id="popupPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
          <children>

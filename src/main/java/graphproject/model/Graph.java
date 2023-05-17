@@ -19,12 +19,18 @@ public class Graph {
 
     public String getName(){return this.name;}
 
+    public void addNode(int x, int y){
+        int id = nodes.size();
+        String name = "node" + id;
+        nodes.add(new Node(id, name, x, y));
+    }
+
     public void generateRandomNodes(int number){
         for(int i = 0; i < number; i++){
 
     // TODO : refaire avec getWidth(), ps : avec les modifs, pane est nulle
     //            nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
-            nodes.add(new Node((int)(Math.random() * (300)), (int)(Math.random() * (450)), i));
+            nodes.add(new Node(i, "node" + i,(int)(Math.random() * (300)), (int)(Math.random() * (450))));
 
         }
     }
