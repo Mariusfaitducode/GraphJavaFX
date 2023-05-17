@@ -5,20 +5,24 @@ import javafx.scene.shape.Polygon;
 
 public class Link {
 
-    private Line line;
-    private Polygon arrow;
+    public static class Arrow{
+        public Line line;
+        public Polygon arrowHead;
+    }
+
+    private Arrow arrow;
+
     private final Node linkedNode;
 
     Link(Node node){
         this.linkedNode = node;
     }
 
-    public Line getLine(){return line;}
-    public Polygon getArrow(){return arrow;}
+    public Line getLine(){return arrow.line;}
+    public Polygon getArrow(){return arrow.arrowHead;}
     public Node getNode(){return linkedNode;}
 
-    public void setOrientedLine(Line line, Polygon arrow){
-        this.line = line;
+    public void setOrientedLine(Arrow arrow){
         this.arrow = arrow;
     }
 }

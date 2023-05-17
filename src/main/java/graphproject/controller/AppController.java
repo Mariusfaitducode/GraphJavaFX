@@ -20,14 +20,12 @@ public class AppController implements Initializable {
     @FXML
     private Pane centerPane, nodeRightPane, linkRightPane, searchPathRightPane;
 
+    //Elements de la barre de menu
     @FXML
     private MenuItem noRecentGraphMenuItem;
 
     @FXML
-    private Menu graphsMenu;
-
-    @FXML
-    private Label graphTitle;
+    private Menu openGraphsMenu;
 
     //id des objets de la popup
     @FXML
@@ -47,12 +45,16 @@ public class AppController implements Initializable {
 
     private PopupController popupController;
 
+    private MenuController menuController;
+
     @Override
     public void initialize(java.net.URL arg0, java.util.ResourceBundle arg1) {
         popupPane.setVisible(false);
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(false);
         searchPathRightPane.setVisible(false);
+        graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle);
+        menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
     }
 
     //Tout ce qui déclenche les actions
@@ -64,49 +66,11 @@ public class AppController implements Initializable {
     }
 
     public void generateGraph() {
-
-        openGraph(popupController.generateGraph(centerPane));
-
+        graphController.openGraph(popupController.generateGraph(centerPane));
     }
 
-    // TODO : revoir si c'est vraiment utile de créer un nouveau controller à chaque fois (pour moi un nouveau graph nécéssite un nouveau controller
-    private void openGraph(Graph openedGraph) {
-        graphController = new GraphController(centerPane, openedGraph, nodeRightPane, linkRightPane, searchPathRightPane);
-        graphController.clearGraph();
-        graphController.displayGraph();
-        graphTitle.setText(openedGraph.getName());
-    }
-
-    @FXML
-    public void openGraphs() {
-        if (app.getNumberOfGraphs() > 0) {
-            int i = 0;
-            for (Graph graph : app.getGraphs()) {
-
-                String graphName = graph.getName();
-                boolean set = false;
-
-                for (MenuItem item : graphsMenu.getItems()) {
-                    if (item.getText().equals(graphName)) {
-                        set = true;
-                    }
-                }
-
-                if (!set) {
-                    MenuItem menuItem = new MenuItem();
-                    menuItem.setText(graphName);
-                    menuItem.setOnAction(actionEvent -> openGraph(graph));
-                    graphsMenu.getItems().add(menuItem);
-                }
-
-
-
-            }
-            noRecentGraphMenuItem.setVisible(false);
-        } else {
-            noRecentGraphMenuItem.setVisible(true);
-        }
-
+    public void openExistingGraphsItems() {
+        menuController.openExistingGraphsItem(app, graphController);
     }
 
     public void closeGraph() {
