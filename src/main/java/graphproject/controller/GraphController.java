@@ -17,10 +17,10 @@ import javafx.scene.shape.Shape;
 public class GraphController {
 
     // Graphic Attributes of the graph
-    private final Pane pane;
-    private final Pane nodeRightPane;
-    private final Pane linkRightPane;
-    private final Pane searchPathRightPane;
+    private  Pane pane;
+    private Pane nodeRightPane;
+    private Pane linkRightPane;
+    private Pane searchPathRightPane;
 
     // App attribute
     private Graph graph;

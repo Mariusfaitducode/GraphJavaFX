@@ -20,6 +20,9 @@ public class AppController implements Initializable {
     @FXML
     private Pane centerPane, nodeRightPane, linkRightPane, searchPathRightPane;
 
+    @FXML
+    private Label graphTitle;
+
     //Elements de la barre de menu
     @FXML
     private MenuItem noRecentGraphMenuItem;
@@ -53,7 +56,7 @@ public class AppController implements Initializable {
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(false);
         searchPathRightPane.setVisible(false);
-        graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle);
+        graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane);
         menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
     }
 
