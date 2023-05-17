@@ -52,6 +52,8 @@ public class GraphController {
         pane.getChildren().clear();
     }
 
+//    public void
+
 
     public void openGraph(Graph openedGraph, SelectionPaneController selectionPane){
         setGraph(openedGraph);
