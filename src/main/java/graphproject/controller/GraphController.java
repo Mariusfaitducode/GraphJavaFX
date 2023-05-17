@@ -17,17 +17,19 @@ public class GraphController {
     private final Pane pane;
     private final Pane nodeRightPane;
     private final Pane linkRightPane;
+    private final Pane searchPathRightPane;
 
     // App attribute
     private final Graph graph;
 
     // Contruct the controller for the opened graph
-    GraphController(Pane pane, Graph graph, Pane nodeRightPane, Pane linkRightPane) {
+    GraphController(Pane pane, Graph graph, Pane nodeRightPane, Pane linkRightPane, Pane searchPathRightPane) {
 
         this.pane = pane;
         this.graph = graph;
         this.nodeRightPane = nodeRightPane;
         this.linkRightPane = linkRightPane;
+        this.searchPathRightPane = searchPathRightPane;
     }
 
     public void clearGraph() {
@@ -59,6 +61,7 @@ public class GraphController {
             circle.setOnMouseClicked(event -> {
                 nodeRightPane.setVisible(true);
                 linkRightPane.setVisible(false);
+                searchPathRightPane.setVisible(false);
             });
 
             node.setCircle(circle);
@@ -114,6 +117,7 @@ public class GraphController {
                 line.setOnMouseClicked(event -> {
                     nodeRightPane.setVisible(false);
                     linkRightPane.setVisible(true);
+                    searchPathRightPane.setVisible(false);
                 });
 
 

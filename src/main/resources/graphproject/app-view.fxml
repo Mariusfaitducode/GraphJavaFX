@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphproject.controller.AppController">
@@ -78,7 +79,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="114.0" text="Search Path">
+                  <Button mnemonicParsing="false" onAction="#searchPath" prefWidth="114.0" text="Search Path">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -90,16 +91,57 @@
             </HBox>
          </bottom>
          <right>
-            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333;">
+                  <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
                      <children>
                         <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Node" />
+                        <Label layoutX="7.0" layoutY="77.0" styleClass="labelled" text="Id : " />
+                        <Label layoutX="5.0" layoutY="139.0" styleClass="labelled" text="Name : " />
+                        <Label layoutX="10.0" layoutY="327.0" styleClass="labelled" text="Link --&gt; :" />
+                        <Label layoutX="9.0" layoutY="201.0" styleClass="labelled" text="Pos :" />
+                        <Label layoutX="36.0" layoutY="228.0" styleClass="labelled" text="X :" />
+                        <Label layoutX="36.0" layoutY="278.0" styleClass="labelled" text="Y :" />
+                        <Label layoutX="9.0" layoutY="444.0" styleClass="labelled" text="Link &lt;-- :" />
+                        <TextField layoutX="46.0" layoutY="71.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
+                        <TextField layoutX="66.0" layoutY="132.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="default name" />
+                        <TextField layoutX="58.0" layoutY="222.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
+                        <TextField layoutX="58.0" layoutY="272.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
+                        <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                      </children>
                   </Pane>
-                  <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333;">
+                  <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
                      <children>
                         <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Link" />
+                        <Label layoutX="5.0" layoutY="118.0" styleClass="labelled" text="Node start : " />
+                        <Label layoutX="25.0" layoutY="145.0" styleClass="labelled" text="Id :" />
+                        <Label layoutX="25.0" layoutY="172.0" styleClass="labelled" text="Name :" />
+                        <Label layoutX="58.0" layoutY="145.0" styleClass="labelled" text="-1" />
+                        <Label layoutX="85.0" layoutY="172.0" styleClass="labelled" text="default name" />
+                        <Label layoutX="7.0" layoutY="312.0" styleClass="labelled" text="Node end : " />
+                        <Label layoutX="25.0" layoutY="339.0" styleClass="labelled" text="Id :" />
+                        <Label layoutX="25.0" layoutY="366.0" styleClass="labelled" text="Name :" />
+                        <Label layoutX="58.0" layoutY="339.0" styleClass="labelled" text="-1" />
+                        <Label layoutX="86.0" layoutY="366.0" styleClass="labelled" text="default name" />
+                        <Line endX="9.0" endY="48.0" layoutX="84.0" layoutY="236.0" scaleX="4.0" startX="9.0" startY="-15.20001220703125" stroke="WHITE" />
+                        <Line endX="16.0" endY="30.0" layoutX="67.0" layoutY="257.0" rotate="-40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
+                        <Line endX="16.0" endY="30.0" layoutX="86.0" layoutY="256.0" rotate="40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
+                        <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Delete" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
+                     <children>
+                        <Label layoutX="53.0" layoutY="28.0" styleClass="labelled" text="Search path" />
+                        <Label layoutX="10.0" layoutY="229.0" styleClass="labelled" text="Name :" />
+                        <Label layoutX="55.0" layoutY="351.0" styleClass="labelled" text="-1" />
+                        <Label layoutX="9.0" layoutY="196.0" styleClass="labelled" text="Ending node :" />
+                        <Label layoutX="8.0" layoutY="82.0" styleClass="labelled" text="Starting node :" />
+                        <Label layoutX="10.0" layoutY="117.0" styleClass="labelled" text="Name :" />
+                        <Label layoutX="4.0" layoutY="351.0" styleClass="labelled" text="Dist :" />
+                        <Label layoutX="4.0" layoutY="385.0" styleClass="labelled" text="Path found :" />
+                        <TextField layoutX="69.0" layoutY="223.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 2" />
+                        <TextField layoutX="68.0" layoutY="110.0" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 1" />
+                        <Button layoutX="50.0" layoutY="289.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Find" />
                      </children>
                   </Pane>
                </children>

@@ -78,7 +78,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="114.0" text="Search Path">
+                  <Button mnemonicParsing="false" onAction="#searchPath" prefWidth="114.0" text="Search Path">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -90,7 +90,7 @@
             </HBox>
          </bottom>
          <right>
-            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER">
                <children>
                   <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333;">
                      <children>
@@ -100,6 +100,11 @@
                   <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333;">
                      <children>
                         <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Link" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333;">
+                     <children>
+                        <Label layoutX="53.0" layoutY="28.0" styleClass="labelled" text="Search path" />
                      </children>
                   </Pane>
                </children>

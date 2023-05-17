@@ -18,7 +18,7 @@ public class AppController implements Initializable {
 
     //id des éléments
     @FXML
-    private Pane centerPane, nodeRightPane, linkRightPane;
+    private Pane centerPane, nodeRightPane, linkRightPane, searchPathRightPane;
 
     @FXML
     private MenuItem noRecentGraphMenuItem;
@@ -52,6 +52,7 @@ public class AppController implements Initializable {
         popupPane.setVisible(false);
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(false);
+        searchPathRightPane.setVisible(false);
     }
 
     //Tout ce qui déclenche les actions
@@ -70,7 +71,7 @@ public class AppController implements Initializable {
 
     // TODO : revoir si c'est vraiment utile de créer un nouveau controller à chaque fois (pour moi un nouveau graph nécéssite un nouveau controller
     private void openGraph(Graph openedGraph) {
-        graphController = new GraphController(centerPane, openedGraph, nodeRightPane, linkRightPane);
+        graphController = new GraphController(centerPane, openedGraph, nodeRightPane, linkRightPane, searchPathRightPane);
         graphController.clearGraph();
         graphController.displayGraph();
         graphTitle.setText(openedGraph.getName());
@@ -112,4 +113,9 @@ public class AppController implements Initializable {
         graphController.clearGraph();
     }
 
+    public void searchPath() {
+        searchPathRightPane.setVisible(true);
+        nodeRightPane.setVisible(false);
+        linkRightPane.setVisible(false);
+    }
 }
