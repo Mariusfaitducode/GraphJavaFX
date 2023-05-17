@@ -6,18 +6,19 @@ import java.util.List;
 import graphproject.model.App;
 import graphproject.model.Graph;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 //Regroupe la gestion de toutes les interactions de l'utilisateur
 
-public class AppController {
+public class AppController implements Initializable {
 
     //Tout les attributs de la scène qu'on va modifier
 
     //id des éléments
     @FXML
-    private Pane centerPane;
+    private Pane centerPane, nodeRightPane, linkRightPane;
 
     @FXML
     private MenuItem noRecentGraphMenuItem;
@@ -46,6 +47,13 @@ public class AppController {
 
     private PopupController popupController;
 
+    @Override
+    public void initialize(java.net.URL arg0, java.util.ResourceBundle arg1) {
+        popupPane.setVisible(false);
+        nodeRightPane.setVisible(false);
+        linkRightPane.setVisible(false);
+    }
+
     //Tout ce qui déclenche les actions
     //
     @FXML
@@ -62,7 +70,7 @@ public class AppController {
 
     // TODO : revoir si c'est vraiment utile de créer un nouveau controller à chaque fois (pour moi un nouveau graph nécéssite un nouveau controller
     private void openGraph(Graph openedGraph) {
-        graphController = new GraphController(centerPane, openedGraph);
+        graphController = new GraphController(centerPane, openedGraph, nodeRightPane, linkRightPane);
         graphController.clearGraph();
         graphController.displayGraph();
         graphTitle.setText(openedGraph.getName());

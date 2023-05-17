@@ -48,18 +48,15 @@
             </MenuBar>
          </top>
          <center>
-            <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER" />
-         </center>
-         <right>
-            <Pane fx:id="rightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER">
+            <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="graphTitle" layoutX="83.0" layoutY="17.0" text="Label" textFill="WHITE">
+                  <Label fx:id="graphTitle" layoutX="379.0" layoutY="14.0" text="Label" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                </children></Pane>
-         </right>
+         </center>
          <bottom>
             <HBox prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #333; -fx-padding: 10px;" BorderPane.alignment="CENTER">
                <children>
@@ -92,8 +89,24 @@
                </BorderPane.margin>
             </HBox>
          </bottom>
+         <right>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333;">
+                     <children>
+                        <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Node" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333;">
+                     <children>
+                        <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Link" />
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </right>
       </BorderPane>
-      <StackPane fx:id="popupPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
+      <StackPane fx:id="popupPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" styleClass="popupWindow" stylesheets="@style.css">
                <children>

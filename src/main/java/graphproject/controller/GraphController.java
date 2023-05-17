@@ -15,15 +15,19 @@ public class GraphController {
 
     // Graphic Attributes of the graph
     private final Pane pane;
+    private final Pane nodeRightPane;
+    private final Pane linkRightPane;
 
     // App attribute
     private final Graph graph;
 
     // Contruct the controller for the opened graph
-    GraphController(Pane pane, Graph graph){
+    GraphController(Pane pane, Graph graph, Pane nodeRightPane, Pane linkRightPane) {
 
         this.pane = pane;
         this.graph = graph;
+        this.nodeRightPane = nodeRightPane;
+        this.linkRightPane = linkRightPane;
     }
 
     public void clearGraph() {
@@ -45,10 +49,16 @@ public class GraphController {
             circle.setCenterY(node.getY());
 
             //fonctions qui permet de supprimer un node si on clique dessus
+//            circle.setOnMouseClicked(event -> {
+//                ((Pane) circle.getParent()).getChildren().remove(circle);
+//                graph.getGraph().remove(node);
+//                node.deleteAllLinks();
+//            });
+
+            //fonctions qui sélectionne une node si on clique dessus
             circle.setOnMouseClicked(event -> {
-                ((Pane) circle.getParent()).getChildren().remove(circle);
-                graph.getGraph().remove(node);
-                node.deleteAllLinks();
+                nodeRightPane.setVisible(true);
+                linkRightPane.setVisible(false);
             });
 
             node.setCircle(circle);
@@ -99,6 +109,13 @@ public class GraphController {
                         arrowPoint2X, arrowPoint2Y,
                         arrowPoint3X, arrowPoint3Y
                 );
+
+                //fonctions qui sélectionne un link si on clique dessus
+                line.setOnMouseClicked(event -> {
+                    nodeRightPane.setVisible(false);
+                    linkRightPane.setVisible(true);
+                });
+
 
                 pane.getChildren().addAll(line, arrowHead);
 
