@@ -25,7 +25,7 @@
                   <Menu mnemonicParsing="false" text="File">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#createNewGraphPopup" text="New Graph" />
-                        <Menu fx:id="graphsMenu" mnemonicParsing="false" onMenuValidation="#openGraphs" text="Open Graph">
+                        <Menu fx:id="openGraphsMenu" mnemonicParsing="false" onMenuValidation="#openExistingGraphsItems" text="Open Graph">
                           <items>
                             <MenuItem fx:id="noRecentGraphMenuItem" mnemonicParsing="false" text="No Recent Graph" />
                           </items>
