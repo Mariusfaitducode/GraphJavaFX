@@ -27,19 +27,26 @@ public class SelectionPaneController {
         this.searchPathRightPane = searchPathRightPane;
 
         nodePane = new NodePane();
+        //Initialisation du champ de texte id
         this.nodePane.textId = (TextField) nodeRightPane.lookup("#id-node-id");
-
         this.nodePane.textId.setOnKeyTyped(e ->{
             getNode().setId(Integer.parseInt(nodePane.textId.getText()));
         });
+        //Initialisation du champ de texte name
         this.nodePane.textName = (TextField) nodeRightPane.lookup("#id-node-name");
         this.nodePane.textName.setOnKeyTyped(e ->{
             getNode().setName(nodePane.textName.getText());
         });
+        //Initialisation du champ de texte position X
         this.nodePane.textPosX = (TextField) nodeRightPane.lookup("#id-node-posX");
-
+        this.nodePane.textPosX.setOnKeyTyped(e ->{
+            getNode().setX(Integer.parseInt(nodePane.textPosX.getText()));
+        });
+        //Initialisation du champ de texte position X
         this.nodePane.textPosY = (TextField) nodeRightPane.lookup("#id-node-posY");
-
+        this.nodePane.textPosY.setOnKeyTyped(e ->{
+            getNode().setY(Integer.parseInt(nodePane.textPosY.getText()));
+        });
     }
 
     public Node getNode(){return this.nodePane.selectedNode;}
