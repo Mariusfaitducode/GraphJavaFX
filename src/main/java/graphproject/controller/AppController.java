@@ -83,7 +83,7 @@ public class AppController implements Initializable {
     }
 
     public void closeGraph() {
-        graphController.clearGraph();
+        graphController.closeGraph();
     }
 
     public void searchPath() {
