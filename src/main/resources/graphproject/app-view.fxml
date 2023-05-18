@@ -85,7 +85,7 @@
                         <TextField id="id-node-name" layoutX="66.0" layoutY="132.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="default name" />
                         <TextField id="id-node-posX" layoutX="58.0" layoutY="222.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
                         <TextField id="id-node-posY" layoutX="58.0" layoutY="272.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
-                        <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Delete" />
+                        <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                      </children>
                   </Pane>
                   <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
@@ -104,7 +104,7 @@
                         <Line endX="9.0" endY="48.0" layoutX="84.0" layoutY="236.0" scaleX="4.0" startX="9.0" startY="-15.20001220703125" stroke="WHITE" />
                         <Line endX="16.0" endY="30.0" layoutX="67.0" layoutY="257.0" rotate="-40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
                         <Line endX="16.0" endY="30.0" layoutX="86.0" layoutY="256.0" rotate="40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
-                        <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Delete" />
+                        <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                      </children>
                   </Pane>
                   <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
@@ -119,7 +119,7 @@
                         <Label layoutX="4.0" layoutY="385.0" styleClass="labelled" text="Path found :" />
                         <TextField layoutX="69.0" layoutY="223.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 2" />
                         <TextField layoutX="68.0" layoutY="110.0" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 1" />
-                        <Button layoutX="50.0" layoutY="289.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Find" />
+                        <Button layoutX="50.0" layoutY="289.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Find" />
                      </children>
                   </Pane>
                </children>

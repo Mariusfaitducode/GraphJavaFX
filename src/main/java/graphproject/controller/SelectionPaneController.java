@@ -44,6 +44,12 @@ public class SelectionPaneController {
 
     public Node getNode(){return this.nodePane.selectedNode;}
 
+    public void closeSelectionPane() {
+        nodeRightPane.setVisible(false);
+        linkRightPane.setVisible(false);
+        searchPathRightPane.setVisible(false);
+    }
+
     public void setNodePane(Node selectedNode){
         nodeRightPane.setVisible(true);
         linkRightPane.setVisible(false);

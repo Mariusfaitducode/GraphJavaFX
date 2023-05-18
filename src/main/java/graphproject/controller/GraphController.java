@@ -88,6 +88,9 @@ public class GraphController {
 
         // Clear graphic visual
         clearGraph();
+
+        //Close Right Sidebar
+        selectionPaneController.closeSelectionPane();
     }
 
     // Add a node when the ToggleButton is true, and we click on the graph

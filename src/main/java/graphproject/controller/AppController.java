@@ -75,7 +75,7 @@ public class AppController implements Initializable {
     }
 
     public void generateGraph() {
-        graphController.openGraph(popupController.generateGraph(centerPane));
+        graphController.openGraph(popupController.generateGraph());
     }
 
     public void openExistingGraphsItems() {

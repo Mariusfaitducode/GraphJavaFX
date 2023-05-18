@@ -33,7 +33,7 @@ public class PopupController {
         popupPane.setVisible(statut);
     }
 
-    public Graph generateGraph(Pane pane){
+    public Graph generateGraph(){
 
         // Create new Graph
         app.createNewGraph(nameGraph.getText());
