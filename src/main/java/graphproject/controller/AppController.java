@@ -8,6 +8,7 @@ import graphproject.model.Graph;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 //Regroupe la gestion de toutes les interactions de l'utilisateur
@@ -19,6 +20,9 @@ public class AppController implements Initializable {
     //id des éléments
     @FXML
     private Pane centerPane, nodeRightPane, linkRightPane, searchPathRightPane;
+
+    @FXML
+    private HBox toolsBar;
 
     @FXML
     private Label graphTitle;
@@ -50,7 +54,6 @@ public class AppController implements Initializable {
 
     private MenuController menuController;
 
-    private SelectionPaneController selectionPaneController;
 
     @Override
     public void initialize(java.net.URL arg0, java.util.ResourceBundle arg1) {
@@ -58,9 +61,9 @@ public class AppController implements Initializable {
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(false);
         searchPathRightPane.setVisible(false);
-        graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane);
+
+        graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane, toolsBar);
         menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
-        selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane);
     }
 
     //Tout ce qui déclenche les actions
@@ -72,11 +75,11 @@ public class AppController implements Initializable {
     }
 
     public void generateGraph() {
-        graphController.openGraph(popupController.generateGraph(centerPane), selectionPaneController);
+        graphController.openGraph(popupController.generateGraph(centerPane));
     }
 
     public void openExistingGraphsItems() {
-        menuController.openExistingGraphsItem(app, graphController, selectionPaneController);
+        menuController.openExistingGraphsItem(app, graphController);
     }
 
     public void closeGraph() {

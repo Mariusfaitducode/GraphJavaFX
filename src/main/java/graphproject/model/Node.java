@@ -42,6 +42,8 @@ public class Node {
 
     public void setCircle(Circle circle){this.circle = circle;}
 
+    public Circle getCircle(){return circle;}
+
     public void deleteAllLinks(){
         for (Link link : links){
             Line line = link.getLine();

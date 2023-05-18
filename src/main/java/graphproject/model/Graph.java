@@ -13,7 +13,16 @@ public class Graph {
         this.nodes = new ArrayList<>(0);
     }
 
-    public List <Node> getGraph(){return nodes;}
+    public List <Node> getNodes(){return nodes;}
+
+    public Node getNodeFromPos(int x, int y) {
+        for (Node node : nodes) {
+            if (node.getX()==x && node.getY()==y)
+                return node;
+        }
+        // By default, return the first node
+        return nodes.get(0);
+    }
 
     public void setName(String name){this.name = name;}
 
@@ -23,6 +32,20 @@ public class Graph {
         int id = nodes.size();
         String name = "node" + id;
         nodes.add(new Node(id, name, x, y));
+    }
+
+    public void addLink(Node node, Node linkedNode) {
+        node.links.add(new Link(linkedNode));
+    }
+
+    public Link getLinkFromIds(Node node, Node linkedNode) {
+        for (Link link : node.getLinks()) {
+            if (link.getNode()==linkedNode) {
+                return link;
+            }
+        }
+        //default value
+        return node.getLinks().get(0);
     }
 
     public void generateRandomNodes(int number){
