@@ -46,6 +46,36 @@ public class Graphics {
 
         //Calcul des points
 
+        Polygon arrowHead = new Polygon();
+
+        Graphics.setDesignArrowHead(arrowHead, endX, endY, angle);
+
+        Arrow arrow = new Arrow();
+        arrow.line = line;
+        arrow.arrowHead = arrowHead;
+
+        return arrow;
+    }
+
+    public static void updateArrow(Arrow arrow, Node node, Node linkedNode){
+
+        int startX = node.getX();
+        int startY = node.getY();
+        int endX = linkedNode.getX();
+        int endY = linkedNode.getY();
+
+        arrow.line.setStartX(startX);
+        arrow.line.setStartY(startY);
+        arrow.line.setEndX(endX);
+        arrow.line.setEndY(endY);
+
+        double angle = Math.atan2(endY - startY, endX - startX);
+
+        Graphics.setDesignArrowHead(arrow.arrowHead, endX, endY, angle);
+    }
+
+    public static void setDesignArrowHead(Polygon arrowHead, int endX, int endY, double angle){
+
         double arrowHeadLength = 10; // Longueur de la pointe de la flèche
         double arrowHeadWidth = 5;
 
@@ -56,17 +86,12 @@ public class Graphics {
         double arrowPoint3X = endX + arrowHeadWidth * Math.cos(angle);
         double arrowPoint3Y = endY + arrowHeadWidth * Math.sin(angle);
 
-        Polygon arrowHead = new Polygon();
+        arrowHead.getPoints().clear();
+
         arrowHead.getPoints().addAll(
                 arrowPoint1X, arrowPoint1Y,
                 arrowPoint2X, arrowPoint2Y,
                 arrowPoint3X, arrowPoint3Y
         );
-
-        Arrow arrow = new Arrow();
-        arrow.line = line;
-        arrow.arrowHead = arrowHead;
-
-        return arrow;
     }
 }

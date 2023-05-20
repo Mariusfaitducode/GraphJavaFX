@@ -19,7 +19,9 @@ public class Link {
     }
 
     public Line getLine(){return arrow.line;}
-    public Polygon getArrow(){return arrow.arrowHead;}
+    public Polygon getArrowHead(){return arrow.arrowHead;}
+
+    public  Arrow getArrow(){return arrow;}
     public Node getNode(){return linkedNode;}
 
     public void setOrientedLine(Arrow arrow){
