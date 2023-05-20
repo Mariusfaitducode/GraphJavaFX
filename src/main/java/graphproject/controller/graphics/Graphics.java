@@ -10,7 +10,7 @@ import javafx.scene.shape.Shape;
 
 public class Graphics {
 
-    //int radiusCircle;
+
 
     public static Circle DesignCircle(int x, int y, int radiusCircle){
 
@@ -19,6 +19,8 @@ public class Graphics {
 
         circle.setCenterX(x);
         circle.setCenterY(y);
+
+        circle.setStroke(Color.BLACK);
 
         return circle;
     }
@@ -59,17 +61,25 @@ public class Graphics {
 
     public static void updateArrow(Arrow arrow, Node node, Node linkedNode){
 
+        int radiusCircle = (int)linkedNode.getCircle().getRadius();
+
         int startX = node.getX();
         int startY = node.getY();
         int endX = linkedNode.getX();
         int endY = linkedNode.getY();
 
+        double angle = Math.atan2(endY - startY, endX - startX);
+
+        startX += Math.cos(angle) * radiusCircle;
+        startY += Math.sin(angle) * radiusCircle;
+
+        endX -= Math.cos(angle) * radiusCircle;
+        endY -= Math.sin(angle) * radiusCircle;
+
         arrow.line.setStartX(startX);
         arrow.line.setStartY(startY);
         arrow.line.setEndX(endX);
         arrow.line.setEndY(endY);
-
-        double angle = Math.atan2(endY - startY, endX - startX);
 
         Graphics.setDesignArrowHead(arrow.arrowHead, endX, endY, angle);
     }

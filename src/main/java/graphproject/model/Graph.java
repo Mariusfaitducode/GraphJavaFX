@@ -28,10 +28,13 @@ public class Graph {
 
     public String getName(){return this.name;}
 
-    public void addNode(int x, int y){
+    public Node addNode(int x, int y){
         int id = nodes.size();
         String name = "node" + id;
-        nodes.add(new Node(id, name, x, y));
+
+        Node node = new Node(id, name, x, y);
+        nodes.add(node);
+        return node;
     }
 
     public void addLink(Node node, Node linkedNode) {

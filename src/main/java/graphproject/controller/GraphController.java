@@ -101,14 +101,15 @@ public class GraphController {
 
                 int x = (int) event.getX();
                 int y = (int) event.getY();
-                graph.addNode(x,y);
+                Node node = graph.addNode(x,y);
 
                 // Display the information of the new node
-                Node node = graph.getNodeFromPos(x,y);
+                //Node node = graph.getNodeFromPos(x,y);
+
                 selectionPaneController.setNodePane(node);
 
                 // Updates the display of Nodes
-                updateNodes();
+                updateNode(node);
             }
         });
     }
@@ -130,6 +131,25 @@ public class GraphController {
             // Display the information of the node
             selectionPaneController.setNodePane(node);
 
+        });
+
+        // permet de déplacer les nodes avec la souris
+        circle.setOnMouseDragged(event -> {
+            // Mise à jour des coordonnées du cercle avec les coordonnées de la souris
+            node.setX((int)event.getX());
+            node.setY((int)event.getY());
+            event.consume();
+        });
+
+        // diférencie les nodes lorsque la souris est dessus
+        circle.setOnMouseEntered(event -> {
+            circle.setStroke(Color.RED); // Changement de couleur de la bordure lors du survol
+            event.consume();
+        });
+
+        circle.setOnMouseExited(event -> {
+            circle.setStroke(Color.BLACK); // Rétablissement de la couleur de la bordure
+            event.consume();
         });
 
         // fonction qui ajoute des links
@@ -212,6 +232,22 @@ public class GraphController {
                 pane.getChildren().add(circle);
             }
         }
+    }
+
+    public void updateNode(Node node) {
+
+        //Display new nodes
+        if (node.getCircle()==null) {
+            Circle circle = Graphics.DesignCircle(node.getX(), node.getY(), 10);
+
+            // Add event listener to the node
+            listenerNode(circle, node);
+
+            // Add the circle to the pane
+            node.setCircle(circle);
+            pane.getChildren().add(circle);
+        }
+
     }
 
     public void updateAllNodes() {
