@@ -13,9 +13,11 @@ public class Link {
     private Arrow arrow;
 
     private final Node linkedNode;
+    //private final Node initialNode;
 
     Link(Node node){
         this.linkedNode = node;
+        //this.initialNode = initialNode;
     }
 
     public Line getLine(){return arrow.line;}

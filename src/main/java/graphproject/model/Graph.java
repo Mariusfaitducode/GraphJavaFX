@@ -36,6 +36,8 @@ public class Graph {
 
     public void addLink(Node node, Node linkedNode) {
         node.links.add(new Link(linkedNode));
+        //linkedNode.links.add()
+        linkedNode.linkedNodeList.add(node);
     }
 
     public Link getLinkFromIds(Node node, Node linkedNode) {
@@ -64,10 +66,14 @@ public class Graph {
 
             for (int i = 0; i < links_count; i++){
 
-                //On ajoute un lien avec un node aléatoire
-                node.links.add(new Link(nodes.get((int)(Math.random() * nodes.size()))));
-            }
+                Node linkedNode = nodes.get((int)(Math.random() * nodes.size()));
 
+                Link link = new Link(linkedNode);
+
+                // On ajoute un lien avec un node aléatoire
+                node.links.add(link);
+                linkedNode.linkedNodeList.add(node);
+            }
         }
     }
 

@@ -17,6 +17,9 @@ public class Node {
     int x;
     int y;
     List<Link> links;
+
+    //Liste des nodes ayant un lien avec cette node, permet de retrouver les liens entrant
+    List<Node> linkedNodeList;
     Circle circle;
 
     public Node(int id, String name, int x, int y)
@@ -27,6 +30,7 @@ public class Node {
         this.y = y;
 
         this.links = new ArrayList<>(0);
+        this.linkedNodeList = new ArrayList<>(0);
     }
 
     public int getId(){return id;}
@@ -35,7 +39,38 @@ public class Node {
     public int getX(){return x;}
     public int getY(){return y;}
 
+    public void updateLinks(){
+        for (Link link : links){
+            Link.Arrow arrow = link.getArrow();
+            Node linkedNode = link.getNode();
+
+            Graphics.updateArrow(arrow, this, linkedNode);
+        }
+        for (Node linkedNode : linkedNodeList){
+
+            for (Link comingLink : linkedNode.links){
+                if (comingLink.getNode() == this){
+                    Link.Arrow arrow = comingLink.getArrow();
+
+                    Graphics.updateArrow(arrow, linkedNode, this);
+                }
+            }
+        }
+    }
+
     public void setX(int x){
+        this.x = x;
+        circle.setCenterX(x);
+
+        updateLinks();
+    }
+    public void setY(int y){
+        this.y = y;
+        circle.setCenterY(y);
+
+        updateLinks();
+    }
+    public void setPosition(int x, int y){
         this.x = x;
         circle.setCenterX(x);
         for (Link link : links){
@@ -43,14 +78,7 @@ public class Node {
             Graphics.updateArrow(arrow, this, link.getNode());
         }
     }
-    public void setY(int y){
-        this.y = y;
-        circle.setCenterY(y);
-        for (Link link : links){
-            Link.Arrow arrow = link.getArrow();
-            Graphics.updateArrow(arrow, this, link.getNode());
-        }
-    }
+
 
     public String getName() {return name;}
 
