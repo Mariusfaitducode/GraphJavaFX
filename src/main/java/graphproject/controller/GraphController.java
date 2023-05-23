@@ -122,8 +122,21 @@ public class GraphController {
         //fonctions qui sélectionne une node si on clique dessus
         circle.setOnMouseClicked(event -> {
 
-            // Display the information of the node
-            selectionPaneController.setNodePane(node);
+            if (searchPathRightPane.isVisible()){
+
+                if (selectionPaneController.firstClick()){
+                    selectionPaneController.setNodeStart(node);
+                }
+                else{
+                    selectionPaneController.setNodeEnd(node);
+                }
+            }
+            else{
+                // Display the information of the node
+                selectionPaneController.setNodePane(node);
+            }
+
+
 
         });
 

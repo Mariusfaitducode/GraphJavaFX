@@ -71,7 +71,7 @@
          <right>
             <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
+                  <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
                      <children>
                         <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Node" />
                         <Label layoutX="7.0" layoutY="77.0" styleClass="labelled" text="Id : " />
@@ -107,7 +107,7 @@
                         <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                      </children>
                   </Pane>
-                  <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
+                  <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
                      <children>
                         <Label layoutX="53.0" layoutY="28.0" styleClass="labelled" text="Search path" />
                         <Label layoutX="10.0" layoutY="229.0" styleClass="labelled" text="Name :" />
@@ -119,7 +119,7 @@
                         <Label layoutX="4.0" layoutY="385.0" styleClass="labelled" text="Path found :" />
                         <TextField layoutX="69.0" layoutY="223.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 2" />
                         <TextField layoutX="68.0" layoutY="110.0" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 1" />
-                        <Button layoutX="50.0" layoutY="289.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Find" />
+                        <Button id="find-path-button" layoutX="50.0" layoutY="289.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Find" />
                      </children>
                   </Pane>
                </children>
