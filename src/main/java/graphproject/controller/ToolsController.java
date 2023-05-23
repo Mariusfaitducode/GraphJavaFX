@@ -10,9 +10,12 @@ public class ToolsController {
 
     private final ToggleButton createLinksButton;
 
+    //private final ToggleButton searchPathButton;
+
     ToolsController(HBox toolsBarPane) {
         this.createNodesButton = (ToggleButton) toolsBarPane.lookup("#id-toolsBar-createNodes");
         this.createLinksButton = (ToggleButton) toolsBarPane.lookup("#id-toolsBar-createLinks");
+        //this.searchPathButton = (ToggleButton) toolsBarPane.lookup()
 
         listenerNodesButton();
         listenerLinksButton();
