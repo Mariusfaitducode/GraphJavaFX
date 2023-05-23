@@ -5,17 +5,11 @@ import graphproject.model.Graph;
 import graphproject.model.Link;
 import graphproject.model.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Shape;
-
-import java.util.List;
-import java.util.Set;
 
 
 //Permet de modifier un graphe
@@ -23,7 +17,7 @@ public class GraphController {
 
     // Graphic Attributes of the graph
 
-    private  Pane pane;
+    private  Pane centerPane;
     private HBox toolsBar;
 
     private Pane nodeRightPane;
@@ -49,7 +43,7 @@ public class GraphController {
 
         // Graphic elements of the scene
 
-        this.pane = pane;
+        this.centerPane = pane;
         this.nodeRightPane = nodeRightPane;
         this.linkRightPane = linkRightPane;
         this.searchPathRightPane = searchPathRightPane;
@@ -74,7 +68,7 @@ public class GraphController {
     }
 
     public void clearGraph() {
-        pane.getChildren().clear();
+        centerPane.getChildren().clear();
     }
 
     public boolean graphIsNull() {
@@ -95,7 +89,7 @@ public class GraphController {
 
     // Add a node when the ToggleButton is true, and we click on the graph
     private void listenerAddNodeToGraph() {
-        pane.setOnMouseClicked(event -> {
+        centerPane.setOnMouseClicked(event -> {
 
             if (toolsController.isSelected_createNodesButton() && !graphIsNull()) {
 
@@ -172,7 +166,7 @@ public class GraphController {
                     // Create new link
                     graph.addLink(linkedNode, node);
                     Link.Arrow arrow = Graphics.DesignLineAndArrow(linkedNode, node, 10);
-                    pane.getChildren().addAll(arrow.line, arrow.arrowHead);
+                    centerPane.getChildren().addAll(arrow.line, arrow.arrowHead);
                     Link link = graph.getLinkFromIds(linkedNode, node);
                     link.setOrientedLine(arrow);
 
@@ -189,7 +183,7 @@ public class GraphController {
     // Display the information if the link when clicked in it
     private void listenerLink() {
         //TODO :fonctions qui sélectionne un link si on clique dessus
-        for (javafx.scene.Node node : pane.lookupAll(".line")) {
+        for (javafx.scene.Node node : centerPane.lookupAll(".line")) {
             if (node instanceof Line) {
                 node.setOnMouseClicked(event -> {
                     nodeRightPane.setVisible(false);
@@ -229,7 +223,7 @@ public class GraphController {
 
                 // Add the circle to the pane
                 node.setCircle(circle);
-                pane.getChildren().add(circle);
+                centerPane.getChildren().add(circle);
             }
         }
     }
@@ -245,7 +239,7 @@ public class GraphController {
 
             // Add the circle to the pane
             node.setCircle(circle);
-            pane.getChildren().add(circle);
+            centerPane.getChildren().add(circle);
         }
 
     }
@@ -262,7 +256,7 @@ public class GraphController {
 
             // Add the circle to the pane
             node.setCircle(circle);
-            pane.getChildren().add(circle);
+            centerPane.getChildren().add(circle);
         }
     }
 
@@ -275,7 +269,7 @@ public class GraphController {
 
                 Link.Arrow arrow = Graphics.DesignLineAndArrow(node, linkedNode, 10);
 
-                pane.getChildren().addAll(arrow.line, arrow.arrowHead);
+                centerPane.getChildren().addAll(arrow.line, arrow.arrowHead);
 
                 link.setOrientedLine(arrow);
 
