@@ -9,25 +9,36 @@ import static java.lang.Math.sqrt;
 
 public class SearchPath {
 
-    //private Graph graph;
+    public class PathNode{
+        public Node node;
+        public float weight;
+        public float passedDistance;
 
-    //private Node nodeStart;
-    //private Node nodeEnd;
+        PathNode(Node node, float weight, float passedDistance){
+            this.node = node;
+            this.weight = weight;
+            this.passedDistance = passedDistance;
+        }
 
-    public void searchPath(Node nodeStart, Node nodeEnd){
+    }
+
+    public float searchPath(Node nodeStart, Node nodeEnd, List<Node> listNodePath){
 
         List<Node> listVisitedNode = new ArrayList<>(0);
-        List<Node> listToVisitNode = new ArrayList<>(0);
-        List<Float> listWeightNode = new ArrayList<>(0);
 
-        Node actualChooseNode = nodeStart;
+        List<PathNode> listPathNode = new ArrayList<>(0);
+
+        PathNode actualChooseNode = new PathNode(nodeStart, 0, 0);
+
+
+        listVisitedNode.add(actualChooseNode.node);
 
         float weight = 0;
-        float count = 0;
+        float distance = 0;
 
-        while( actualChooseNode != nodeEnd){
+        while( actualChooseNode.node != nodeEnd){
 
-            for(Link link : actualChooseNode.links){
+            for(Link link : actualChooseNode.node.links){
 
 
                 Node actualNode = link.getNode();
@@ -35,39 +46,84 @@ public class SearchPath {
                 //Si la node n'a pas déjà été visité
                 if (!listVisitedNode.contains(actualNode)){
 
-                    weight = count + normeVect(actualNode.getX(), actualNode.getY(), nodeEnd.getX(), nodeEnd.getY());
 
-                    listToVisitNode.add(actualNode);
-                    listWeightNode.add(weight);
+                    distance = actualChooseNode.passedDistance + normeVect(actualChooseNode.node.getX(), actualChooseNode.node.getY(), actualNode.getX(), actualNode.getY());
+                    weight = distance + normeVect(actualNode.getX(), actualNode.getY(), nodeEnd.getX(), nodeEnd.getY());
+
+                    //listToVisitNode.add(actualNode);
+                    //listWeightNode.add(weight);
+
+                    listPathNode.add(new PathNode(actualNode, weight, distance));
                 }
             }
 
+            if (listPathNode.isEmpty()){
+
+                // Le chemin n'est pas possible
+                return 0;
+            }
+
             //Choix de la node la plus intéressante
-            actualChooseNode = chooseNodeToExplore(listToVisitNode, listWeightNode);
-            actualChooseNode.getCircle().setFill(Color.RED);
-            listVisitedNode.add(actualChooseNode);
+            actualChooseNode = chooseNodeToExplore(listPathNode);
+
+            actualChooseNode.node.getCircle().setFill(Color.RED);
+            listVisitedNode.add(actualChooseNode.node);
         }
+
+        // Chemin trouvé
+
+        distance = actualChooseNode.passedDistance;
+
+        // actualNode = endNode
+
+        Node lastNode = actualChooseNode.node;
+        listVisitedNode.remove(listVisitedNode.size()-1);
+        Node actualChooseBackNode = listVisitedNode.get(listVisitedNode.size() -1);
+
+        while (actualChooseBackNode != nodeStart){
+
+            if (areLinked(actualChooseBackNode, lastNode)){
+                actualChooseBackNode.getCircle().setFill(Color.MAGENTA);
+                listNodePath.add(actualChooseBackNode);
+                lastNode = actualChooseBackNode;
+            }
+
+            listVisitedNode.remove(listVisitedNode.size()-1);
+            actualChooseBackNode = listVisitedNode.get(listVisitedNode.size() -1);
+        }
+        return distance;
     }
 
-    public Node chooseNodeToExplore(List<Node> listToVisitNode, List<Float> listWeight){
+    public boolean areLinked(Node node, Node linkedNode){
+
+        for (Link link : node.links){
+            if (link.getNode() == linkedNode){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public PathNode chooseNodeToExplore(List<PathNode> listPathNode){
 
         //On choisit la node qui a le poids le plus faible
         float min = 100000000000f;
         int ref = 0;
 
-        for(int i = 0; i < listToVisitNode.size(); i++){
+        for(int i = 0; i < listPathNode.size(); i++){
 
-            if (listWeight.get(i) < min){
-                min = listWeight.get(i);
+            if (listPathNode.get(i).weight < min){
+                min = listPathNode.get(i).weight;
                 ref = i;
             }
         }
 
-        listWeight.remove(ref);
-        Node choosedNode = listToVisitNode.get(ref);
-        listToVisitNode.remove(ref);
+        PathNode choosedPath = listPathNode.get(ref);
+        listPathNode.remove(ref);
 
-        return choosedNode;
+
+
+        return choosedPath;
     }
 
     public float normeVect(int startX, int startY, int endX, int endY){
@@ -77,5 +133,4 @@ public class SearchPath {
 
         return (float)Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
     }
-
 }

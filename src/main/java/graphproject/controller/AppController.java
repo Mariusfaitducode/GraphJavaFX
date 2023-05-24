@@ -87,8 +87,8 @@ public class AppController implements Initializable {
     }
 
     public void searchPath() {
-        searchPathRightPane.setVisible(true);
-        nodeRightPane.setVisible(false);
-        linkRightPane.setVisible(false);
+        //searchPathRightPane.setVisible(true);
+        //nodeRightPane.setVisible(false);
+        //linkRightPane.setVisible(false);
     }
 }

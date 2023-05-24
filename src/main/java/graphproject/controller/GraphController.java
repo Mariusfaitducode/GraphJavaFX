@@ -52,8 +52,8 @@ public class GraphController {
 
         // tools
 
-        this.toolsController = new ToolsController(toolsBar);
-        this.selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane);
+        this.selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane, toolsBar);
+        this.toolsController = new ToolsController(toolsBar, selectionPaneController);
 
         // All initialize listeners
 
@@ -124,20 +124,12 @@ public class GraphController {
 
             if (searchPathRightPane.isVisible()){
 
-                if (selectionPaneController.firstClick()){
-                    selectionPaneController.setNodeStart(node);
-                }
-                else{
-                    selectionPaneController.setNodeEnd(node);
-                }
+                selectionPaneController.setSearchNode(node);
             }
             else{
                 // Display the information of the node
                 selectionPaneController.setNodePane(node);
             }
-
-
-
         });
 
         // permet de déplacer les nodes avec la souris
