@@ -91,4 +91,5 @@ public class AppController implements Initializable {
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(false);
     }
+
 }

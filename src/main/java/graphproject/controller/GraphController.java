@@ -23,7 +23,9 @@ public class GraphController {
 
     // Graphic Attributes of the graph
 
-    private  Pane pane;
+
+    private  Pane centerPane;
+
     private HBox toolsBar;
 
     private Pane nodeRightPane;
@@ -49,7 +51,7 @@ public class GraphController {
 
         // Graphic elements of the scene
 
-        this.pane = pane;
+        this.centerPane = pane;
         this.nodeRightPane = nodeRightPane;
         this.linkRightPane = linkRightPane;
         this.searchPathRightPane = searchPathRightPane;
@@ -61,10 +63,14 @@ public class GraphController {
         this.toolsController = new ToolsController(toolsBar);
         this.selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane);
 
+        // Initializing Graphic Rendering
+
+        initializeCenterPaneSettings();
+
         // All initialize listeners
 
         listenerAddNodeToGraph();
-//        listenerAddLinkToGraph();
+        listenerZoomGraph();
 
     }
 
@@ -74,7 +80,7 @@ public class GraphController {
     }
 
     public void clearGraph() {
-        pane.getChildren().clear();
+        centerPane.getChildren().clear();
     }
 
     public boolean graphIsNull() {
@@ -95,7 +101,7 @@ public class GraphController {
 
     // Add a node when the ToggleButton is true, and we click on the graph
     private void listenerAddNodeToGraph() {
-        pane.setOnMouseClicked(event -> {
+        centerPane.setOnMouseClicked(event -> {
 
             if (toolsController.isSelected_createNodesButton() && !graphIsNull()) {
 
@@ -114,12 +120,44 @@ public class GraphController {
         });
     }
 
-//    private void listenerAddLinkToGraph() {
-//        for (Node node : graph.getNodes()) {
-//            Circle circle = node.getCircle();
-//
-//        }
-//    }
+    private void listenerZoomGraph() {
+        centerPane.setOnScroll(event -> {
+            double zoomFactor;
+            if (event.getDeltaY() > 0 ) {
+                zoomFactor = 0.1;
+            } else {
+                zoomFactor = -0.1;
+            }
+            double mouseX = event.getX(); // X coordinate of the mouse pointer
+            double mouseY = event.getY(); // Y coordinate of the mouse pointer
+
+            double currentScaleX = centerPane.getScaleX();
+            double currentScaleY = centerPane.getScaleY();
+
+            double newScaleX = currentScaleX + zoomFactor;
+            double newScaleY = currentScaleY + zoomFactor;
+
+            double pivotX = (mouseX - centerPane.getBoundsInParent().getWidth() / 2)
+                    / centerPane.getBoundsInParent().getWidth();
+            double pivotY = (mouseY - centerPane.getBoundsInParent().getHeight() / 2)
+                    / centerPane.getBoundsInParent().getHeight();
+
+            if (newScaleX > 0.1 && newScaleY > 0.1) {
+                centerPane.setScaleX(newScaleX);
+                centerPane.setScaleY(newScaleY);
+
+                // Adjust the translation to maintain the mouse pointer position
+                centerPane.setTranslateX(centerPane.getTranslateX() - pivotX * (newScaleX - currentScaleX));
+                centerPane.setTranslateY(centerPane.getTranslateY() - pivotY * (newScaleY - currentScaleY));
+
+                System.out.println("scale : "+centerPane.getScaleX());
+                System.out.println("TranslateX : "+centerPane.getTranslateX());
+                System.out.println("TranslateY : "+centerPane.getTranslateY());
+                System.out.println("------------------------------");
+            }
+
+        });
+    }
 
 
     // Display the information of the node when clicked on it
@@ -172,7 +210,7 @@ public class GraphController {
                     // Create new link
                     graph.addLink(linkedNode, node);
                     Link.Arrow arrow = Graphics.DesignLineAndArrow(linkedNode, node, 10);
-                    pane.getChildren().addAll(arrow.line, arrow.arrowHead);
+                    centerPane.getChildren().addAll(arrow.line, arrow.arrowHead);
                     Link link = graph.getLinkFromIds(linkedNode, node);
                     link.setOrientedLine(arrow);
 
@@ -189,7 +227,7 @@ public class GraphController {
     // Display the information if the link when clicked in it
     private void listenerLink() {
         //TODO :fonctions qui sélectionne un link si on clique dessus
-        for (javafx.scene.Node node : pane.lookupAll(".line")) {
+        for (javafx.scene.Node node : centerPane.lookupAll(".line")) {
             if (node instanceof Line) {
                 node.setOnMouseClicked(event -> {
                     nodeRightPane.setVisible(false);
@@ -229,7 +267,7 @@ public class GraphController {
 
                 // Add the circle to the pane
                 node.setCircle(circle);
-                pane.getChildren().add(circle);
+                centerPane.getChildren().add(circle);
             }
         }
     }
@@ -245,7 +283,7 @@ public class GraphController {
 
             // Add the circle to the pane
             node.setCircle(circle);
-            pane.getChildren().add(circle);
+            centerPane.getChildren().add(circle);
         }
 
     }
@@ -262,7 +300,7 @@ public class GraphController {
 
             // Add the circle to the pane
             node.setCircle(circle);
-            pane.getChildren().add(circle);
+            centerPane.getChildren().add(circle);
         }
     }
 
@@ -275,11 +313,40 @@ public class GraphController {
 
                 Link.Arrow arrow = Graphics.DesignLineAndArrow(node, linkedNode, 10);
 
-                pane.getChildren().addAll(arrow.line, arrow.arrowHead);
+                centerPane.getChildren().addAll(arrow.line, arrow.arrowHead);
 
                 link.setOrientedLine(arrow);
 
             }
         }
+    }
+
+    private void initializeCenterPaneSettings() {
+
+        double width = 8000.0;
+        double height = 6240.0;
+
+        double layoutX = - (width - (width/10) ) / 2;
+        double layoutY = - (height - (height/10) ) / 2;
+
+        // Initialize zoom to 1.0
+        centerPane.setScaleX(1.0);
+        centerPane.setScaleY(1.0);
+
+        // Initialize max length and width of centerPane
+        centerPane.setPrefSize(width, height);
+
+        // Center the centerPane
+        centerPane.setLayoutX(layoutX);
+        centerPane.setLayoutY(layoutY);
+
+        System.out.println("width : "+centerPane.getWidth());
+        System.out.println("height : "+centerPane.getHeight());
+        System.out.println("prefwidth : "+centerPane.getPrefWidth());
+        System.out.println("prefheight : "+centerPane.getPrefHeight());
+        System.out.println("layoutX : "+centerPane.getLayoutX());
+        System.out.println("layoutY : "+centerPane.getLayoutY());
+        System.out.println("scaleX : "+centerPane.getScaleX());
+        System.out.println("scaleY : "+centerPane.getScaleY());
     }
 }
