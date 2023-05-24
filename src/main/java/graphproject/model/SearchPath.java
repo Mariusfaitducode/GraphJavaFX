@@ -17,10 +17,12 @@ public class SearchPath {
     public void searchPath(Node nodeStart, Node nodeEnd){
 
         List<Node> listVisitedNode = new ArrayList<>(0);
+
         List<Node> listToVisitNode = new ArrayList<>(0);
         List<Float> listWeightNode = new ArrayList<>(0);
 
         Node actualChooseNode = nodeStart;
+        listVisitedNode.add(actualChooseNode);
 
         float weight = 0;
         float count = 0;
@@ -42,11 +44,46 @@ public class SearchPath {
                 }
             }
 
+            if (listToVisitNode.isEmpty()){
+
+                // Le chemin n'est pas possible
+                break;
+            }
+
             //Choix de la node la plus intéressante
             actualChooseNode = chooseNodeToExplore(listToVisitNode, listWeightNode);
             actualChooseNode.getCircle().setFill(Color.RED);
             listVisitedNode.add(actualChooseNode);
         }
+
+        // Chemin trouvé
+
+        // actualNode = endNode
+
+        Node lastNode = actualChooseNode;
+        listVisitedNode.remove(listVisitedNode.size()-1);
+        actualChooseNode = listVisitedNode.get(listVisitedNode.size() -1);
+
+        while (actualChooseNode != nodeStart){
+
+            if (areLinked(actualChooseNode, lastNode)){
+                actualChooseNode.getCircle().setFill(Color.MAGENTA);
+                lastNode = actualChooseNode;
+            }
+
+            listVisitedNode.remove(listVisitedNode.size()-1);
+            actualChooseNode = listVisitedNode.get(listVisitedNode.size() -1);
+        }
+    }
+
+    public boolean areLinked(Node node, Node linkedNode){
+
+        for (Link link : node.links){
+            if (link.getNode() == linkedNode){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Node chooseNodeToExplore(List<Node> listToVisitNode, List<Float> listWeight){
