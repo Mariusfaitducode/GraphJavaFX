@@ -9,11 +9,6 @@ import static java.lang.Math.sqrt;
 
 public class SearchPath {
 
-    //private Graph graph;
-
-    //private Node nodeStart;
-    //private Node nodeEnd;
-
     public class PathNode{
         public Node node;
         public float weight;
@@ -27,12 +22,9 @@ public class SearchPath {
 
     }
 
-    public void searchPath(Node nodeStart, Node nodeEnd){
+    public float searchPath(Node nodeStart, Node nodeEnd, List<Node> listNodePath){
 
         List<Node> listVisitedNode = new ArrayList<>(0);
-
-        //List<Node> listToVisitNode = new ArrayList<>(0);
-        //List<Float> listWeightNode = new ArrayList<>(0);
 
         List<PathNode> listPathNode = new ArrayList<>(0);
 
@@ -68,7 +60,7 @@ public class SearchPath {
             if (listPathNode.isEmpty()){
 
                 // Le chemin n'est pas possible
-                break;
+                return 0;
             }
 
             //Choix de la node la plus intéressante
@@ -80,6 +72,8 @@ public class SearchPath {
 
         // Chemin trouvé
 
+        distance = actualChooseNode.passedDistance;
+
         // actualNode = endNode
 
         Node lastNode = actualChooseNode.node;
@@ -90,12 +84,14 @@ public class SearchPath {
 
             if (areLinked(actualChooseBackNode, lastNode)){
                 actualChooseBackNode.getCircle().setFill(Color.MAGENTA);
+                listNodePath.add(actualChooseBackNode);
                 lastNode = actualChooseBackNode;
             }
 
             listVisitedNode.remove(listVisitedNode.size()-1);
             actualChooseBackNode = listVisitedNode.get(listVisitedNode.size() -1);
         }
+        return distance;
     }
 
     public boolean areLinked(Node node, Node linkedNode){
@@ -137,5 +133,4 @@ public class SearchPath {
 
         return (float)Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
     }
-
 }
