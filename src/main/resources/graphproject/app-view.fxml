@@ -22,7 +22,10 @@
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <Pane id="#id-graph-pane" fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER" />
+            <Pane id="#id-graph-pane" fx:id="parentCenterPane" prefHeight="6000.0" prefWidth="8000.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" />
+               </children></Pane>
          </center>
          <bottom>
             <HBox fx:id="toolsBar" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #333; -fx-padding: 10px;" BorderPane.alignment="CENTER">

@@ -19,7 +19,7 @@ public class AppController implements Initializable {
 
     //id des éléments
     @FXML
-    private Pane centerPane, nodeRightPane, linkRightPane, searchPathRightPane;
+    private Pane centerPane, nodeRightPane, linkRightPane, searchPathRightPane, parentCenterPane;
 
     @FXML
     private HBox toolsBar;
@@ -62,7 +62,7 @@ public class AppController implements Initializable {
         linkRightPane.setVisible(false);
         searchPathRightPane.setVisible(false);
 
-        graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane, toolsBar);
+        graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane, toolsBar, parentCenterPane);
         menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
     }
 
@@ -91,4 +91,5 @@ public class AppController implements Initializable {
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(false);
     }
+
 }

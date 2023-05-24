@@ -17,7 +17,10 @@ public class GraphController {
 
     // Graphic Attributes of the graph
 
+
     private  Pane centerPane;
+    private Pane parentCenterPane;
+
     private HBox toolsBar;
 
     private Pane nodeRightPane;
@@ -37,7 +40,7 @@ public class GraphController {
     GraphController(){};
 
     // Contruct the controller for the opened graph
-    GraphController(Pane pane, Pane nodeRightPane, Pane linkRightPane, Label graphTitle, Pane searchPathRightPane, HBox toolsBar) {
+    GraphController(Pane pane, Pane nodeRightPane, Pane linkRightPane, Label graphTitle, Pane searchPathRightPane, HBox toolsBar, Pane parentCenterPane) {
 
         this.graph = null;
 
@@ -49,16 +52,21 @@ public class GraphController {
         this.searchPathRightPane = searchPathRightPane;
         this.graphTitle = graphTitle;
         this.toolsBar = toolsBar;
+        this.parentCenterPane = parentCenterPane;
 
         // tools
 
         this.toolsController = new ToolsController(toolsBar);
         this.selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane);
 
+        // Initializing Graphic Rendering
+
+        initializeCenterPaneSettings();
+
         // All initialize listeners
 
         listenerAddNodeToGraph();
-//        listenerAddLinkToGraph();
+        listenerZoomGraph();
 
     }
 
@@ -108,12 +116,71 @@ public class GraphController {
         });
     }
 
-//    private void listenerAddLinkToGraph() {
-//        for (Node node : graph.getNodes()) {
-//            Circle circle = node.getCircle();
+    private void listenerZoomGraph() {
+        parentCenterPane.setOnScroll(event -> {
+            double zoomFactor;
+            if (event.getDeltaY() > 0 ) {
+                zoomFactor = 0.1;
+            } else {
+                zoomFactor = -0.1;
+            }
+            double mouseX = event.getX(); // X coordinate of the mouse pointer
+            double mouseY = event.getY(); // Y coordinate of the mouse pointer
+
+            System.out.println("nouseX : "+mouseX);
+            System.out.println("nousey : "+mouseY);
+
+            double currentScaleX = centerPane.getScaleX();
+            double currentScaleY = centerPane.getScaleY();
+
+            double newScaleX = currentScaleX + zoomFactor;
+            double newScaleY = currentScaleY + zoomFactor;
+
+            double centerX = centerPane.getBoundsInParent().getCenterX() - centerPane.getLayoutX();
+            double centerY = parentCenterPane.getBoundsInParent().getCenterY() - centerPane.getLayoutY();
+
+            System.out.println("center X : "+centerX);
+            System.out.println("center y : "+centerY);
+
+            double sizeX = centerPane.getBoundsInParent().getWidth();
+            double sizeY = centerPane.getBoundsInParent().getHeight();
+
+            //double centerX = (sizeX - origineX)/2;
+            //double centerY = (sizeY - origineY)/2;
+
+
+            double dx = mouseX - centerX;
+            double dy = mouseY - centerY;
+
+
+
+
+
+            if (newScaleX > 0.1 && newScaleY > 0.1) {
+
+                centerPane.setTranslateX(mouseX-500);
+                centerPane.setTranslateY(mouseY-312);
+
+                centerPane.setScaleX(newScaleX);
+                centerPane.setScaleY(newScaleY);
+
+//                double dx = (mouseX - centerPane.getBoundsInParent().getWidth()/2) * (1-zoomFactor);
+//                double dy = (mouseY - centerPane.getBoundsInParent().getHeight()/2) * (1-zoomFactor);
 //
-//        }
-//    }
+//                centerPane.setTranslateX(centerPane.getBoundsInParent().getWidth()/2-dx);
+//                centerPane.setTranslateY(centerPane.getBoundsInParent().getHeight()/2-dy);
+
+                centerPane.setTranslateX(dx);
+                centerPane.setTranslateY(dy);
+
+                System.out.println("scale : "+centerPane.getScaleX());
+                System.out.println("TranslateX : "+centerPane.getTranslateX());
+                System.out.println("TranslateY : "+centerPane.getTranslateY());
+                System.out.println("------------------------------");
+            }
+
+        });
+    }
 
 
     // Display the information of the node when clicked on it
@@ -288,5 +355,34 @@ public class GraphController {
 
             }
         }
+    }
+
+    private void initializeCenterPaneSettings() {
+
+        double width = 8000.0;
+        double height = 6240.0;
+
+        double layoutX = - (width - (width/10) ) / 2;
+        double layoutY = - (height - (height/10) ) / 2;
+
+        // Initialize zoom to 1.0
+        centerPane.setScaleX(1.0);
+        centerPane.setScaleY(1.0);
+
+        // Initialize max length and width of centerPane
+        centerPane.setPrefSize(width, height);
+
+        // Center the centerPane
+        centerPane.setLayoutX(layoutX);
+        centerPane.setLayoutY(layoutY);
+
+        System.out.println("width : "+centerPane.getWidth());
+        System.out.println("height : "+centerPane.getHeight());
+        System.out.println("prefwidth : "+centerPane.getPrefWidth());
+        System.out.println("prefheight : "+centerPane.getPrefHeight());
+        System.out.println("layoutX : "+centerPane.getLayoutX());
+        System.out.println("layoutY : "+centerPane.getLayoutY());
+        System.out.println("scaleX : "+centerPane.getScaleX());
+        System.out.println("scaleY : "+centerPane.getScaleY());
     }
 }
