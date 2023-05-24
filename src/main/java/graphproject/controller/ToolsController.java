@@ -7,18 +7,21 @@ import javafx.scene.layout.Pane;
 public class ToolsController {
 
     private final ToggleButton createNodesButton;
-
     private final ToggleButton createLinksButton;
+    private final ToggleButton searchPathButton;
 
-    //private final ToggleButton searchPathButton;
+    private final SelectionPaneController selectionPaneController;
 
-    ToolsController(HBox toolsBarPane) {
+    ToolsController(HBox toolsBarPane, SelectionPaneController selectionPaneController) {
         this.createNodesButton = (ToggleButton) toolsBarPane.lookup("#id-toolsBar-createNodes");
         this.createLinksButton = (ToggleButton) toolsBarPane.lookup("#id-toolsBar-createLinks");
-        //this.searchPathButton = (ToggleButton) toolsBarPane.lookup()
+        this.searchPathButton = (ToggleButton) toolsBarPane.lookup("#id-toolBar-searchPath");
+
+        this.selectionPaneController = selectionPaneController;
 
         listenerNodesButton();
         listenerLinksButton();
+        listenerPathButton();
     }
 
     public boolean isSelected_createNodesButton() {
@@ -35,14 +38,7 @@ public class ToolsController {
 
         // Add listeners
         createNodesButton.setOnMouseClicked(event -> {
-            if (createNodesButton.isSelected()) {
-                createNodesButton.setStyle("-fx-background-color: red;");
-                createLinksButton.setSelected(false);
-                createLinksButton.setStyle("-fx-background-color: #222;");
-
-            } else {
-                createNodesButton.setStyle("-fx-background-color: #222;");
-            }
+            setSelectedToggleButtons(createNodesButton, searchPathButton, createLinksButton);
         });
     }
 
@@ -52,13 +48,36 @@ public class ToolsController {
 
         // Add listeners
         createLinksButton.setOnMouseClicked(event2 -> {
-            if (createLinksButton.isSelected()) {
-                createLinksButton.setStyle("-fx-background-color: red;");
-                createNodesButton.setSelected(false);
-                createNodesButton.setStyle("-fx-background-color: #222;");
-            } else {
-                createLinksButton.setStyle("-fx-background-color: #222;");
+            setSelectedToggleButtons(createLinksButton, searchPathButton,  createNodesButton);
+        });
+    }
+
+    public void listenerPathButton() {
+        //initialize the color of the button
+        searchPathButton.setStyle("-fx-background-color: #222;");
+
+        // Add listeners
+        searchPathButton.setOnMouseClicked(event3 -> {
+            setSelectedToggleButtons(searchPathButton, createLinksButton, createNodesButton);
+            if (searchPathButton.isSelected()){
+                selectionPaneController.setSearchPane();
+            }
+            else{
+                selectionPaneController.closeSearchPane();
             }
         });
+    }
+
+    public void setSelectedToggleButtons(ToggleButton t1, ToggleButton t2, ToggleButton t3){
+        if (t1.isSelected()) {
+            t1.setStyle("-fx-background-color: red;");
+            t2.setSelected(false);
+            t2.setStyle("-fx-background-color: #222;");
+            t3.setSelected(false);
+            t3.setStyle("-fx-background-color: #222;");
+        } else {
+            t1.setStyle("-fx-background-color: #222;");
+        }
+        selectionPaneController.closeSearchPane();
     }
 }
