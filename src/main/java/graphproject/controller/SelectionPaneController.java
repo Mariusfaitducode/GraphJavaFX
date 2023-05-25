@@ -51,11 +51,14 @@ public class SelectionPaneController {
     }
 
     public void setNodePane(Node selectedNode){
+
+
+
         nodeRightPane.setVisible(true);
         linkRightPane.setVisible(false);
         searchPathRightPane.setVisible(false);
 
-        nodePane.selectedNode = selectedNode;
+        nodePane.setSelectedNode(selectedNode);
 
         nodePane.textId.setText(Integer.toString(selectedNode.getId()));
         nodePane.textName.setText(selectedNode.getName());

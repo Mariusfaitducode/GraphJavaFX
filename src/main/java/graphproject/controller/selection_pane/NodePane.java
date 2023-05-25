@@ -9,6 +9,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,27 @@ public class NodePane{
 
             }
         };
+    }
+
+    public void setSelectedNode(Node selectedNode){
+
+        if (this.selectedNode != null){
+            this.selectedNode.getCircle().setScaleX(1);
+            this.selectedNode.getCircle().setScaleY(1);
+            this.selectedNode.getCircle().setStroke(Color.BLACK);
+            this.selectedNode.getCircle().setStrokeWidth(1);
+            this.selectedNode.setSelection(false);
+        }
+
+        //nodePane.lastSelectedNode = selectedNode;
+        selectedNode.getCircle().setScaleX(1.1);
+        selectedNode.getCircle().setScaleY(1.1);
+        selectedNode.getCircle().setStroke(Color.RED);
+        selectedNode.getCircle().setStrokeWidth(2);
+
+        selectedNode.setSelection(true);
+
+        this.selectedNode = selectedNode;
     }
 
     public void setChoiceBox(SelectionPaneController selectionPaneController){
