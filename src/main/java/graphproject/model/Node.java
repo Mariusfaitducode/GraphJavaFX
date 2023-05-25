@@ -18,6 +18,8 @@ public class Node {
     int y;
     List<Link> links;
 
+    boolean selected;
+
     //Liste des nodes ayant un lien avec cette node, permet de retrouver les liens entrant
     List<Node> linkedNodeList;
     Circle circle;
@@ -31,6 +33,8 @@ public class Node {
 
         this.links = new ArrayList<>(0);
         this.linkedNodeList = new ArrayList<>(0);
+
+        this.selected = false;
     }
 
     public int getId(){return id;}
@@ -86,9 +90,14 @@ public class Node {
 
     public List<Link> getLinks(){return links;}
 
+    public List<Node> getLinkedNodeList(){return linkedNodeList;}
+
     public void setCircle(Circle circle){this.circle = circle;}
 
     public Circle getCircle(){return circle;}
+
+    public boolean isSelected(){return selected;}
+    public void setSelection(boolean b){this.selected = b;}
 
     public void deleteAllLinks(){
         for (Link link : links){

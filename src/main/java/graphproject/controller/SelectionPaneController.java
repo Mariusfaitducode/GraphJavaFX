@@ -3,8 +3,10 @@ package graphproject.controller;
 import graphproject.controller.selection_pane.NodePane;
 import graphproject.controller.selection_pane.SearchPane;
 import graphproject.model.Graph;
+import graphproject.model.Link;
 import graphproject.model.Node;
 import graphproject.model.SearchPath;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -49,16 +51,21 @@ public class SelectionPaneController {
     }
 
     public void setNodePane(Node selectedNode){
+
+
+
         nodeRightPane.setVisible(true);
         linkRightPane.setVisible(false);
         searchPathRightPane.setVisible(false);
 
-        nodePane.selectedNode = selectedNode;
+        nodePane.setSelectedNode(selectedNode);
 
         nodePane.textId.setText(Integer.toString(selectedNode.getId()));
         nodePane.textName.setText(selectedNode.getName());
         nodePane.textPosX.setText(Integer.toString(selectedNode.getX()));
         nodePane.textPosY.setText(Integer.toString(selectedNode.getY()));
+
+        nodePane.setChoiceBox(this);
     }
 
     public void setSearchPane(){

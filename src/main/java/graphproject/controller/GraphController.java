@@ -123,14 +123,16 @@ public class GraphController {
                 int y = (int) event.getY();
                 Node node = graph.addNode(x,y);
 
-                // Display the information of the new node
-                //Node node = graph.getNodeFromPos(x,y);
 
-                selectionPaneController.setNodePane(node);
 
                 // Updates the display of Nodes
                 updateNode(node);
+
+                // Display the information of the new node
+                //Node node = graph.getNodeFromPos(x,y);
+                selectionPaneController.setNodePane(node);
             }
+            event.consume();
         });
     }
 
@@ -282,7 +284,10 @@ public class GraphController {
         });
 
         circle.setOnMouseExited(event -> {
-            circle.setStroke(Color.BLACK); // Rétablissement de la couleur de la bordure
+            if (!node.isSelected()){
+                circle.setStroke(Color.BLACK); // Rétablissement de la couleur de la bordure
+            }
+
             event.consume();
         });
 
