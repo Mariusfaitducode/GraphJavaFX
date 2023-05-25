@@ -167,6 +167,8 @@ public class GraphController {
                 centerPane.setTranslateX(translateX+dX*(centerPane.getBoundsInParent().getWidth()/8000));
                 centerPane.setTranslateY(translateY+dY*(centerPane.getBoundsInParent().getHeight()/6240));
 
+                double borderX = centerPane.getTranslateX() - 4000 * (centerPane.getScaleX()-0.1);
+                double borderY = centerPane.getTranslateY() - 3120 * (centerPane.getScaleX()-0.1);
 
                 System.out.println("Scale : "+centerPane.getScaleX());
                 System.out.println("----------------------------------");
@@ -186,17 +188,47 @@ public class GraphController {
     private void listenerMoveOnGraph() {
         centerPane.setOnMouseDragged(event -> {
 
-            centerPane.setTranslateX(centerPane.getTranslateX() + (event.getX() - initialX) * (centerPane.getBoundsInParent().getWidth()/8000));
-            centerPane.setTranslateY(centerPane.getTranslateY() + (event.getY() - initialY) * (centerPane.getBoundsInParent().getHeight()/6240));
-            event.consume();
+            double borderLeft = centerPane.getTranslateX() - 4000 * (centerPane.getScaleX()-0.1);
+            double borderTop = centerPane.getTranslateY() - 3120 * (centerPane.getScaleX()-0.1);
+            double borderRight = centerPane.getTranslateX() + 4000 * (centerPane.getScaleX()-0.1);
+            double borderBottom = centerPane.getTranslateY() + 3120 * (centerPane.getScaleX()-0.1);
 
-            System.out.println("translateX : " + centerPane.getTranslateX());
-            System.out.println("translateY : " + centerPane.getTranslateY());
+            double dX = (event.getX() - initialX) * (centerPane.getBoundsInParent().getWidth()/8000);
+            double dY = (event.getY() - initialY) * (centerPane.getBoundsInParent().getHeight()/6240);
+
             System.out.println("--------------------------------");
-
-            if (centerPane.getLayoutX() + centerPane.getTranslateX() > 0) {
-                System.out.println("out!!!!!!!!!!!!!!!!!!!!!");
+            if (dX < 0) {
+                System.out.println("right");
+                if (borderRight < 0) {
+                    System.out.println("out!!!! right");
+                } else  {
+                    centerPane.setTranslateX(centerPane.getTranslateX() + dX);
+                }
+            } else {
+                System.out.println("left");
+                if (borderLeft > 0) {
+                    System.out.println("out!!!! left");
+                } else  {
+                    centerPane.setTranslateX(centerPane.getTranslateX() + dX);
+                }
             }
+
+            if (dY < 0) {
+                System.out.println("down");
+                if (borderBottom < 0) {
+                    System.out.println("out!!!! bottom");
+                } else  {
+                    centerPane.setTranslateY(centerPane.getTranslateY() + dY);
+                }
+            } else {
+                System.out.println("up");
+                if (borderTop > 0) {
+                    System.out.println("out!!!! top");
+                } else  {
+                    centerPane.setTranslateY(centerPane.getTranslateY() + dY);
+                }
+            }
+
         });
     }
 
