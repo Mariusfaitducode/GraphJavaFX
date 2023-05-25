@@ -8,6 +8,7 @@
  - V : afficher sous diférentes formes(cercle, en carré, NN, etc...)
  - édition attributs nodes (tailler des cercles, choix des couleurs des nodes)
  - définition de commandes claviers/souris
+ - Manière dont on génère les graphes
 
 
 ## A la fin
