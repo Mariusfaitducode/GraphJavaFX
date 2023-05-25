@@ -63,7 +63,7 @@ public class GraphController {
 
         // Initializing Graphic Rendering
 
-        //initializeCenterPaneSettings();
+        initializeCenterPaneSettings();
 
         // All initialize listeners
 
