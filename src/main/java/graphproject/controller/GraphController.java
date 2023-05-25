@@ -167,8 +167,22 @@ public class GraphController {
                 centerPane.setTranslateX(translateX+dX*(centerPane.getBoundsInParent().getWidth()/8000));
                 centerPane.setTranslateY(translateY+dY*(centerPane.getBoundsInParent().getHeight()/6240));
 
-                double borderX = centerPane.getTranslateX() - 4000 * (centerPane.getScaleX()-0.1);
-                double borderY = centerPane.getTranslateY() - 3120 * (centerPane.getScaleX()-0.1);
+                double borderLeft = centerPane.getTranslateX() - 4000 * (centerPane.getScaleX()-0.1);
+                double borderTop = centerPane.getTranslateY() - 3120 * (centerPane.getScaleX()-0.1);
+                double borderRight = centerPane.getTranslateX() + 4000 * (centerPane.getScaleX()-0.1);
+                double borderBottom = centerPane.getTranslateY() + 3120 * (centerPane.getScaleX()-0.1);
+
+                if (borderLeft > 0) {
+                    centerPane.setTranslateX(centerPane.getTranslateX() - borderLeft);
+                } else if (borderRight < 0) {
+                    centerPane.setTranslateX(centerPane.getTranslateX() - borderRight);
+                }
+
+                if (borderTop > 0) {
+                    centerPane.setTranslateY(centerPane.getTranslateY() - borderTop);
+                } else if (borderBottom < 0) {
+                    centerPane.setTranslateY(centerPane.getTranslateY() - borderBottom);
+                }
 
                 System.out.println("Scale : "+centerPane.getScaleX());
                 System.out.println("----------------------------------");
