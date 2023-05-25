@@ -25,7 +25,7 @@
          <center>
             <Pane id="#id-graph-pane" fx:id="parentCenterPane" prefHeight="6000.0" prefWidth="8000.0" style="-fx-background-color: #666;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" />
+                  <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #111;" />
                </children></Pane>
          </center>
          <bottom>

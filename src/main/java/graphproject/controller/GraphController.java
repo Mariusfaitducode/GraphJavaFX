@@ -167,6 +167,7 @@ public class GraphController {
                 centerPane.setTranslateX(translateX+dX*(centerPane.getBoundsInParent().getWidth()/8000));
                 centerPane.setTranslateY(translateY+dY*(centerPane.getBoundsInParent().getHeight()/6240));
 
+
                 System.out.println("Scale : "+centerPane.getScaleX());
                 System.out.println("----------------------------------");
             }
@@ -185,9 +186,17 @@ public class GraphController {
     private void listenerMoveOnGraph() {
         centerPane.setOnMouseDragged(event -> {
 
-            centerPane.setTranslateX(centerPane.getTranslateX() + event.getX() - initialX);
-            centerPane.setTranslateY(centerPane.getTranslateY() + event.getY() - initialY);
+            centerPane.setTranslateX(centerPane.getTranslateX() + (event.getX() - initialX) * (centerPane.getBoundsInParent().getWidth()/8000));
+            centerPane.setTranslateY(centerPane.getTranslateY() + (event.getY() - initialY) * (centerPane.getBoundsInParent().getHeight()/6240));
             event.consume();
+
+            System.out.println("translateX : " + centerPane.getTranslateX());
+            System.out.println("translateY : " + centerPane.getTranslateY());
+            System.out.println("--------------------------------");
+
+            if (centerPane.getLayoutX() + centerPane.getTranslateX() > 0) {
+                System.out.println("out!!!!!!!!!!!!!!!!!!!!!");
+            }
         });
     }
 
