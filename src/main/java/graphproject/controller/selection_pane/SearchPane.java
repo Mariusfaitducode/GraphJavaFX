@@ -22,6 +22,7 @@ public class SearchPane{
     public TextField textEndNode;
     public Label normDistance;
     public Label pathDistance;
+    public Label pathFoundText;
     public Button findButton;
 
     public Button resetButton;
@@ -42,6 +43,8 @@ public class SearchPane{
 
         pathDistance = (Label) searchPathRightPane.lookup("#text-path-distance");
 
+        pathFoundText = (Label) searchPathRightPane.lookup("#text-path-found");
+
         pathFoundChoice = (ChoiceBox<String>) searchPathRightPane.lookup("#path-found-choice");
 
         resetButton = (Button) searchPathRightPane.lookup("#reset-path-button");
@@ -53,23 +56,36 @@ public class SearchPane{
 
     //Listener
 
-    public void setResetButtonListener(){
-
-    }
-
     public void searchFindButtonListener(HBox toolsBar, SelectionPaneController selectionPaneController){
         this.findButton.setOnMouseClicked(e ->
         {
             List<Node> listNodePath = new ArrayList<>(0);
+
+            for (Node node : listVisitedNode){
+                //System.out.println("node");
+                if (node.getCircle().getFill() != Color.WHITE){
+
+                    node.getCircle().setFill(Color.WHITE);
+                }
+            }
+            startNode.getCircle().setFill(Color.GREEN);
+            noPathSelected();
 
             //Calcul du chemin entre startNode et endNode
             float distance = this.searchPath.searchPath(this.startNode, this.endNode, listNodePath, listVisitedNode);
 
             if ( distance == 0){
                 //Pas de chemin trouvé
+                this.pathFoundText.setVisible(true);
+                this.pathFoundText.setText("No path found");
+                this.pathFoundChoice.setVisible(false);
             }
             else{
+                this.pathDistance.setVisible(true);
                 this.pathDistance.setText("Path dist : "+ (int)distance);
+
+                this.pathFoundText.setVisible(true);
+                this.pathFoundText.setText("Path found :");
 
                 this.pathFoundChoice.setVisible(true);
 
@@ -91,21 +107,35 @@ public class SearchPane{
         });
         resetButton.setOnMouseClicked(e ->{
 
-            System.out.println("reset button");
-
             for (Node node : listVisitedNode){
-                System.out.println("node");
+                //System.out.println("node");
                 if (node.getCircle().getFill() != Color.WHITE){
 
                     node.getCircle().setFill(Color.WHITE);
                 }
             }
-            deselectStartNode();
-            deselectEndNode();
-            pathFoundChoice.getItems().clear();
+            listVisitedNode.clear();
+            noPathSelected();
             this.normDistance.setText("Norm dist: ");
-            this.pathDistance.setText("Path dist: ");
+            if (startNode != null){
+                deselectStartNode();
+            }
+            if(endNode != null){
+                deselectEndNode();
+            }
+            this.resetButton.setDisable(true);
         });
+    }
+
+
+    public void noPathSelected(){
+
+        pathFoundChoice.getItems().clear();
+        //this.pathDistance.setText("Path dist: ");
+        this.pathDistance.setVisible(false);
+
+        this.pathFoundText.setVisible(false);
+        this.pathFoundChoice.setVisible(false);
     }
 
 
@@ -134,6 +164,7 @@ public class SearchPane{
     }
 
     public void setSearchNode(Node node){
+        this.resetButton.setDisable(false);
         if (this.startNode == null){
             if( this.endNode != node){
                 setNodeStart(node);
@@ -164,10 +195,16 @@ public class SearchPane{
                     this.endNode.getX(), this.endNode.getY()));
 
             this.findButton.setDisable(false);
+
         }
         else{
             this.normDistance.setText("Norm dist: ");
             this.findButton.setDisable(true);
+
+            if (this.startNode == null && this.endNode == null && this.listVisitedNode.isEmpty()){
+                this.resetButton.setDisable(true);
+            }
+            //noPathSelected();
         }
     }
 

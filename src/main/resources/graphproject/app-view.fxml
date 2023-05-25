@@ -116,16 +116,16 @@
                         <Label layoutX="53.0" layoutY="14.0" styleClass="labelled" text="Search path" />
                         <Label layoutX="10.0" layoutY="183.0" styleClass="labelled" text="Name :" />
                         <Label layoutX="8.0" layoutY="147.0" styleClass="labelled" text="Ending node :" />
-                        <Label layoutX="8.0" layoutY="66.0" styleClass="labelled" text="Starting node :" />
+                        <Label layoutX="8.0" layoutY="60.0" styleClass="labelled" text="Starting node :" />
                         <Label layoutX="10.0" layoutY="100.0" styleClass="labelled" text="Name :" />
-                        <Label id="text-path-distance" layoutX="8.0" layoutY="357.0" styleClass="labelled" text="Path distance :" />
-                        <Label layoutX="14.0" layoutY="390.0" styleClass="labelled" text="Path found :" />
+                        <Label id="text-path-distance" layoutX="7.0" layoutY="398.0" styleClass="labelled" text="Path distance :" visible="false" />
+                        <Label id="text-path-found" layoutX="17.0" layoutY="363.0" styleClass="labelled" text="Path found :" visible="false" />
                         <TextField id="name-end-node" layoutX="69.0" layoutY="177.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 2" />
                         <TextField id="name-start-node" layoutX="68.0" layoutY="94.0" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 1" />
                         <Button id="find-path-button" disable="true" layoutX="110.0" layoutY="297.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="74.0" text="Find" />
                         <Label id="text-norm-distance" layoutX="6.0" layoutY="237.0" styleClass="labelled" text="Norm distance :" />
-                        <Button id="reset-path-button" layoutX="16.0" layoutY="297.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Reset" />
-                        <ChoiceBox id="path-found-choice" layoutX="15.0" layoutY="417.0" prefWidth="150.0" />
+                        <Button id="reset-path-button" disable="true" layoutX="16.0" layoutY="297.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Reset" />
+                        <ChoiceBox id="path-found-choice" layoutX="8.0" layoutY="441.0" prefWidth="150.0" visible="false" />
                      </children>
                   </Pane>
                </children>

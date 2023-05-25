@@ -36,7 +36,6 @@ public class SelectionPaneController {
         searchPane = new SearchPane(searchPathRightPane);
 
         searchPane.searchFindButtonListener(toolsBar, this);
-        searchPane.setResetButtonListener();
 
 
     }
