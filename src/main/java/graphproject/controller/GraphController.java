@@ -67,6 +67,7 @@ public class GraphController {
 
         listenerAddNodeToGraph();
         listenerZoomGraph();
+        listenerMoveOnGraph();
 
     }
 
@@ -118,7 +119,9 @@ public class GraphController {
 
     private void listenerZoomGraph() {
         centerPane.setOnScroll(event -> {
+
             double zoomFactor;
+
             if (event.getDeltaY() > 0 ) {
                 zoomFactor = 0.1;
             } else {
@@ -153,6 +156,12 @@ public class GraphController {
                 System.out.println("Scale : "+centerPane.getScaleX());
                 System.out.println("----------------------------------");
             }
+
+        });
+    }
+
+    private void listenerMoveOnGraph() {
+        centerPane.setOnMouseDragged(event -> {
 
         });
     }
