@@ -86,6 +86,8 @@ public class Node {
 
     public List<Link> getLinks(){return links;}
 
+    public List<Node> getLinkedNodeList(){return linkedNodeList;}
+
     public void setCircle(Circle circle){this.circle = circle;}
 
     public Circle getCircle(){return circle;}
