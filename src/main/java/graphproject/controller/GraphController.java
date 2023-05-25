@@ -128,111 +128,30 @@ public class GraphController {
             double translateX = centerPane.getTranslateX();
             double translateY = centerPane.getTranslateY();
 
-            System.out.println("translateX : " + translateX);
-            System.out.println("translateY : " + translateY);
+            double newScaleX = centerPane.getScaleX() + zoomFactor;
+            double newScaleY = centerPane.getScaleX() + zoomFactor;
 
-            double mouseX = event.getX(); // X coordinate of the mouse pointer
-            double mouseY = event.getY(); // Y coordinate of the mouse pointer
-
-            System.out.println("mouseX : " + mouseX);
-            System.out.println("mousey : " + mouseY);
-
-            double currentScaleX = centerPane.getScaleX();
-            double currentScaleY = centerPane.getScaleY();
-
-            System.out.println("current scalex : "+currentScaleX);
-            System.out.println("current scaley : "+currentScaleY);
-
-            double newScaleX = currentScaleX + zoomFactor;
-            double newScaleY = currentScaleY + zoomFactor;
-
-            System.out.println("new : "+newScaleX);
-
-//            double centerX = (Math.abs(centerPane.getWidth()) + Math.abs(parentCenterPane.getLayoutX())) / 2 + parentCenterPane.getTranslateX()/2;
-//            double centerY = (Math.abs(centerPane.getHeight()) + Math.abs(parentCenterPane.getLayoutY())) / 2 + parentCenterPane.getTranslateY()/2;
-
-            System.out.println("centerX : "+(centerPane.getWidth()/2));
-            System.out.println("centerY : "+(centerPane.getHeight()/2));
-
-            double newX;
-            double newY;
+            double dX;
+            double dY;
 
             if (event.getDeltaY() > 0 ) {
-                System.out.println("Zoom");
-                newX = - ((mouseX - (centerPane.getWidth()/2)) * (1 - currentScaleX / newScaleX));
-                newY = - ((mouseY - (centerPane.getHeight()/2)) * (1 - currentScaleY / newScaleY));
+                dX = - ((event.getX() - (centerPane.getWidth()/2)) * (1 - centerPane.getScaleX() / newScaleX));
+                dY = - ((event.getY() - (centerPane.getHeight()/2)) * (1 - centerPane.getScaleY() / newScaleY));
             } else {
-                System.out.println("deZoom");
-                newX = (mouseX - (centerPane.getWidth()/2)) * (currentScaleX / newScaleX - 1);
-                newY = (mouseY - (centerPane.getHeight()/2)) * (currentScaleY / newScaleY - 1);
+                dX = (event.getX() - (centerPane.getWidth()/2)) * (centerPane.getScaleX() / newScaleX - 1);
+                dY = (event.getY() - (centerPane.getHeight()/2)) * (centerPane.getScaleY() / newScaleY - 1);
             }
 
-            System.out.println("X : " + (centerPane.getWidth()/2));
-            System.out.println("Y : " + (centerPane.getHeight()/2));
-
-            System.out.println("newX : " + newX);
-            System.out.println("newY : " + newY);
-
-            double newcorX = newX + mouseX;
-            double newcorY = newY + mouseY;
-
-            System.out.println("new coord X : " + newcorX);
-            System.out.println("newY coord Y : " + newcorY);
-
-
-//            double centerX = centerPane.getBoundsInParent().getCenterX() - centerPane.getLayoutX();
-//            double centerY = parentCenterPane.getBoundsInParent().getCenterY() - centerPane.getLayoutY();
-//
-//            System.out.println("center X : "+centerX);
-//            System.out.println("center y : "+centerY);
-//
-//            double sizeX = centerPane.getBoundsInParent().getWidth();
-//            double sizeY = centerPane.getBoundsInParent().getHeight();
-
-            //double centerX = (sizeX - origineX)/2;
-            //double centerY = (sizeY - origineY)/2;
-
-//            double dx = mouseX - centerX;
-//            double dy = mouseY - centerY;
-
-
             if (newScaleX > 0.1 && newScaleY > 0.1) {
-
-//                System.out.println("TranslateX : "+centerPane.getTranslateX());
-//                System.out.println("TranslateY : "+centerPane.getTranslateY());
-//
-                double currentSizeX = centerPane.getBoundsInParent().getWidth();
-                double currentSizeY = centerPane.getBoundsInParent().getHeight();
-
-                System.out.println("currentSizeX : " + currentSizeX);
-                System.out.println("currentSizeY : " + currentSizeY);
 
                 centerPane.setScaleX(newScaleX);
                 centerPane.setScaleY(newScaleY);
 
-                double SizeX = centerPane.getBoundsInParent().getWidth();
-                double SizeY = centerPane.getBoundsInParent().getHeight();
+                centerPane.setTranslateX(translateX+dX*(centerPane.getBoundsInParent().getWidth()/8000));
+                centerPane.setTranslateY(translateY+dY*(centerPane.getBoundsInParent().getHeight()/6240));
 
-                System.out.println("SizeX : " + SizeX);
-                System.out.println("SizeY : " + SizeY);
-
-                centerPane.setTranslateX(translateX+newX*(SizeX/8000));
-                centerPane.setTranslateY(translateY+newY*(SizeY/6240));
-
-//                double dx = (mouseX - centerPane.getBoundsInParent().getWidth()/2) * (1-zoomFactor);
-//                double dy = (mouseY - centerPane.getBoundsInParent().getHeight()/2) * (1-zoomFactor);
-//
-//                centerPane.setTranslateX(centerPane.getBoundsInParent().getWidth()/2-dx);
-//                centerPane.setTranslateY(centerPane.getBoundsInParent().getHeight()/2-dy);
-
-//                centerPane.setTranslateX(dx);
-//                centerPane.setTranslateY(dy);
-
-                System.out.println("check new scale : "+centerPane.getScaleX());
-
-                System.out.println("TranslateX : "+centerPane.getTranslateX());
-                System.out.println("TranslateY : "+centerPane.getTranslateY());
-                System.out.println("------------------------------");
+                System.out.println("Scale : "+centerPane.getScaleX());
+                System.out.println("----------------------------------");
             }
 
         });
