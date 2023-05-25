@@ -1,9 +1,11 @@
 
 .root {
+
     -fx-background-color: #eaeaea;
     -fx-text-fill: #333333;
-    /* Autres styles */
+     /*Autres styles */
 }
+
 
 .menu-bar {
     -fx-background-color: #333;
@@ -18,8 +20,9 @@
     -fx-font-size: 18px;
 }
 
-.menu-item{
-    -fx-background-color: #333;
+.menu-item .label{
+    -fx-text-fill: #333;
+    /*-fx-background-color: #333;*/
 }
 
 Button{
