@@ -22,6 +22,7 @@ public class SearchPath {
 
     }
 
+    // A star algorithm pour trouver le plus court chemin
     public float searchPath(Node nodeStart, Node nodeEnd, List<Node> listNodePath, List<Node> listVisitedNodePath){
 
         List<Node> listVisitedNode = new ArrayList<>(0);
@@ -68,6 +69,7 @@ public class SearchPath {
 
             actualChooseNode.node.getCircle().setFill(Color.RED);
             listVisitedNode.add(actualChooseNode.node);
+            listVisitedNodePath.add(actualChooseNode.node);
         }
 
         // Chemin trouvé
@@ -78,9 +80,11 @@ public class SearchPath {
 
         Node lastNode = actualChooseNode.node;
         listVisitedNode.remove(listVisitedNode.size()-1);
+        listVisitedNodePath.remove(listVisitedNode.size()-1);
+
         Node actualChooseBackNode = listVisitedNode.get(listVisitedNode.size() -1);
 
-        listVisitedNodePath.addAll(listVisitedNode);
+        //listVisitedNodePath.addAll(listVisitedNode);
 
         while (actualChooseBackNode != nodeStart){
 

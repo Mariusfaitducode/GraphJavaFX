@@ -4,6 +4,7 @@ import graphproject.controller.SelectionPaneController;
 import graphproject.model.Graph;
 import graphproject.model.Node;
 import graphproject.model.SearchPath;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -29,6 +30,8 @@ public class SearchPane{
     public ChoiceBox<String> pathFoundChoice;
     public SearchPath searchPath;
 
+    private ChangeListener<Number> choicePathFoundListener;
+
     public SearchPane(Pane searchPathRightPane){
 
         listVisitedNode = new ArrayList<>(0);
@@ -52,6 +55,13 @@ public class SearchPane{
         //setResetButtonListener();
 
         findButton = (Button) searchPathRightPane.lookup("#find-path-button");
+
+        this.choicePathFoundListener = new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+
+            }
+        };
     }
 
     //Listener
@@ -61,6 +71,7 @@ public class SearchPane{
         {
             List<Node> listNodePath = new ArrayList<>(0);
 
+            //Reinitialisation du chemin
             for (Node node : listVisitedNode){
                 //System.out.println("node");
                 if (node.getCircle().getFill() != Color.WHITE){
@@ -89,20 +100,24 @@ public class SearchPane{
 
                 this.pathFoundChoice.setVisible(true);
 
+                pathFoundChoice.getSelectionModel().selectedIndexProperty().removeListener(choicePathFoundListener);
+
                 for (Node node : listNodePath){
 
                     this.pathFoundChoice.getItems().add(node.getName());
                 }
-                this.pathFoundChoice.getSelectionModel().selectedIndexProperty().addListener(
-                        (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
 
-                            ToggleButton searchPathButton = (ToggleButton) toolsBar.lookup("#id-toolBar-searchPath");
-                            searchPathButton.setSelected(false);
+                choicePathFoundListener = (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
 
-                            Node selectedNode = listNodePath.get(new_val.intValue());
-                            selectionPaneController.setNodePane(selectedNode);
-                        }
-                );
+                    if (new_val.intValue() >= 0 && new_val.intValue() < listNodePath.size()) {
+                        ToggleButton searchPathButton = (ToggleButton) toolsBar.lookup("#id-toolBar-searchPath");
+                        searchPathButton.setSelected(false);
+
+                        Node selectedNode = listNodePath.get(new_val.intValue());
+                        selectionPaneController.setNodePane(selectedNode);
+                    }
+                };
+                this.pathFoundChoice.getSelectionModel().selectedIndexProperty().addListener(choicePathFoundListener);
             }
         });
         resetButton.setOnMouseClicked(e ->{
@@ -130,7 +145,9 @@ public class SearchPane{
 
     public void noPathSelected(){
 
-        pathFoundChoice.getItems().clear();
+        if (!pathFoundChoice.getItems().isEmpty()){
+            pathFoundChoice.getItems().clear();
+        }
         //this.pathDistance.setText("Path dist: ");
         this.pathDistance.setVisible(false);
 
