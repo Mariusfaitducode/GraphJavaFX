@@ -57,16 +57,18 @@ public class GraphController {
         // tools
 
         this.selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane, toolsBar);
+        //selectionPaneController.searchResetButtonListener(graph);
+
         this.toolsController = new ToolsController(toolsBar, selectionPaneController);
 
         // Initializing Graphic Rendering
 
-        initializeCenterPaneSettings();
+        //initializeCenterPaneSettings();
 
         // All initialize listeners
 
         listenerAddNodeToGraph();
-        listenerZoomGraph();
+        //listenerZoomGraph();
 
     }
 
