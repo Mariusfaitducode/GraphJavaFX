@@ -96,6 +96,10 @@ public class Node {
 
     public Circle getCircle(){return circle;}
 
+    public void deleteCircle(){
+        ((Pane) circle.getParent()).getChildren().remove(circle);
+    }
+
     public boolean isSelected(){return selected;}
     public void setSelection(boolean b){this.selected = b;}
 
@@ -106,6 +110,21 @@ public class Node {
 
             ((Pane) line.getParent()).getChildren().remove(line);
             ((Pane) arrow.getParent()).getChildren().remove(arrow);
+            //links.remove(link);
+        }
+        links.clear();
+        for (Node node : linkedNodeList){
+            for (Link link : node.links){
+                if (link.getNode() == this){
+                    Line line = link.getLine();
+                    Polygon arrow = link.getArrowHead();
+
+                    ((Pane) line.getParent()).getChildren().remove(line);
+                    ((Pane) arrow.getParent()).getChildren().remove(arrow);
+
+                    //node.links.remove(link);
+                }
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 package graphproject.controller.selection_pane;
 
+import graphproject.controller.NodeController;
 import graphproject.controller.SelectionPaneController;
 import graphproject.model.Link;
 import graphproject.model.Node;
@@ -69,6 +70,7 @@ public class NodePane{
         };
 
         this.deleteNodeButton = (Button) nodeRightPane.lookup("#delete-node-button");
+
 
     }
 
@@ -144,5 +146,10 @@ public class NodePane{
         comingLinks.getSelectionModel().selectedIndexProperty().addListener(choiceComingBoxListener);
     }
 
+    public void deleteNodeButtonListener(NodeController nodeController){
+        this.deleteNodeButton.setOnMouseClicked(e ->{
+            nodeController.deleteNode(selectedNode);
+        });
+    }
 
 }

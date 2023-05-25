@@ -24,6 +24,8 @@ public class NodeController {
         this.centerPane = centerPane;
         this.toolsController = toolsController;
         this.selectionPaneController = selectionPaneController;
+
+        selectionPaneController.getNodePane().deleteNodeButtonListener(this);
     }
 
     public void setGraph(Graph graph){
@@ -139,6 +141,18 @@ public class NodeController {
                 }
             }
         });
+    }
+
+    public void deleteNode(Node node){
+        //node.deleteAllLinks();
+
+        graph.getNodes().remove(node);
+
+        node.deleteAllLinks();
+
+        node.deleteCircle();
+
+        node = null;
     }
 
 }

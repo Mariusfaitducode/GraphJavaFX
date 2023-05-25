@@ -34,6 +34,7 @@ public class SelectionPaneController {
         this.toolsBar = toolsBar;
 
         nodePane = new NodePane(nodeRightPane);
+        //nodePane.deleteNodeButtonListener(nodeController);
 
         searchPane = new SearchPane(searchPathRightPane);
 
@@ -51,9 +52,6 @@ public class SelectionPaneController {
     }
 
     public void setNodePane(Node selectedNode){
-
-
-
         nodeRightPane.setVisible(true);
         linkRightPane.setVisible(false);
         searchPathRightPane.setVisible(false);
@@ -85,4 +83,6 @@ public class SelectionPaneController {
     public void setSearchNode(Node node){
         searchPane.setSearchNode(node);
     }
+
+    public NodePane getNodePane(){return this.nodePane;}
 }
