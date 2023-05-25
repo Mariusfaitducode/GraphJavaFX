@@ -37,6 +37,8 @@ public class GraphController {
 
     private Label graphTitle;
 
+    private Label zoomText;
+
     // Global variables
 
     private double initialX;
@@ -46,7 +48,7 @@ public class GraphController {
     GraphController(){};
 
     // Contruct the controller for the opened graph
-    GraphController(Pane pane, Pane nodeRightPane, Pane linkRightPane, Label graphTitle, Pane searchPathRightPane, HBox toolsBar, Pane parentCenterPane) {
+    GraphController(Pane pane, Pane nodeRightPane, Pane linkRightPane, Label graphTitle, Pane searchPathRightPane, HBox toolsBar, Pane parentCenterPane, Label zoomText) {
 
         this.graph = null;
 
@@ -59,6 +61,7 @@ public class GraphController {
         this.graphTitle = graphTitle;
         this.toolsBar = toolsBar;
         this.parentCenterPane = parentCenterPane;
+        this.zoomText = zoomText;
 
         // tools
 
@@ -163,6 +166,7 @@ public class GraphController {
 
                 centerPane.setScaleX(newScaleX);
                 centerPane.setScaleY(newScaleY);
+                zoomText.setText("ZOOM : " + (int)(newScaleX*100) + " %");
 
                 centerPane.setTranslateX(translateX+dX*(centerPane.getBoundsInParent().getWidth()/8000));
                 centerPane.setTranslateY(translateY+dY*(centerPane.getBoundsInParent().getHeight()/6240));

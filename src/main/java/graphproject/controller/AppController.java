@@ -25,7 +25,7 @@ public class AppController implements Initializable {
     private HBox toolsBar;
 
     @FXML
-    private Label graphTitle;
+    private Label graphTitle, zoomText;
 
     //Elements de la barre de menu
     @FXML
@@ -62,7 +62,7 @@ public class AppController implements Initializable {
         linkRightPane.setVisible(false);
         searchPathRightPane.setVisible(false);
 
-        graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane, toolsBar, parentCenterPane);
+        graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane, toolsBar, parentCenterPane, zoomText);
         menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
     }
 
