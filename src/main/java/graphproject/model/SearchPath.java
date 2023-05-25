@@ -22,7 +22,7 @@ public class SearchPath {
 
     }
 
-    public float searchPath(Node nodeStart, Node nodeEnd, List<Node> listNodePath){
+    public float searchPath(Node nodeStart, Node nodeEnd, List<Node> listNodePath, List<Node> listVisitedNodePath){
 
         List<Node> listVisitedNode = new ArrayList<>(0);
 
@@ -79,6 +79,8 @@ public class SearchPath {
         Node lastNode = actualChooseNode.node;
         listVisitedNode.remove(listVisitedNode.size()-1);
         Node actualChooseBackNode = listVisitedNode.get(listVisitedNode.size() -1);
+
+        listVisitedNodePath.addAll(listVisitedNode);
 
         while (actualChooseBackNode != nodeStart){
 
