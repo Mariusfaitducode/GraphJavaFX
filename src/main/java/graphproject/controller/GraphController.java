@@ -37,6 +37,12 @@ public class GraphController {
 
     private Label graphTitle;
 
+    // Global variables
+
+    private double initialX;
+
+    private double initialY;
+
     GraphController(){};
 
     // Contruct the controller for the opened graph
@@ -70,6 +76,12 @@ public class GraphController {
         listenerAddNodeToGraph();
         listenerZoomGraph();
         listenerMoveOnGraph();
+        listenerCoordinateOnMousePressed();
+
+        // All global variables
+
+        initialX = 0;
+        initialY = 0;
 
     }
 
@@ -162,9 +174,26 @@ public class GraphController {
         });
     }
 
+    private void listenerCoordinateOnMousePressed() {
+        centerPane.setOnMousePressed(event -> {
+            initialX = event.getX();
+            initialY = event.getY();
+            System.out.println("initialX : " + initialX);
+            System.out.println("initialY : " + initialY);
+        });
+    }
+
     private void listenerMoveOnGraph() {
         centerPane.setOnMouseDragged(event -> {
+            // Mise à jour des coordonnées du cercle avec les coordonnées de la souris
+//            node.setX((int)event.getX());
+//            node.setY((int)event.getY());
+            System.out.println("event.getX() : " + event.getX());
+            System.out.println("event.getY() : " + event.getX());
 
+            centerPane.setTranslateX(centerPane.getTranslateX() + event.getX() - initialX);
+            centerPane.setTranslateY(centerPane.getTranslateY() + event.getY() - initialY);
+            event.consume();
         });
     }
 
