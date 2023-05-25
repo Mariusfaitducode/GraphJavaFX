@@ -94,7 +94,7 @@
                         <TextField id="id-node-name" layoutX="66.0" layoutY="132.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="default name" />
                         <TextField id="id-node-posX" layoutX="58.0" layoutY="222.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
                         <TextField id="id-node-posY" layoutX="58.0" layoutY="272.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
-                        <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
+                        <Button id="delete-node-button" layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                         <ChoiceBox id="node-going-links" layoutX="26.0" layoutY="363.0" prefWidth="150.0" />
                         <ChoiceBox id="node-coming-links" layoutX="26.0" layoutY="481.0" prefWidth="150.0" />
                      </children>

@@ -29,8 +29,8 @@ public class GraphController {
 
     //tools
     private ToolsController toolsController;
-
     private SelectionPaneController selectionPaneController;
+    private NodeController nodeController;
 
     // App attribute
     private Graph graph;
@@ -70,13 +70,15 @@ public class GraphController {
 
         this.toolsController = new ToolsController(toolsBar, selectionPaneController);
 
+        this.nodeController = new NodeController(this.graph, this.centerPane, this.toolsController, this.selectionPaneController);
+
         // Initializing Graphic Rendering
 
         initializeCenterPaneSettings();
 
         // All initialize listeners
 
-        listenerAddNodeToGraph();
+        nodeController.listenerAddNodeToGraph(this);
         listenerZoomGraph();
         listenerMoveOnGraph();
         listenerCoordinateOnMousePressed();
@@ -113,28 +115,7 @@ public class GraphController {
         selectionPaneController.closeSelectionPane();
     }
 
-    // Add a node when the ToggleButton is true, and we click on the graph
-    private void listenerAddNodeToGraph() {
-        centerPane.setOnMouseClicked(event -> {
 
-            if (toolsController.isSelected_createNodesButton() && !graphIsNull()) {
-
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-                Node node = graph.addNode(x,y);
-
-
-
-                // Updates the display of Nodes
-                updateNode(node);
-
-                // Display the information of the new node
-                //Node node = graph.getNodeFromPos(x,y);
-                selectionPaneController.setNodePane(node);
-            }
-            event.consume();
-        });
-    }
 
     private void listenerZoomGraph() {
         centerPane.setOnScroll(event -> {
@@ -253,77 +234,7 @@ public class GraphController {
     }
 
 
-    // Display the information of the node when clicked on it
-    private void listenerNode(Circle circle, Node node) {
 
-        //fonctions qui sélectionne une node si on clique dessus
-        circle.setOnMouseClicked(event -> {
-
-            if (searchPathRightPane.isVisible()){
-
-                selectionPaneController.setSearchNode(node);
-            }
-            else{
-                // Display the information of the node
-                selectionPaneController.setNodePane(node);
-            }
-        });
-
-        // permet de déplacer les nodes avec la souris
-        circle.setOnMouseDragged(event -> {
-            // Mise à jour des coordonnées du cercle avec les coordonnées de la souris
-            node.setX((int)event.getX());
-            node.setY((int)event.getY());
-            event.consume();
-        });
-
-        // diférencie les nodes lorsque la souris est dessus
-        circle.setOnMouseEntered(event -> {
-            circle.setStroke(Color.RED); // Changement de couleur de la bordure lors du survol
-            event.consume();
-        });
-
-        circle.setOnMouseExited(event -> {
-            if (!node.isSelected()){
-                circle.setStroke(Color.BLACK); // Rétablissement de la couleur de la bordure
-            }
-
-            event.consume();
-        });
-
-        // fonction qui ajoute des links
-        circle.setOnMouseReleased(event -> {
-            if (toolsController.isSelected_createLinksButton() && !graphIsNull()) {
-                System.out.println("check");
-                //find the red circle
-                boolean isRedCircle = false;
-                Node linkedNode = null;
-                for (Node node2 : graph.getNodes()) {
-                    Circle circle2 = node2.getCircle();
-                    if (circle2.getFill()==Color.RED) {
-                        isRedCircle = true;
-                        linkedNode = node2;
-                        break;
-                    }
-                }
-
-                if (isRedCircle) {
-                    // Create new link
-                    graph.addLink(linkedNode, node);
-                    Link.Arrow arrow = Graphics.DesignLineAndArrow(linkedNode, node, 10);
-                    centerPane.getChildren().addAll(arrow.line, arrow.arrowHead);
-                    Link link = graph.getLinkFromIds(linkedNode, node);
-                    link.setOrientedLine(arrow);
-
-                    //Reset Color to node
-                    node.getCircle().setFill(Color.WHITE);
-                    linkedNode.getCircle().setFill(Color.WHITE);
-                } else {
-                    node.getCircle().setFill(Color.RED);
-                }
-            }
-        });
-    }
 
     // Display the information if the link when clicked in it
     private void listenerLink() {
@@ -345,6 +256,7 @@ public class GraphController {
         setGraph(openedGraph);
         displayGraph();
         graphTitle.setText(openedGraph.getName());
+        nodeController.setGraph(graph);
     }
 
     // Display graph on the graphic window
@@ -364,7 +276,7 @@ public class GraphController {
                 Circle circle = Graphics.DesignCircle(node.getX(), node.getY(), 10);
 
                 // Add event listener to the node
-                listenerNode(circle, node);
+                //listenerNode(circle, node);
 
                 // Add the circle to the pane
                 node.setCircle(circle);
@@ -373,21 +285,7 @@ public class GraphController {
         }
     }
 
-    public void updateNode(Node node) {
 
-        //Display new nodes
-        if (node.getCircle()==null) {
-            Circle circle = Graphics.DesignCircle(node.getX(), node.getY(), 10);
-
-            // Add event listener to the node
-            listenerNode(circle, node);
-
-            // Add the circle to the pane
-            node.setCircle(circle);
-            centerPane.getChildren().add(circle);
-        }
-
-    }
 
     public void updateAllNodes() {
         //Positionne les nodes
@@ -397,7 +295,7 @@ public class GraphController {
             Circle circle = Graphics.DesignCircle(node.getX(), node.getY(), 10);
 
             // Add event listener to the node
-            listenerNode(circle, node);
+            nodeController.listenerNode(circle, node);
 
             // Add the circle to the pane
             node.setCircle(circle);

@@ -5,6 +5,7 @@ import graphproject.model.Link;
 import graphproject.model.Node;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -25,6 +26,8 @@ public class NodePane{
 
     private ChangeListener<Number> choiceGoingBoxListener;
     private ChangeListener<Number> choiceComingBoxListener;
+
+    public Button deleteNodeButton;
 
 
     public NodePane(Pane nodeRightPane){
@@ -64,6 +67,9 @@ public class NodePane{
 
             }
         };
+
+        this.deleteNodeButton = (Button) nodeRightPane.lookup("#delete-node-button");
+
     }
 
     public void setSelectedNode(Node selectedNode){
@@ -137,4 +143,6 @@ public class NodePane{
         };
         comingLinks.getSelectionModel().selectedIndexProperty().addListener(choiceComingBoxListener);
     }
+
+
 }

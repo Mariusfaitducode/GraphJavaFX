@@ -68,6 +68,8 @@ public class SelectionPaneController {
         nodePane.setChoiceBox(this);
     }
 
+    public Pane getSearchPathRightPane(){return this.searchPathRightPane;}
+
     public void setSearchPane(){
         searchPathRightPane.setVisible(true);
         nodeRightPane.setVisible(false);
