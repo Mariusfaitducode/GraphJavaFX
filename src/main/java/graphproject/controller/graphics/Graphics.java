@@ -42,7 +42,8 @@ public class Graphics {
 
         //On créé une ligne entre 2 nodes reliées
         Line line = new Line(startX, startY, endX, endY);
-        line.setFill(Color.WHITE);
+        //line.setStroke(Color.WHITE);
+        line.setStrokeWidth(1.5);
 
         //Tete de la flêche montrant la direction
 

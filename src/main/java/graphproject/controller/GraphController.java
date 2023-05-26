@@ -65,7 +65,7 @@ public class GraphController {
 
         // tools
 
-        this.selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane, toolsBar);
+        this.selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane, toolsBar, centerPane);
         //selectionPaneController.searchResetButtonListener(graph);
 
         this.toolsController = new ToolsController(toolsBar, selectionPaneController);
@@ -230,7 +230,7 @@ public class GraphController {
 
 
     // Display the information if the link when clicked in it
-    private void listenerLink() {
+    /*private void listenerLink() {
         //TODO :fonctions qui sélectionne un link si on clique dessus
         for (javafx.scene.Node node : centerPane.lookupAll(".line")) {
             if (node instanceof Line) {
@@ -241,7 +241,35 @@ public class GraphController {
                 });
             }
         }
+    }*/
 
+    //Listener link
+    public void listenerLink(Node node, Link link){
+
+        Node linkedNode = link.getNode();
+
+        link.getLine().setOnMouseClicked(event ->{
+            if (toolsController.isSelected_deleteButton()){
+                link.deleteLink(node, centerPane);
+            }
+            else{
+                link.setSelection(true);
+                selectionPaneController.setLinkPane(node, link, linkedNode);
+                event.consume();
+            }
+        });
+        link.getLine().setOnMouseEntered(event ->{
+            link.getLine().setStroke(Color.RED);
+            link.getArrowHead().setFill(Color.RED);
+            event.consume();
+        });
+        link.getLine().setOnMouseExited(event ->{
+            if (!link.isSelected()){
+                link.getLine().setStroke(Color.BLACK);
+                link.getArrowHead().setFill(Color.BLACK);
+            }
+            event.consume();
+        });
     }
 
     public void openGraph(Graph openedGraph){
@@ -293,6 +321,9 @@ public class GraphController {
                 centerPane.getChildren().addAll(arrow.line, arrow.arrowHead);
 
                 link.setOrientedLine(arrow);
+
+                //Update listener of link
+                listenerLink(node, link);
 
             }
         }

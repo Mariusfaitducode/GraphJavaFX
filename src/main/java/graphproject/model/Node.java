@@ -128,10 +128,8 @@ public class Node {
                     centerPane.getChildren().remove(arrow);
 
                     node.links.remove(link);
-
                 }
             }
-
         }
     }
 

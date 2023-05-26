@@ -15,3 +15,4 @@
  - afficher un réseau de neurrones à partir d'un fichier texte
  - plusieurs type de graphs (map, automate, NN)
  - selection multiples avec ctrl+
+ - courber les liens
