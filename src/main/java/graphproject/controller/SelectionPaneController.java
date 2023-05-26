@@ -1,5 +1,6 @@
 package graphproject.controller;
 
+import graphproject.controller.selection_pane.LinkPane;
 import graphproject.controller.selection_pane.NodePane;
 import graphproject.controller.selection_pane.SearchPane;
 import graphproject.model.Graph;
@@ -25,6 +26,8 @@ public class SelectionPaneController {
 
     private SearchPane searchPane;
 
+    private LinkPane linkPane;
+
 
     SelectionPaneController(Pane nodeRightPane, Pane linkRightPane, Pane searchPathRightPane, HBox toolsBar){
         this.nodeRightPane = nodeRightPane;
@@ -40,10 +43,8 @@ public class SelectionPaneController {
 
         searchPane.searchFindButtonListener(toolsBar, this);
 
-
+        linkPane = new LinkPane(linkRightPane);
     }
-
-    public Node getSelectedNode(){return this.nodePane.selectedNode;}
 
     public void closeSelectionPane() {
         nodeRightPane.setVisible(false);
@@ -51,6 +52,7 @@ public class SelectionPaneController {
         searchPathRightPane.setVisible(false);
     }
 
+    //Node Pane
     public void setNodePane(Node selectedNode){
         nodeRightPane.setVisible(true);
         linkRightPane.setVisible(false);
@@ -65,9 +67,11 @@ public class SelectionPaneController {
 
         nodePane.setChoiceBox(this);
     }
+    public NodePane getNodePane(){return this.nodePane;}
 
     public Pane getSearchPathRightPane(){return this.searchPathRightPane;}
 
+    //Search Pane
     public void setSearchPane(){
         searchPathRightPane.setVisible(true);
         nodeRightPane.setVisible(false);
@@ -84,5 +88,14 @@ public class SelectionPaneController {
         searchPane.setSearchNode(node);
     }
 
-    public NodePane getNodePane(){return this.nodePane;}
+
+    //Link Pane
+    public void setLinkPane(Node startNode, Node endNode){
+        nodeRightPane.setVisible(false);
+        linkRightPane.setVisible(true);
+        searchPathRightPane.setVisible(false);
+
+        linkPane.setLinkPane(startNode, endNode);
+    }
+
 }
