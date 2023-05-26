@@ -103,28 +103,35 @@ public class Node {
     public boolean isSelected(){return selected;}
     public void setSelection(boolean b){this.selected = b;}
 
-    public void deleteAllLinks(){
+    public void deleteAllLinks(Pane centerPane){
         for (Link link : links){
             Line line = link.getLine();
             Polygon arrow = link.getArrowHead();
 
-            ((Pane) line.getParent()).getChildren().remove(line);
-            ((Pane) arrow.getParent()).getChildren().remove(arrow);
-            //links.remove(link);
+            centerPane.getChildren().remove(line);
+            centerPane.getChildren().remove(arrow);
+
+            Node linkedNode = link.getNode();
+            linkedNode.linkedNodeList.remove(this);
         }
         links.clear();
         for (Node node : linkedNodeList){
-            for (Link link : node.links){
+            //List<Link> removeLink = new ArrayList<>(0);
+
+            for (int i = 0; i < node.links.size(); i++){
+                Link link = node.links.get(i);
                 if (link.getNode() == this){
                     Line line = link.getLine();
                     Polygon arrow = link.getArrowHead();
 
-                    ((Pane) line.getParent()).getChildren().remove(line);
-                    ((Pane) arrow.getParent()).getChildren().remove(arrow);
+                    centerPane.getChildren().remove(line);
+                    centerPane.getChildren().remove(arrow);
 
-                    //node.links.remove(link);
+                    node.links.remove(link);
+
                 }
             }
+
         }
     }
 

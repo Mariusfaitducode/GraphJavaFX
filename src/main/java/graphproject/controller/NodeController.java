@@ -148,7 +148,7 @@ public class NodeController {
 
         graph.getNodes().remove(node);
 
-        node.deleteAllLinks();
+        node.deleteAllLinks(centerPane);
 
         node.deleteCircle();
 
