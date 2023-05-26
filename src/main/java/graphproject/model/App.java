@@ -1,5 +1,7 @@
 package graphproject.model;
 
+import javafx.scene.layout.Pane;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,9 +9,10 @@ public class App {
 
     private final List<Graph> graphs;
 
-    public App() {
+    public App(Pane centerPane) {
         graphs = new ArrayList<>(0);
-//        create3RandomGraphs();
+//        System.out.println("centerPane : " + centerPane.getWidth());
+        create3RandomGraphs(centerPane);
         displayInConsole();
     }
 
@@ -30,14 +33,15 @@ public class App {
         }
     }
 
-//    public void create3RandomGraphs() {
-//        for (int i = 0; i<3;i++){
-//            String name = "Graph" + i;
-//            Graph graph = new Graph(name);
-//            graph.setRandomNodesAndLinks(15);
-//            graphs.add(graph);
-//        }
-//    }
+    public void create3RandomGraphs(Pane centerPane) {
+        for (int i = 0; i<3;i++){
+            String name = "Graph" + i;
+            Graph graph = new Graph(name);
+            int nbr;
+            graph.setRandomNodesAndLinks((int)Math.pow(10, 3-i), centerPane);
+            graphs.add(graph);
+        }
+    }
 
     public Graph getLastGraph() {
         return graphs.get(graphs.size() - 1);

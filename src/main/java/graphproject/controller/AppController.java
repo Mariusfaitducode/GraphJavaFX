@@ -44,7 +44,7 @@ public class AppController implements Initializable {
 
     // attribut app qui stocke toutes les données de l'application
 
-    private final App app = new App();
+    private App app;
 
     //Tout ce qui contient les actions
 
@@ -64,6 +64,8 @@ public class AppController implements Initializable {
 
         graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane, toolsBar, parentCenterPane, zoomText);
         menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
+
+        app = new App(centerPane);
     }
 
     //Tout ce qui déclenche les actions

@@ -170,10 +170,6 @@ public class GraphController {
                 } else if (borderBottom < 0) {
                     centerPane.setTranslateY(centerPane.getTranslateY() - borderBottom);
                 }
-
-                System.out.println("Scale : "+centerPane.getScaleX());
-                System.out.println("Width size : " + centerPane.getBoundsInParent().getWidth());
-                System.out.println("----------------------------------");
             }
 
         });
@@ -200,14 +196,12 @@ public class GraphController {
 
             System.out.println("--------------------------------");
             if (dX < 0) {
-                System.out.println("right");
                 if (borderRight < 0) {
                     System.out.println("out!!!! right");
                 } else  {
                     centerPane.setTranslateX(centerPane.getTranslateX() + dX);
                 }
             } else {
-                System.out.println("left");
                 if (borderLeft > 0) {
                     System.out.println("out!!!! left");
                 } else  {
@@ -216,14 +210,12 @@ public class GraphController {
             }
 
             if (dY < 0) {
-                System.out.println("down");
                 if (borderBottom < 0) {
                     System.out.println("out!!!! bottom");
                 } else  {
                     centerPane.setTranslateY(centerPane.getTranslateY() + dY);
                 }
             } else {
-                System.out.println("up");
                 if (borderTop > 0) {
                     System.out.println("out!!!! top");
                 } else  {
