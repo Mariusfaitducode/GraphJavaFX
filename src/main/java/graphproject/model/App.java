@@ -9,7 +9,7 @@ public class App {
 
     public App() {
         graphs = new ArrayList<>(0);
-        create3RandomGraphs();
+//        create3RandomGraphs();
         displayInConsole();
     }
 
@@ -30,14 +30,14 @@ public class App {
         }
     }
 
-    public void create3RandomGraphs() {
-        for (int i = 0; i<3;i++){
-            String name = "Graph" + i;
-            Graph graph = new Graph(name);
-            graph.setRandomNodesAndLinks(15);
-            graphs.add(graph);
-        }
-    }
+//    public void create3RandomGraphs() {
+//        for (int i = 0; i<3;i++){
+//            String name = "Graph" + i;
+//            Graph graph = new Graph(name);
+//            graph.setRandomNodesAndLinks(15);
+//            graphs.add(graph);
+//        }
+//    }
 
     public Graph getLastGraph() {
         return graphs.get(graphs.size() - 1);

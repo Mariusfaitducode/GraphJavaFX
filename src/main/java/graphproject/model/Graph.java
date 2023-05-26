@@ -1,5 +1,7 @@
 package graphproject.model;
 
+import javafx.scene.layout.Pane;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +55,33 @@ public class Graph {
         return node.getLinks().get(0);
     }
 
-    public void generateRandomNodes(int number){
+    public void generateRandomNodes(int number, Pane centerPane){
+
+        System.out.println("centerPane width : " + centerPane.getWidth());
+
+        // Nombre de node maximum pour 500 * 500 pixels
+        double standardSurface = 500 * 500;
+        double maxNumberOfPerson = 10;
+        double maxDensity = standardSurface / maxNumberOfPerson;
+
+        // Reset scale to 1.0
+        centerPane.setScaleX(1.0);
+        centerPane.setScaleY(1.0);
+
+        // dimension of visible centerPane
+        double width = 800;
+        double height = 624;
+
+        double surface = width * height;
+
+        //
+        boolean isBestScaleFound = false;
+        double scale;
+
+        while (isBestScaleFound){
+
+        }
+
         for(int i = 0; i < number; i++){
 
     // TODO : refaire avec getWidth(), ps : avec les modifs, pane est nulle
@@ -80,8 +108,8 @@ public class Graph {
         }
     }
 
-    public void setRandomNodesAndLinks(int number) {
-        generateRandomNodes(number);
+    public void setRandomNodesAndLinks(int number, Pane centerPane) {
+        generateRandomNodes(number, centerPane);
         generateRandomLinks();
     }
 

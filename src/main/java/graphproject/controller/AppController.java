@@ -75,7 +75,7 @@ public class AppController implements Initializable {
     }
 
     public void generateGraph() {
-        graphController.openGraph(popupController.generateGraph());
+        graphController.openGraph(popupController.generateGraph(centerPane));
     }
 
     public void openExistingGraphsItems() {
@@ -84,12 +84,6 @@ public class AppController implements Initializable {
 
     public void closeGraph() {
         graphController.closeGraph();
-    }
-
-    public void searchPath() {
-        //searchPathRightPane.setVisible(true);
-        //nodeRightPane.setVisible(false);
-        //linkRightPane.setVisible(false);
     }
 
 }

@@ -33,7 +33,7 @@ public class PopupController {
         popupPane.setVisible(statut);
     }
 
-    public Graph generateGraph(){
+    public Graph generateGraph(Pane centerPane){
 
         // Create new Graph
         app.createNewGraph(nameGraph.getText());
@@ -46,7 +46,7 @@ public class PopupController {
 
         } else if (rbutton2.isSelected()) {
 
-            app.getLastGraph().setRandomNodesAndLinks(Integer.parseInt(nodesNumber.getText()));
+            app.getLastGraph().setRandomNodesAndLinks(Integer.parseInt(nodesNumber.getText()), centerPane);
 
         } else if (rbutton3.isSelected()) {
 

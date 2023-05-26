@@ -268,25 +268,6 @@ public class GraphController {
 
     }
 
-    public void updateNodes() {
-        for (Node node : graph.getNodes()) {
-
-            //Display new nodes
-            if (node.getCircle()==null) {
-                Circle circle = Graphics.DesignCircle(node.getX(), node.getY(), 10);
-
-                // Add event listener to the node
-                //listenerNode(circle, node);
-
-                // Add the circle to the pane
-                node.setCircle(circle);
-                centerPane.getChildren().add(circle);
-            }
-        }
-    }
-
-
-
     public void updateAllNodes() {
         //Positionne les nodes
         for (Node node: graph.getNodes()) {
