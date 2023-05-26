@@ -145,7 +145,10 @@ public class GraphController {
                 dY = (event.getY() - (centerPane.getHeight()/2)) * (centerPane.getScaleY() / newScaleY - 1);
             }
 
-            if (newScaleX > 0.1 && newScaleY > 0.1) {
+            newScaleX = (double)Math.round(newScaleX * 10) / 10;
+            newScaleY = (double)Math.round(newScaleY * 10) / 10;
+
+            if (newScaleX >= 0.099 && newScaleY >= 0.099) {
 
                 centerPane.setScaleX(newScaleX);
                 centerPane.setScaleY(newScaleY);
