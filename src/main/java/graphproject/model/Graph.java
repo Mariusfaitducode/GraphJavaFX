@@ -57,36 +57,33 @@ public class Graph {
 
     public void generateRandomNodes(int number, Pane centerPane){
 
-        System.out.println("centerPane width : " + centerPane.getWidth());
-
         // Nombre de node maximum pour 500 * 500 pixels
         double standardSurface = 500 * 500;
         double maxNumberOfPerson = 10;
-        double maxDensity = standardSurface / maxNumberOfPerson;
+        double maxDensity = maxNumberOfPerson / standardSurface;
 
-        // Reset scale to 1.0
-        centerPane.setScaleX(1.0);
-        centerPane.setScaleY(1.0);
+        double size = number * (1 / maxDensity);
 
-        // dimension of visible centerPane
-        double width = 800;
-        double height = 624;
+        double scale = (800 * 624) / size;
 
-        double surface = width * height;
+        System.out.println("scale : " + scale);
 
-        //
-        boolean isBestScaleFound = false;
-        double scale;
+        scale = (double) Math.round(scale * 10) / 10;
 
-        while (isBestScaleFound){
-
+        if (scale < 0.1) {
+            scale = 0.1;
+        } else if (scale > 2.0) {
+            scale = 2.0;
         }
+
+        centerPane.setScaleX(scale);
+        centerPane.setScaleY(scale);
 
         for(int i = 0; i < number; i++){
 
     // TODO : refaire avec getWidth(), ps : avec les modifs, pane est nulle
     //            nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
-            nodes.add(new Node(i, "node" + i,(int)(Math.random() * (300)), (int)(Math.random() * (450))));
+            nodes.add(new Node(i, "node" + i,(int)(4000 - (800 / scale) / 2 + Math.random() * (800 / scale)), (int)(3120 - (624 / scale) / 2 + Math.random() * (624 / scale))));
 
         }
     }

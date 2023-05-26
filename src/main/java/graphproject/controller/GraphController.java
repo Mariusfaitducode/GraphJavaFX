@@ -172,6 +172,7 @@ public class GraphController {
                 }
 
                 System.out.println("Scale : "+centerPane.getScaleX());
+                System.out.println("Width size : " + centerPane.getBoundsInParent().getWidth());
                 System.out.println("----------------------------------");
             }
 
@@ -255,6 +256,10 @@ public class GraphController {
         closeGraph();
         setGraph(openedGraph);
         displayGraph();
+
+        centerPane.setTranslateX(0);
+        centerPane.setTranslateY(0);
+
         graphTitle.setText(openedGraph.getName());
         nodeController.setGraph(graph);
     }
