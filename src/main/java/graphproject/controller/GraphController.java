@@ -65,7 +65,7 @@ public class GraphController {
 
         // tools
 
-        this.selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane, toolsBar);
+        this.selectionPaneController = new SelectionPaneController(nodeRightPane, linkRightPane, searchPathRightPane, toolsBar, centerPane);
         //selectionPaneController.searchResetButtonListener(graph);
 
         this.toolsController = new ToolsController(toolsBar, selectionPaneController);
@@ -250,13 +250,20 @@ public class GraphController {
         }
     }*/
 
+    //Listener link
     public void listenerLink(Node node, Link link){
 
         Node linkedNode = link.getNode();
 
         link.getLine().setOnMouseClicked(event ->{
-            selectionPaneController.setLinkPane(node, linkedNode);
-            event.consume();
+            if (toolsController.isSelected_deleteButton()){
+                link.deleteLink(node, centerPane);
+            }
+            else{
+                link.setSelection(true);
+                selectionPaneController.setLinkPane(node, link, linkedNode);
+                event.consume();
+            }
         });
         link.getLine().setOnMouseEntered(event ->{
             link.getLine().setStroke(Color.RED);
@@ -264,8 +271,10 @@ public class GraphController {
             event.consume();
         });
         link.getLine().setOnMouseExited(event ->{
-            link.getLine().setStroke(Color.BLACK);
-            link.getArrowHead().setFill(Color.BLACK);
+            if (!link.isSelected()){
+                link.getLine().setStroke(Color.BLACK);
+                link.getArrowHead().setFill(Color.BLACK);
+            }
             event.consume();
         });
     }

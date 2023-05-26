@@ -126,7 +126,7 @@
                         <Line endX="9.0" endY="48.0" layoutX="84.0" layoutY="236.0" scaleX="4.0" startX="9.0" startY="-15.20001220703125" stroke="WHITE" />
                         <Line endX="16.0" endY="30.0" layoutX="67.0" layoutY="257.0" rotate="-40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
                         <Line endX="16.0" endY="30.0" layoutX="86.0" layoutY="256.0" rotate="40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
-                        <Button layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
+                        <Button id="delete-link-button" layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                      </children>
                   </Pane>
                   <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">

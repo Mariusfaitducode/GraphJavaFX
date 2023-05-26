@@ -29,7 +29,7 @@ public class SelectionPaneController {
     private LinkPane linkPane;
 
 
-    SelectionPaneController(Pane nodeRightPane, Pane linkRightPane, Pane searchPathRightPane, HBox toolsBar){
+    SelectionPaneController(Pane nodeRightPane, Pane linkRightPane, Pane searchPathRightPane, HBox toolsBar, Pane centerPane){
         this.nodeRightPane = nodeRightPane;
         this.linkRightPane = linkRightPane;
         this.searchPathRightPane = searchPathRightPane;
@@ -43,7 +43,7 @@ public class SelectionPaneController {
 
         searchPane.searchFindButtonListener(toolsBar, this);
 
-        linkPane = new LinkPane(linkRightPane);
+        linkPane = new LinkPane(linkRightPane, centerPane);
     }
 
     public void closeSelectionPane() {
@@ -90,12 +90,12 @@ public class SelectionPaneController {
 
 
     //Link Pane
-    public void setLinkPane(Node startNode, Node endNode){
+    public void setLinkPane(Node startNode, Link link, Node endNode){
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(true);
         searchPathRightPane.setVisible(false);
 
-        linkPane.setLinkPane(startNode, endNode);
+        linkPane.setLinkPane(startNode, link, endNode);
     }
 
 }
