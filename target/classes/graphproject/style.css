@@ -55,3 +55,10 @@ Button{
     -fx-font-size: 18px;
 
 }
+
+ToggleButton{
+    -fx-background-color: #222;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+
+}

@@ -61,10 +61,21 @@
                         <Font size="14.0" />
                      </font>
                   </ToggleButton>
+                  <ToggleButton id="id-toolBar-delete" mnemonicParsing="false" text="Delete">
+                     <padding>
+                        <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ToggleButton>
                   <ToggleButton id="id-toolBar-searchPath" mnemonicParsing="false" text="Search Path" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <padding>
+                        <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+                     </padding>
                   </ToggleButton>
                   <Label fx:id="zoomText" styleClass="labelled" text="ZOOM : 100%">
                      <HBox.margin>

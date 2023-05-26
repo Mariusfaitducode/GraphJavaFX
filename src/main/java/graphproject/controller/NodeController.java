@@ -81,6 +81,9 @@ public class NodeController {
 
                 selectionPaneController.setSearchNode(node);
             }
+            else if(toolsController.isSelected_deleteButton()){
+                deleteNode(node);
+            }
             else{
                 // Display the information of the node
                 selectionPaneController.setNodePane(node);
