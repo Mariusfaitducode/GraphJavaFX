@@ -1,18 +1,18 @@
 # GraphProject
- Projet de création et d'édition de graphe avec java, interface faite avec javaFX
+Projet de création et d'édition de graphe avec java, interface faite avec javaFX
+Fait par : Victor GOUDAL et Marius DIGUAT
 
- - M : sélectionner link
- - enregistrement vers fichier texte
- - édition attributs nodes (tailler des cercles, choix des couleurs des nodes)
- - définition de commandes claviers/souris
- - Manière dont on génère les graphes
+## Displensable
  - corriger bug quand on change id et pos
 
+## Recommandé
+ - édition attributs nodes (tailler des cercles, choix des couleurs des nodes)
+ - définition de commandes claviers/souris
+ - Manière dont on génère les links aléatoirement
 
-## A la fin
+## Bonus
  - créer ou non un lien vers la même node
- - V : afficher sous diférentes formes(cercle, en carré, NN, etc...)
- - afficher un réseau de neurrones à partir d'un fichier texte
+ - afficher sous différentes formes(cercle, en carré, NN, etc...)
  - plusieurs type de graphs (map, automate, NN)
  - selection multiples avec ctrl+
  - courber les liens

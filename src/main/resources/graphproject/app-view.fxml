@@ -220,7 +220,7 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="rbutton2" layoutX="72.0" layoutY="136.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Aléatoire" toggleGroup="$rbuttongroup" />
-                  <RadioButton fx:id="rbutton3" layoutX="72.0" layoutY="206.0" mnemonicParsing="false" text="Importer d'un dataset (.txt)" toggleGroup="$rbuttongroup" />
+                  <RadioButton fx:id="rbutton3" layoutX="72.0" layoutY="206.0" mnemonicParsing="false" text="Importer d'un dataset (.csv)" toggleGroup="$rbuttongroup" />
                   <Label alignment="CENTER" layoutX="100.0" layoutY="163.0" prefHeight="31.0" prefWidth="131.0" text="Nbr de nodes :" />
                   <TextField fx:id="nodesNumber" layoutX="232.0" layoutY="164.0" prefHeight="30.0" prefWidth="42.0" text="1">
                      <font>
