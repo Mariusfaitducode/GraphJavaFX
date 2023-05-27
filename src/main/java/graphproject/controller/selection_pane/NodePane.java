@@ -35,22 +35,30 @@ public class NodePane{
         //Initialisation du champ de texte id
         this.textId = (TextField) nodeRightPane.lookup("#id-node-id");
         this.textId.setOnKeyTyped(e ->{
-            this.selectedNode.setId(Integer.parseInt(textId.getText()));
+            if (!textId.getText().isEmpty()){
+                this.selectedNode.setId(Integer.parseInt(textId.getText()));
+            }
         });
         //Initialisation du champ de texte name
         this.textName = (TextField) nodeRightPane.lookup("#id-node-name");
         this.textName.setOnKeyTyped(e ->{
-            this.selectedNode.setName(textName.getText());
+            if (!textName.getText().isEmpty()){
+                this.selectedNode.setName(textName.getText());
+            }
         });
         //Initialisation du champ de texte position X
         this.textPosX = (TextField) nodeRightPane.lookup("#id-node-posX");
         this.textPosX.setOnKeyTyped(e ->{
-            this.selectedNode.setX(Integer.parseInt(textPosX.getText()));
+            if (!textPosX.getText().isEmpty()){
+                this.selectedNode.setX(Integer.parseInt(textPosX.getText()));
+            }
         });
         //Initialisation du champ de texte position X
         this.textPosY = (TextField) nodeRightPane.lookup("#id-node-posY");
         this.textPosY.setOnKeyTyped(e ->{
-            this.selectedNode.setY(Integer.parseInt(textPosY.getText()));
+            if (!textPosY.getText().isEmpty()){
+                this.selectedNode.setY(Integer.parseInt(textPosY.getText()));
+            }
         });
 
         this.goingLinks = (ChoiceBox<String>) nodeRightPane.lookup("#node-going-links");
