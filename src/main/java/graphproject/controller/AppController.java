@@ -65,7 +65,7 @@ public class AppController implements Initializable {
         graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane, toolsBar, parentCenterPane, zoomText, buttonSaveGraph);
         menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
 
-        app = new App(centerPane);
+        app = new App();
     }
 
     //Tout ce qui déclenche les actions

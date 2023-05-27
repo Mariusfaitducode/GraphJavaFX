@@ -68,10 +68,8 @@ public class Graph {
         double maxDensity = maxNumberOfPerson / standardSurface;
 
         double size = number * (1 / maxDensity);
-
         double scale = (800 * 624) / size;
 
-        System.out.println("scale : " + scale);
 
         scale = (double) Math.round(scale * 10) / 10;
 
@@ -151,5 +149,41 @@ public class Graph {
         } catch(Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void loadGraph(File file) {
+
+
+            try ( java.util.Scanner scanner = new java.util.Scanner(file) ) {
+
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    String[] values = line.split(",");
+
+                    if (values[0].equals("node")) {
+                        int id = Integer.parseInt(values[1]);
+                        String name = values[2];
+                        int x = Integer.parseInt(values[3]);
+                        int y = Integer.parseInt(values[4]);
+
+                        Node node = new Node(id, name, x, y);
+                        nodes.add(node);
+
+                    } else if (values[0].equals("link")) {
+                        int id = Integer.parseInt(values[1]);
+                        int linkedId = Integer.parseInt(values[2]);
+
+                        Node node = nodes.get(id);
+                        Node linkedNode = nodes.get(linkedId);
+
+                        Link link = new Link(linkedNode);
+                        node.links.add(link);
+                        linkedNode.linkedNodeList.add(node);
+                    }
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
     }
 }

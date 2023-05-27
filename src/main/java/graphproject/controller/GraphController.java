@@ -236,23 +236,6 @@ public class GraphController {
         });
     }
 
-
-
-
-    // Display the information if the link when clicked in it
-    /*private void listenerLink() {
-        //TODO :fonctions qui sélectionne un link si on clique dessus
-        for (javafx.scene.Node node : centerPane.lookupAll(".line")) {
-            if (node instanceof Line) {
-                node.setOnMouseClicked(event -> {
-                    nodeRightPane.setVisible(false);
-                    linkRightPane.setVisible(true);
-                    searchPathRightPane.setVisible(false);
-                });
-            }
-        }
-    }*/
-
     //Listener link
     public void listenerLink(Node node, Link link){
 
@@ -358,17 +341,11 @@ public class GraphController {
         centerPane.setLayoutX(layoutX);
         centerPane.setLayoutY(layoutY);
 
-//        centerPane.setTranslateX(-2000);
-//        centerPane.setTranslateY(-1560);
-
-        System.out.println("width : "+centerPane.getWidth());
-        System.out.println("height : "+centerPane.getHeight());
-        System.out.println("prefwidth : "+centerPane.getPrefWidth());
-        System.out.println("prefheight : "+centerPane.getPrefHeight());
-        System.out.println("layoutX : "+centerPane.getLayoutX());
-        System.out.println("layoutY : "+centerPane.getLayoutY());
-        System.out.println("scaleX : "+centerPane.getScaleX());
-        System.out.println("scaleY : "+centerPane.getScaleY());
+        System.out.println("Display parameters :");
+        System.out.println(" - Origin of graph (coord 0,0) : Top Left Corner");
+        System.out.println(" - Max dimension of graph : 8000 px x 6240 px");
+        System.out.println(" - Spawning point : center of graph (coord 4000,3120)");
+        System.out.println("\n");
     }
 
     private void listenerSaveGraph() {
