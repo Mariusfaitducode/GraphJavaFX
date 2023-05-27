@@ -4,7 +4,10 @@ import graphproject.controller.graphics.Graphics;
 import graphproject.model.Graph;
 import graphproject.model.Link;
 import graphproject.model.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -27,6 +30,8 @@ public class GraphController {
     private Pane linkRightPane;
     private Pane searchPathRightPane;
 
+    private MenuItem buttonSaveGraph;
+
     //tools
     private ToolsController toolsController;
     private SelectionPaneController selectionPaneController;
@@ -48,7 +53,7 @@ public class GraphController {
     GraphController(){};
 
     // Contruct the controller for the opened graph
-    GraphController(Pane pane, Pane nodeRightPane, Pane linkRightPane, Label graphTitle, Pane searchPathRightPane, HBox toolsBar, Pane parentCenterPane, Label zoomText) {
+    GraphController(Pane pane, Pane nodeRightPane, Pane linkRightPane, Label graphTitle, Pane searchPathRightPane, HBox toolsBar, Pane parentCenterPane, Label zoomText, MenuItem buttonSaveGraph) {
 
         this.graph = null;
 
@@ -62,6 +67,7 @@ public class GraphController {
         this.toolsBar = toolsBar;
         this.parentCenterPane = parentCenterPane;
         this.zoomText = zoomText;
+        this.buttonSaveGraph = buttonSaveGraph;
 
         // tools
 
@@ -82,6 +88,7 @@ public class GraphController {
         listenerZoomGraph();
         listenerMoveOnGraph();
         listenerCoordinateOnMousePressed();
+        listenerSaveGraph();
 
         // All global variables
 
@@ -362,5 +369,21 @@ public class GraphController {
         System.out.println("layoutY : "+centerPane.getLayoutY());
         System.out.println("scaleX : "+centerPane.getScaleX());
         System.out.println("scaleY : "+centerPane.getScaleY());
+    }
+
+    private void listenerSaveGraph() {
+        buttonSaveGraph.setOnAction(actionEvent -> {
+            if (graph == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("No graph to save");
+                alert.setContentText("Create or open a graph before saving it");
+                alert.showAndWait();
+            }
+            else {
+                graph.saveGraph();
+            }
+        });
+
     }
 }

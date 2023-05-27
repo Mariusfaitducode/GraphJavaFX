@@ -1,7 +1,12 @@
 package graphproject.model;
 
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,5 +118,38 @@ public class Graph {
 
     public void displayGraph() {
         System.out.println("Name of graph : " + name);
+    }
+
+    public void saveGraph(){
+
+        String path = "src\\main\\resources\\saves\\" + name + ".csv";
+
+        StringBuilder text = new StringBuilder();
+
+        for (Node node : nodes) {
+            String line = "node," + node.getId() + "," + node.getName() + "," + node.getX() + "," + node.getY() + "\n";
+            text.append(line);
+        }
+
+        for (Node node : nodes) {
+            for (Link link : node.getLinks()) {
+                String line = "link," + node.getId() + "," + link.getNode().getId() + "\n";
+                text.append(line);
+            }
+        }
+
+        try ( FileWriter fileWriter = new FileWriter(path) ) {
+
+            fileWriter.write(text.toString());
+            System.out.println("Successfully saved the file.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("File saved");
+            alert.setHeaderText("The graph has been successfully saved");
+            alert.setContentText("File location : \n" + path);
+            alert.showAndWait();
+
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

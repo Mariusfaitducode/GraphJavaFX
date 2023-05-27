@@ -163,7 +163,7 @@
                                  </items>
                               </Menu>
                               <MenuItem mnemonicParsing="false" onAction="#closeGraph" text="Close Graph" />
-                              <MenuItem mnemonicParsing="false" text="Save Graph" />
+                              <MenuItem fx:id="buttonSaveGraph" mnemonicParsing="false" text="Save Graph" />
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Edit">
