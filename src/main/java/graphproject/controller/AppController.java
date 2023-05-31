@@ -5,6 +5,7 @@ import java.util.List;
 
 import graphproject.model.App;
 import graphproject.model.Graph;
+import graphproject.view.AppView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -46,6 +47,8 @@ public class AppController implements Initializable {
 
     private App app;
 
+    private AppView appView;
+
     //Tout ce qui contient les actions
 
     private GraphController graphController;
@@ -57,23 +60,20 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(java.net.URL arg0, java.util.ResourceBundle arg1) {
-        popupPane.setVisible(false);
-        nodeRightPane.setVisible(false);
-        linkRightPane.setVisible(false);
-        searchPathRightPane.setVisible(false);
 
         graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane, toolsBar, parentCenterPane, zoomText, buttonSaveGraph);
         menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
 
         app = new App();
+        appView = new AppView(popupPane, nodeRightPane, linkRightPane, searchPathRightPane);
     }
 
     //Tout ce qui déclenche les actions
     //
     @FXML
     public void createNewGraphPopup() {
-        popupController = new PopupController(popupPane, rbutton1, rbutton2, rbutton3, nameGraph, nodesNumber, app);
-        popupController.setVisible(true);
+        popupController = new PopupController(rbutton1, rbutton2, rbutton3, nameGraph, nodesNumber, app, appView);
+        appView.showPopup();
     }
 
     public void generateGraph() {
