@@ -5,12 +5,11 @@ Fait par : Victor GOUDAL et Marius DIGUAT
 
 ### Indisplensable
  - (M) édition des couleurs
- - (V) créer un package vu
- - valider une modification
  - (M) couleur chemin
 
 ### Recommandé
  - (M) Manière dont on génère les links aléatoirement
+ - valider une modification
 
 ### Bonus
  - créer ou non un lien vers la même node
