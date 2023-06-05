@@ -4,6 +4,7 @@ import graphproject.controller.graphics.Graphics;
 import graphproject.model.Graph;
 import graphproject.model.Link;
 import graphproject.model.Node;
+import graphproject.view.NodeView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -13,7 +14,6 @@ public class NodeController {
     //private Node node;
 
     private Graph graph;
-
     private final Pane centerPane;
     private final ToolsController toolsController;
 
@@ -33,7 +33,7 @@ public class NodeController {
     }
 
     // Add a node when the ToggleButton is true, and we click on the graph
-    public void listenerAddNodeToGraph(GraphController graphController) {
+    public void listenerAddNodeToGraph() {
         centerPane.setOnMouseClicked(event -> {
 
             if (toolsController.isSelected_createNodesButton() && graph != null) {
@@ -73,7 +73,7 @@ public class NodeController {
 
     // Display the information of the node when clicked on it
     public void listenerNode(Circle circle, Node node) {
-
+        NodeView nodeView = new NodeView(node, circle);
         //fonctions qui sélectionne une node si on clique dessus
         circle.setOnMouseClicked(event -> {
 
@@ -100,13 +100,15 @@ public class NodeController {
 
         // diférencie les nodes lorsque la souris est dessus
         circle.setOnMouseEntered(event -> {
-            circle.setStroke(Color.RED); // Changement de couleur de la bordure lors du survol
+//            circle.setStroke(Color.RED); // Changement de couleur de la bordure lors du survol
+            nodeView.setNodeBorderColor(Color.RED);
             event.consume();
         });
 
         circle.setOnMouseExited(event -> {
             if (!node.isSelected()){
-                circle.setStroke(Color.BLACK); // Rétablissement de la couleur de la bordure
+//                circle.setStroke(Color.BLACK); // Rétablissement de la couleur de la bordure
+            nodeView.setNodeBorderColor(Color.BLACK);
             }
 
             event.consume();
@@ -115,7 +117,7 @@ public class NodeController {
         // fonction qui ajoute des links
         circle.setOnMouseReleased(event -> {
             if (toolsController.isSelected_createLinksButton() && graph != null) {
-                System.out.println("check");
+
                 //find the red circle
                 boolean isRedCircle = false;
                 Node linkedNode = null;
@@ -137,10 +139,10 @@ public class NodeController {
                     link.setOrientedLine(arrow);
 
                     //Reset Color to node
-                    node.getCircle().setFill(Color.WHITE);
-                    linkedNode.getCircle().setFill(Color.WHITE);
+                    nodeView.setNodeColor(Color.WHITE);
+                    nodeView.setNodeColor(linkedNode, Color.WHITE);
                 } else {
-                    node.getCircle().setFill(Color.RED);
+                    nodeView.setNodeColor(Color.RED);
                 }
             }
         });

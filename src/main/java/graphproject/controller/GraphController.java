@@ -83,7 +83,7 @@ public class GraphController {
 
         // All initialize listeners
 
-        nodeController.listenerAddNodeToGraph(this);
+        nodeController.listenerAddNodeToGraph();
         listenerZoomGraph();
         listenerMoveOnGraph();
         listenerCoordinateOnMousePressed();
