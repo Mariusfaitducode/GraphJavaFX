@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 //Regroupe la gestion de toutes les interactions de l'utilisateur
 
@@ -26,7 +27,7 @@ public class AppController implements Initializable {
     private HBox toolsBar;
 
     @FXML
-    private Label graphTitle, zoomText;
+    private Label graphTitle, zoomText, path;
 
     //Elements de la barre de menu
     @FXML
@@ -42,6 +43,8 @@ public class AppController implements Initializable {
     private RadioButton rbutton1, rbutton2, rbutton3;
     @FXML
     private TextField nameGraph, nodesNumber;
+//    @FXML
+//    private Button fileChooser;
 
     // attribut app qui stocke toutes les données de l'application
 
@@ -72,7 +75,7 @@ public class AppController implements Initializable {
     //
     @FXML
     public void createNewGraphPopup() {
-        popupController = new PopupController(rbutton1, rbutton2, rbutton3, nameGraph, nodesNumber, app, appView);
+        popupController = new PopupController(rbutton1, rbutton2, rbutton3, nameGraph, nodesNumber, app, appView, path);
         appView.showPopup();
     }
 
@@ -86,6 +89,11 @@ public class AppController implements Initializable {
 
     public void closeGraph() {
         graphController.closeGraph();
+    }
+
+    @FXML
+    public void openFileChooser() {
+        popupController.openFileChooser((Stage)centerPane.getScene().getWindow());
     }
 
 }
