@@ -2,36 +2,46 @@ package graphproject.controller;
 
 import graphproject.model.App;
 import graphproject.model.Graph;
+import graphproject.view.AppView;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
 
 public class PopupController {
 
     // Graphic attributes of the pop-up
-    private Pane popupPane;
-
     private RadioButton rbutton1, rbutton2, rbutton3;
-
     private TextField nameGraph, nodesNumber;
+    private Label path;
 
 
     // App Attribute
     private App app;
+    private File file;
+    private AppView appView;
 
-    PopupController(Pane popupPane, RadioButton rbutton1, RadioButton rbutton2, RadioButton rbutton3, TextField nameGraph, TextField nodesNumber, App app){
-        this.popupPane = popupPane;
+    PopupController(RadioButton rbutton1, RadioButton rbutton2, RadioButton rbutton3, TextField nameGraph, TextField nodesNumber, App app, AppView appView, Label path) {
+
         this.rbutton1 = rbutton1;
         this.rbutton2 = rbutton2;
         this.rbutton3 = rbutton3;
         this.nameGraph = nameGraph;
         this.nodesNumber = nodesNumber;
+        this.path = path;
+
         this.app = app;
+        this.appView = appView;
     }
 
-    public void setVisible(boolean statut) {
-        popupPane.setVisible(statut);
-    }
+//    public void setVisible(boolean statut) {
+//        popupPane.setVisible(statut);
+//    }
 
     public Graph generateGraph(Pane centerPane){
 
@@ -49,13 +59,23 @@ public class PopupController {
             app.getLastGraph().setRandomNodesAndLinks(Integer.parseInt(nodesNumber.getText()), centerPane);
 
         } else if (rbutton3.isSelected()) {
-
-            // TODO
+            app.getLastGraph().loadGraph(file);
         }
 
         // Hide Creating Graph Pop-up
-        popupPane.setVisible(false);
+        appView.hidePopup();
 
         return app.getLastGraph();
+    }
+
+    public void openFileChooser(Stage mainStage) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        file = fileChooser.showOpenDialog(mainStage);
+        if (file != null) {
+            path.setText(file.getAbsolutePath());
+        } else {
+            path.setText("No file selected");
+        }
     }
 }

@@ -152,7 +152,7 @@
          <top>
             <Pane prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #333;" BorderPane.alignment="CENTER">
                <children>
-                  <MenuBar prefHeight="26.0" prefWidth="200.0">
+                  <MenuBar prefHeight="26.0" prefWidth="274.0">
                      <menus>
                         <Menu mnemonicParsing="false" text="File">
                            <items>
@@ -203,31 +203,33 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" styleClass="popupWindow" stylesheets="@style.css">
                <children>
-                  <Label alignment="CENTER" layoutX="123.0" layoutY="14.0" prefHeight="39.0" prefWidth="154.0" text="Create New Graph" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="125.0" prefHeight="39.0" prefWidth="154.0" text="Create New Graph" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="72.0" layoutY="53.0" prefHeight="31.0" prefWidth="74.0" text="Nom :" />
-                  <TextField fx:id="nameGraph" layoutX="146.0" layoutY="54.0" text="untitled">
+                  <Label alignment="CENTER" layoutX="74.0" layoutY="39.0" prefHeight="31.0" prefWidth="74.0" text="Nom :" />
+                  <TextField fx:id="nameGraph" layoutX="148.0" layoutY="40.0" text="untitled">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <RadioButton fx:id="rbutton1" layoutX="72.0" layoutY="94.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Vide">
+                  <RadioButton fx:id="rbutton1" layoutX="74.0" layoutY="80.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Vide">
                      <toggleGroup>
                         <ToggleGroup fx:id="rbuttongroup" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="rbutton2" layoutX="72.0" layoutY="136.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Aléatoire" toggleGroup="$rbuttongroup" />
-                  <RadioButton fx:id="rbutton3" layoutX="72.0" layoutY="206.0" mnemonicParsing="false" text="Importer d'un dataset (.csv)" toggleGroup="$rbuttongroup" />
-                  <Label alignment="CENTER" layoutX="100.0" layoutY="163.0" prefHeight="31.0" prefWidth="131.0" text="Nbr de nodes :" />
-                  <TextField fx:id="nodesNumber" layoutX="232.0" layoutY="164.0" prefHeight="30.0" prefWidth="42.0" text="1">
+                  <RadioButton fx:id="rbutton2" layoutX="74.0" layoutY="122.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Aléatoire" toggleGroup="$rbuttongroup" />
+                  <RadioButton fx:id="rbutton3" layoutX="78.0" layoutY="180.0" mnemonicParsing="false" text="Importer d'un dataset (.csv)" toggleGroup="$rbuttongroup" />
+                  <Label alignment="CENTER" layoutX="102.0" layoutY="149.0" prefHeight="31.0" prefWidth="131.0" text="Nbr de nodes :" />
+                  <TextField fx:id="nodesNumber" layoutX="234.0" layoutY="150.0" prefHeight="30.0" prefWidth="42.0" text="1">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="253.0" layoutY="246.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="31.0" prefWidth="99.0" text="Générer" />
+                  <Button layoutX="146.0" layoutY="260.0" mnemonicParsing="false" onAction="#generateGraph" prefHeight="39.0" prefWidth="99.0" text="Générer" />
+                  <Button layoutX="111.0" layoutY="207.0" mnemonicParsing="false" onAction="#openFileChooser" prefHeight="1.0" prefWidth="84.0" style="-fx-background-color: #333;" text="Import" textFill="WHITE" />
+                  <Label fx:id="path" alignment="CENTER" layoutX="200.0" layoutY="211.0" prefHeight="31.0" prefWidth="189.0" text="default path" />
                </children>
             </Pane>
          </children>

@@ -5,11 +5,13 @@ import java.util.List;
 
 import graphproject.model.App;
 import graphproject.model.Graph;
+import graphproject.view.AppView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 //Regroupe la gestion de toutes les interactions de l'utilisateur
 
@@ -25,7 +27,7 @@ public class AppController implements Initializable {
     private HBox toolsBar;
 
     @FXML
-    private Label graphTitle, zoomText;
+    private Label graphTitle, zoomText, path;
 
     //Elements de la barre de menu
     @FXML
@@ -41,10 +43,14 @@ public class AppController implements Initializable {
     private RadioButton rbutton1, rbutton2, rbutton3;
     @FXML
     private TextField nameGraph, nodesNumber;
+//    @FXML
+//    private Button fileChooser;
 
     // attribut app qui stocke toutes les données de l'application
 
     private App app;
+
+    private AppView appView;
 
     //Tout ce qui contient les actions
 
@@ -57,23 +63,20 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(java.net.URL arg0, java.util.ResourceBundle arg1) {
-        popupPane.setVisible(false);
-        nodeRightPane.setVisible(false);
-        linkRightPane.setVisible(false);
-        searchPathRightPane.setVisible(false);
 
         graphController = new GraphController(centerPane, nodeRightPane, linkRightPane, graphTitle, searchPathRightPane, toolsBar, parentCenterPane, zoomText, buttonSaveGraph);
         menuController = new MenuController(openGraphsMenu, noRecentGraphMenuItem);
 
         app = new App();
+        appView = new AppView(popupPane, nodeRightPane, linkRightPane, searchPathRightPane);
     }
 
     //Tout ce qui déclenche les actions
     //
     @FXML
     public void createNewGraphPopup() {
-        popupController = new PopupController(popupPane, rbutton1, rbutton2, rbutton3, nameGraph, nodesNumber, app);
-        popupController.setVisible(true);
+        popupController = new PopupController(rbutton1, rbutton2, rbutton3, nameGraph, nodesNumber, app, appView, path);
+        appView.showPopup();
     }
 
     public void generateGraph() {
@@ -86,6 +89,11 @@ public class AppController implements Initializable {
 
     public void closeGraph() {
         graphController.closeGraph();
+    }
+
+    @FXML
+    public void openFileChooser() {
+        popupController.openFileChooser((Stage)centerPane.getScene().getWindow());
     }
 
 }
