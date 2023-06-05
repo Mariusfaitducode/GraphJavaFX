@@ -19,7 +19,6 @@ public class Link {
 
     Link(Node node){
         this.linkedNode = node;
-        //this.initialNode = initialNode;
         selected = false;
     }
 
@@ -36,11 +35,9 @@ public class Link {
     public void setSelection(boolean b){selected = b;}
     public boolean isSelected(){return selected;}
 
-    public void deleteLink(Node node, Pane centerPane){
-        centerPane.getChildren().remove(getLine());
-        centerPane.getChildren().remove(getArrowHead());
-        linkedNode.linkedNodeList.remove(node);
+    public void deleteLink(Node node){
 
+        linkedNode.linkedNodeList.remove(node);
         node.links.remove(this);
     }
 }

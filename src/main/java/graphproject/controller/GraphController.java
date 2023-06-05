@@ -4,6 +4,8 @@ import graphproject.controller.graphics.Graphics;
 import graphproject.model.Graph;
 import graphproject.model.Link;
 import graphproject.model.Node;
+import graphproject.view.GraphView;
+import graphproject.view.LinkView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,18 +41,11 @@ public class GraphController {
 
     // App attribute
     private Graph graph;
+    private GraphView graphView;
 
     private Label graphTitle;
 
     private Label zoomText;
-
-    // Global variables
-
-    private double initialX;
-
-    private double initialY;
-
-    GraphController(){};
 
     // Contruct the controller for the opened graph
     GraphController(Pane pane, Pane nodeRightPane, Pane linkRightPane, Label graphTitle, Pane searchPathRightPane, HBox toolsBar, Pane parentCenterPane, Label zoomText, MenuItem buttonSaveGraph) {
@@ -78,6 +73,10 @@ public class GraphController {
 
         this.nodeController = new NodeController(this.graph, this.centerPane, this.toolsController, this.selectionPaneController);
 
+        // Initialising graph view
+
+        this.graphView = new GraphView(centerPane, zoomText);
+
         // Initializing Graphic Rendering
 
         initializeCenterPaneSettings();
@@ -89,11 +88,6 @@ public class GraphController {
         listenerMoveOnGraph();
         listenerCoordinateOnMousePressed();
         listenerSaveGraph();
-
-        // All global variables
-
-        initialX = 0;
-        initialY = 0;
 
     }
 
@@ -127,112 +121,21 @@ public class GraphController {
     private void listenerZoomGraph() {
         centerPane.setOnScroll(event -> {
 
-            double zoomFactor;
-
-            if (event.getDeltaY() > 0 ) {
-                zoomFactor = 0.1;
-            } else {
-                zoomFactor = -0.1;
-            }
-
-            double translateX = centerPane.getTranslateX();
-            double translateY = centerPane.getTranslateY();
-
-            double newScaleX = centerPane.getScaleX() + zoomFactor;
-            double newScaleY = centerPane.getScaleX() + zoomFactor;
-
-            double dX;
-            double dY;
-
-            if (event.getDeltaY() > 0 ) {
-                dX = - ((event.getX() - (centerPane.getWidth()/2)) * (1 - centerPane.getScaleX() / newScaleX));
-                dY = - ((event.getY() - (centerPane.getHeight()/2)) * (1 - centerPane.getScaleY() / newScaleY));
-            } else {
-                dX = (event.getX() - (centerPane.getWidth()/2)) * (centerPane.getScaleX() / newScaleX - 1);
-                dY = (event.getY() - (centerPane.getHeight()/2)) * (centerPane.getScaleY() / newScaleY - 1);
-            }
-
-            newScaleX = (double)Math.round(newScaleX * 10) / 10;
-            newScaleY = (double)Math.round(newScaleY * 10) / 10;
-
-            if (newScaleX >= 0.099 && newScaleY >= 0.099) {
-
-                centerPane.setScaleX(newScaleX);
-                centerPane.setScaleY(newScaleY);
-                zoomText.setText("ZOOM : " + (int)(newScaleX*100) + " %");
-
-                centerPane.setTranslateX(translateX+dX*(centerPane.getBoundsInParent().getWidth()/8000));
-                centerPane.setTranslateY(translateY+dY*(centerPane.getBoundsInParent().getHeight()/6240));
-
-                double borderLeft = centerPane.getTranslateX() - 4000 * (centerPane.getScaleX()-0.1);
-                double borderTop = centerPane.getTranslateY() - 3120 * (centerPane.getScaleX()-0.1);
-                double borderRight = centerPane.getTranslateX() + 4000 * (centerPane.getScaleX()-0.1);
-                double borderBottom = centerPane.getTranslateY() + 3120 * (centerPane.getScaleX()-0.1);
-
-                if (borderLeft > 0) {
-                    centerPane.setTranslateX(centerPane.getTranslateX() - borderLeft);
-                } else if (borderRight < 0) {
-                    centerPane.setTranslateX(centerPane.getTranslateX() - borderRight);
-                }
-
-                if (borderTop > 0) {
-                    centerPane.setTranslateY(centerPane.getTranslateY() - borderTop);
-                } else if (borderBottom < 0) {
-                    centerPane.setTranslateY(centerPane.getTranslateY() - borderBottom);
-                }
-            }
-
+            graphView.viewZoomGraph(event.getDeltaY(), event.getX(), event.getY());
         });
     }
 
     private void listenerCoordinateOnMousePressed() {
         centerPane.setOnMousePressed(event -> {
-            
-            initialX = event.getX();
-            initialY = event.getY();
+
+            graphView.setMouseCoordinate(event.getX(), event.getY());
         });
     }
 
     private void listenerMoveOnGraph() {
         centerPane.setOnMouseDragged(event -> {
 
-            double borderLeft = centerPane.getTranslateX() - 4000 * (centerPane.getScaleX()-0.1);
-            double borderTop = centerPane.getTranslateY() - 3120 * (centerPane.getScaleX()-0.1);
-            double borderRight = centerPane.getTranslateX() + 4000 * (centerPane.getScaleX()-0.1);
-            double borderBottom = centerPane.getTranslateY() + 3120 * (centerPane.getScaleX()-0.1);
-
-            double dX = (event.getX() - initialX) * (centerPane.getBoundsInParent().getWidth()/8000);
-            double dY = (event.getY() - initialY) * (centerPane.getBoundsInParent().getHeight()/6240);
-
-            System.out.println("--------------------------------");
-            if (dX < 0) {
-                if (borderRight < 0) {
-                    System.out.println("out!!!! right");
-                } else  {
-                    centerPane.setTranslateX(centerPane.getTranslateX() + dX);
-                }
-            } else {
-                if (borderLeft > 0) {
-                    System.out.println("out!!!! left");
-                } else  {
-                    centerPane.setTranslateX(centerPane.getTranslateX() + dX);
-                }
-            }
-
-            if (dY < 0) {
-                if (borderBottom < 0) {
-                    System.out.println("out!!!! bottom");
-                } else  {
-                    centerPane.setTranslateY(centerPane.getTranslateY() + dY);
-                }
-            } else {
-                if (borderTop > 0) {
-                    System.out.println("out!!!! top");
-                } else  {
-                    centerPane.setTranslateY(centerPane.getTranslateY() + dY);
-                }
-            }
-
+            graphView.viewMoveGraph(event.getX(), event.getY());
         });
     }
 
@@ -240,10 +143,13 @@ public class GraphController {
     public void listenerLink(Node node, Link link){
 
         Node linkedNode = link.getNode();
+        LinkView linkView = new LinkView(link, centerPane);
 
         link.getLine().setOnMouseClicked(event ->{
+
             if (toolsController.isSelected_deleteButton()){
-                link.deleteLink(node, centerPane);
+                link.deleteLink(node);
+                linkView.removeLink();
             }
             else{
                 link.setSelection(true);
@@ -252,14 +158,14 @@ public class GraphController {
             }
         });
         link.getLine().setOnMouseEntered(event ->{
-            link.getLine().setStroke(Color.RED);
-            link.getArrowHead().setFill(Color.RED);
+
+            linkView.setLinkColor(Color.RED);
             event.consume();
         });
         link.getLine().setOnMouseExited(event ->{
+
             if (!link.isSelected()){
-                link.getLine().setStroke(Color.BLACK);
-                link.getArrowHead().setFill(Color.BLACK);
+                linkView.setLinkColor(Color.BLACK);
             }
             event.consume();
         });
@@ -351,11 +257,7 @@ public class GraphController {
     private void listenerSaveGraph() {
         buttonSaveGraph.setOnAction(actionEvent -> {
             if (graph == null) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("No graph to save");
-                alert.setContentText("Create or open a graph before saving it");
-                alert.showAndWait();
+                graphView.displaySaveAlert();
             }
             else {
                 graph.saveGraph();

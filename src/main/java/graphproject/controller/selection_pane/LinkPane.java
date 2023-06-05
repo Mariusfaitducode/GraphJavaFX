@@ -2,6 +2,7 @@ package graphproject.controller.selection_pane;
 
 import graphproject.model.Link;
 import graphproject.model.Node;
+import graphproject.view.LinkView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -11,7 +12,6 @@ import javafx.scene.paint.Color;
 public class LinkPane {
 
     public Node startNode;
-
     public Link selectedLink;
     public Node endNode;
 
@@ -19,10 +19,14 @@ public class LinkPane {
     public Label startNodeName;
     public Label endNodeID;
     public Label endNodeName;
-
     public Button deleteLinkButton;
 
+    private LinkView linkView;
+
     public LinkPane(Pane linkRightPane, Pane centerPane){
+
+        this.linkView = new LinkView(selectedLink, centerPane);
+
         startNodeID = (Label) linkRightPane.lookup("#start-node-id");
         startNodeName = (Label) linkRightPane.lookup("#start-node-name");
 
@@ -32,7 +36,8 @@ public class LinkPane {
         deleteLinkButton = (Button) linkRightPane.lookup("#delete-link-button");
 
         deleteLinkButton.setOnMouseClicked(e ->{
-            selectedLink.deleteLink(startNode, centerPane);
+            selectedLink.deleteLink(startNode);
+            linkView.removeLink();
         });
     }
 
@@ -48,12 +53,12 @@ public class LinkPane {
 
         if (selectedLink != null){
             selectedLink.setSelection(false);
-            selectedLink.getLine().setStroke(Color.BLACK);
-            selectedLink.getArrowHead().setFill(Color.BLACK);
+            linkView.setLink(selectedLink);
+            linkView.setLinkColor(Color.BLACK);
         }
         selectedLink = link;
         selectedLink.setSelection(true);
-        selectedLink.getLine().setStroke(Color.RED);
-        selectedLink.getArrowHead().setFill(Color.RED);
+        linkView.setLink(selectedLink);
+        linkView.setLinkColor(Color.RED);
     }
 }
