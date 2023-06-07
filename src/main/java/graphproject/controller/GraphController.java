@@ -205,6 +205,7 @@ public class GraphController {
             // Add the circle to the pane
             node.setCircle(circle);
             centerPane.getChildren().add(circle);
+            node.setColor(Color.WHITE);
         }
     }
 
