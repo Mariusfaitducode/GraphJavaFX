@@ -60,9 +60,17 @@ public class SelectionPaneController {
 
         nodePane.setSelectedNode(selectedNode);
 
-
-
         nodePane.setChoiceBox(this);
+    }
+
+    public void closeNodePane(){
+        nodeRightPane.setVisible(false);
+        nodePane.deselectNode();
+    }
+
+    public void closeLinkPane(){
+        linkRightPane.setVisible(false);
+        linkPane.deselectLink();
     }
     public NodePane getNodePane(){return this.nodePane;}
 

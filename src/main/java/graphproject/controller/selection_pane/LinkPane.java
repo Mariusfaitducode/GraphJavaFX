@@ -61,4 +61,12 @@ public class LinkPane {
         linkView.setLink(selectedLink);
         linkView.setLinkColor(Color.RED);
     }
+
+    public void deselectLink(){
+        if (selectedLink != null){
+            selectedLink.setSelection(false);
+            selectedLink.setColor(selectedLink.getColor());
+            selectedLink = null;
+        }
+    }
 }

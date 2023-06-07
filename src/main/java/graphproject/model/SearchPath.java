@@ -97,6 +97,7 @@ public class SearchPath {
             listVisitedNode.remove(listVisitedNode.size()-1);
             actualChooseBackNode = listVisitedNode.get(listVisitedNode.size() -1);
         }
+        areLinked(actualChooseBackNode, lastNode);
         return distance;
     }
 
@@ -104,10 +105,31 @@ public class SearchPath {
 
         for (Link link : node.links){
             if (link.getNode() == linkedNode){
+                link.tempColor(Color.MAGENTA);
                 return true;
             }
         }
         return false;
+    }
+
+    public static void resetPath(List<Node> listNode){
+
+        for (Node node : listNode){
+            if (node.getCircle().getFill() != Color.WHITE){
+
+                node.getCircle().setFill(node.getColor());
+
+                resetLinkColor(node);
+            }
+        }
+    }
+
+    public static void resetLinkColor(Node node){
+        for (Link link : node.links){
+
+            link.setColor(link.getColor());
+
+        }
     }
 
     public PathNode chooseNodeToExplore(List<PathNode> listPathNode){

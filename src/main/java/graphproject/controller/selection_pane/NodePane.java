@@ -123,6 +123,17 @@ public class NodePane{
         this.selectedNode = selectedNode;
     }
 
+    public void deselectNode(){
+        if (this.selectedNode != null){
+            this.selectedNode.getCircle().setScaleX(1);
+            this.selectedNode.getCircle().setScaleY(1);
+            this.selectedNode.getCircle().setStroke(Color.BLACK);
+            this.selectedNode.getCircle().setStrokeWidth(1);
+            this.selectedNode.setSelection(false);
+            this.selectedNode = null;
+        }
+    }
+
     public void setChoiceBox(SelectionPaneController selectionPaneController){
 
         //Going lists

@@ -2,6 +2,7 @@ package graphproject.controller.selection_pane;
 
 import graphproject.controller.SelectionPaneController;
 import graphproject.model.Graph;
+import graphproject.model.Link;
 import graphproject.model.Node;
 import graphproject.model.SearchPath;
 import javafx.beans.value.ChangeListener;
@@ -122,13 +123,7 @@ public class SearchPane{
         });
         resetButton.setOnMouseClicked(e ->{
 
-            for (Node node : listVisitedNode){
-                //System.out.println("node");
-                if (node.getCircle().getFill() != Color.WHITE){
-
-                    node.getCircle().setFill(node.getColor());
-                }
-            }
+            SearchPath.resetPath(listVisitedNode);
             listVisitedNode.clear();
             noPathSelected();
             this.normDistance.setText("Norm dist: ");
@@ -169,15 +164,21 @@ public class SearchPane{
     }
 
     public void deselectStartNode(){
-        this.startNode.getCircle().setFill(Color.WHITE);
-        this.startNode = null;
+        this.startNode.getCircle().setFill(startNode.getColor());
         this.textStartNode.setText("");
+        for (Link link : startNode.getLinks()){
+            link.setColor(link.getColor());
+        }
+        this.startNode = null;
     }
 
     public void deselectEndNode(){
-        this.endNode.getCircle().setFill(Color.WHITE);
-        this.endNode = null;
+        this.endNode.getCircle().setFill(endNode.getColor());
         this.textEndNode.setText("");
+        for (Link link : endNode.getLinks()){
+            link.setColor(link.getColor());
+        }
+        this.endNode = null;
     }
 
     public void setSearchNode(Node node){

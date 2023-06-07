@@ -56,6 +56,7 @@ public class Graphics {
         Arrow arrow = new Arrow();
         arrow.line = line;
         arrow.arrowHead = arrowHead;
+        arrow.color = Color.BLACK;
 
         return arrow;
     }

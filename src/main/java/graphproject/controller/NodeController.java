@@ -42,14 +42,16 @@ public class NodeController {
                 int y = (int) event.getY();
                 Node node = graph.addNode(x,y);
 
-
-
                 // Updates the display of Nodes
                 updateNode(node);
 
                 // Display the information of the new node
                 //Node node = graph.getNodeFromPos(x,y);
                 selectionPaneController.setNodePane(node);
+            }
+            else{
+                selectionPaneController.closeNodePane();
+                selectionPaneController.closeLinkPane();
             }
             event.consume();
         });
@@ -89,6 +91,7 @@ public class NodeController {
                 // Display the information of the node
                 selectionPaneController.setNodePane(node);
             }
+            event.consume();
         });
 
         // permet de déplacer les nodes avec la souris

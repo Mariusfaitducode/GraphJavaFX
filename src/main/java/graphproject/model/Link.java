@@ -1,6 +1,7 @@
 package graphproject.model;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 
@@ -9,6 +10,7 @@ public class Link {
     public static class Arrow{
         public Line line;
         public Polygon arrowHead;
+        public Color color;
     }
 
     private Arrow arrow;
@@ -39,5 +41,22 @@ public class Link {
 
         linkedNode.linkedNodeList.remove(node);
         node.links.remove(this);
+    }
+
+    public Color getColor(){return arrow.color;}
+
+    public void setColor(Color color){
+        if (color != null){
+            this.arrow.color = color;
+            arrow.line.setStroke(color);
+            arrow.arrowHead.setFill(color);
+        }
+    }
+
+    public void tempColor(Color color){
+        if (color != null){
+            arrow.line.setStroke(color);
+            arrow.arrowHead.setFill(color);
+        }
     }
 }

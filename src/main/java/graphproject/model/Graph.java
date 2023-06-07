@@ -122,12 +122,12 @@ public class Graph {
         for(Node node: nodes){
             total += maxDistance - SearchPath.normeVect(selectedNode.x, selectedNode.y, node.x, node.y);
         }
-        total *= 5;
+        total *= 50;
 
         int random = (int)(Math.random() * total);
         int count = 0;
         for(Node node: nodes){
-            count += 5 * (maxDistance - SearchPath.normeVect(selectedNode.x, selectedNode.y, node.x, node.y));
+            count += 50 * (maxDistance - SearchPath.normeVect(selectedNode.x, selectedNode.y, node.x, node.y));
             if(count >= random){
                 return node;
             }

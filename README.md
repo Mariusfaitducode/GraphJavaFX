@@ -4,11 +4,8 @@ Projet de création et d'édition de graphe avec java, interface faite avec java
 Fait par : Victor GOUDAL et Marius DIGUAT
 
 ### Indisplensable
- - (M) édition des couleurs
- - (M) couleur chemin
 
 ### Recommandé
- - (M) Manière dont on génère les links aléatoirement
  - valider une modification
 
 ### Bonus
