@@ -120,34 +120,14 @@ public class NodeController {
 
         // fonction qui ajoute des links
         circle.setOnMouseReleased(event -> {
-            if (toolsController.isSelected_createLinksButton() && graph != null) {
+            if (toolsController.isSelected_createLinksButton() && graph != null && selectionPaneController.getNodePane().selectedNode != null) {
 
-                //find the red circle
-                boolean isRedCircle = false;
-                Node linkedNode = null;
-                for (Node node2 : graph.getNodes()) {
-                    Circle circle2 = node2.getCircle();
-                    if (circle2.getFill()==Color.RED) {
-                        isRedCircle = true;
-                        linkedNode = node2;
-                        break;
-                    }
-                }
-
-                if (isRedCircle) {
-                    // Create new link
-                    graph.addLink(linkedNode, node);
-                    Link.Arrow arrow = Graphics.DesignLineAndArrow(linkedNode, node, 10);
-                    centerPane.getChildren().addAll(arrow.line, arrow.arrowHead);
-                    Link link = graph.getLinkFromIds(linkedNode, node);
-                    link.setOrientedLine(arrow);
-
-                    //Reset Color to node
-                    nodeView.setNodeColor(Color.WHITE);
-                    nodeView.setNodeColor(linkedNode, Color.WHITE);
-                } else {
-                    nodeView.setNodeColor(Color.RED);
-                }
+                Node previousNode = selectionPaneController.getNodePane().selectedNode;
+                graph.addLink(previousNode, node);
+                Link.Arrow arrow = Graphics.DesignLineAndArrow(previousNode, node, 10);
+                centerPane.getChildren().addAll(arrow.line, arrow.arrowHead);
+                Link link = graph.getLinkFromIds(previousNode, node);
+                link.setOrientedLine(arrow);
             }
         });
     }
