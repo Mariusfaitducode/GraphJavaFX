@@ -114,7 +114,7 @@ public class NodePane{
 
         textId.setText(Integer.toString(selectedNode.getId()));
         textName.setText(selectedNode.getName());
-        textColor.setText(toHex(selectedNode.getColor()));
+
         textPosX.setText(Integer.toString(selectedNode.getX()));
         textPosY.setText(Integer.toString(selectedNode.getY()));
 

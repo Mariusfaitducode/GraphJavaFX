@@ -91,7 +91,7 @@
          <right>
             <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
+                  <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
                      <children>
                         <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Node" />
                         <Label layoutX="9.0" layoutY="61.0" styleClass="labelled" text="Id : " />
@@ -112,7 +112,24 @@
                         <TextField id="id-node-color" layoutX="67.0" layoutY="153.0" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #555;" styleClass="labelled" text="#fff" />
                      </children>
                   </Pane>
-                  <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
+                  <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
+                     <children>
+                        <Label layoutX="53.0" layoutY="14.0" styleClass="labelled" text="Search path" />
+                        <Label layoutX="10.0" layoutY="183.0" styleClass="labelled" text="Name :" />
+                        <Label layoutX="8.0" layoutY="147.0" styleClass="labelled" text="Ending node :" />
+                        <Label layoutX="8.0" layoutY="60.0" styleClass="labelled" text="Starting node :" />
+                        <Label layoutX="10.0" layoutY="100.0" styleClass="labelled" text="Name :" />
+                        <Label id="text-path-distance" layoutX="7.0" layoutY="398.0" styleClass="labelled" text="Path distance :" visible="false" />
+                        <Label id="text-path-found" layoutX="17.0" layoutY="363.0" styleClass="labelled" text="Path found :" visible="false" />
+                        <TextField id="name-end-node" layoutX="69.0" layoutY="177.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 2" />
+                        <TextField id="name-start-node" layoutX="68.0" layoutY="94.0" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 1" />
+                        <Button id="find-path-button" disable="true" layoutX="110.0" layoutY="297.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="74.0" text="Find" />
+                        <Label id="text-norm-distance" layoutX="6.0" layoutY="237.0" styleClass="labelled" text="Norm distance :" />
+                        <Button id="reset-path-button" disable="true" layoutX="16.0" layoutY="297.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Reset" />
+                        <ChoiceBox id="path-found-choice" layoutX="8.0" layoutY="441.0" prefWidth="150.0" visible="false" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="linkRightPane1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
                      <children>
                         <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Link" />
                         <Label layoutX="5.0" layoutY="118.0" styleClass="labelled" text="Node start : " />
@@ -131,21 +148,25 @@
                         <Button id="delete-link-button" layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                      </children>
                   </Pane>
-                  <Pane fx:id="searchPathRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
+                  <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
                      <children>
-                        <Label layoutX="53.0" layoutY="14.0" styleClass="labelled" text="Search path" />
-                        <Label layoutX="10.0" layoutY="183.0" styleClass="labelled" text="Name :" />
-                        <Label layoutX="8.0" layoutY="147.0" styleClass="labelled" text="Ending node :" />
-                        <Label layoutX="8.0" layoutY="60.0" styleClass="labelled" text="Starting node :" />
-                        <Label layoutX="10.0" layoutY="100.0" styleClass="labelled" text="Name :" />
-                        <Label id="text-path-distance" layoutX="7.0" layoutY="398.0" styleClass="labelled" text="Path distance :" visible="false" />
-                        <Label id="text-path-found" layoutX="17.0" layoutY="363.0" styleClass="labelled" text="Path found :" visible="false" />
-                        <TextField id="name-end-node" layoutX="69.0" layoutY="177.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 2" />
-                        <TextField id="name-start-node" layoutX="68.0" layoutY="94.0" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #555;" styleClass="labelled" text="dft name 1" />
-                        <Button id="find-path-button" disable="true" layoutX="110.0" layoutY="297.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="74.0" text="Find" />
-                        <Label id="text-norm-distance" layoutX="6.0" layoutY="237.0" styleClass="labelled" text="Norm distance :" />
-                        <Button id="reset-path-button" disable="true" layoutX="16.0" layoutY="297.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Reset" />
-                        <ChoiceBox id="path-found-choice" layoutX="8.0" layoutY="441.0" prefWidth="150.0" visible="false" />
+                        <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Link" />
+                        <Label layoutX="7.0" layoutY="162.0" styleClass="labelled" text="Node start : " />
+                        <Label layoutX="27.0" layoutY="189.0" styleClass="labelled" text="Id :" />
+                        <Label layoutX="27.0" layoutY="216.0" styleClass="labelled" text="Name :" />
+                        <Label id="start-node-id" layoutX="60.0" layoutY="189.0" styleClass="labelled" text="-1" />
+                        <Label id="start-node-name" layoutX="87.0" layoutY="216.0" styleClass="labelled" text="default name" />
+                        <Label layoutX="9.0" layoutY="356.0" styleClass="labelled" text="Node end : " />
+                        <Label layoutX="27.0" layoutY="383.0" styleClass="labelled" text="Id :" />
+                        <Label layoutX="27.0" layoutY="410.0" styleClass="labelled" text="Name :" />
+                        <Label id="end-node-id" layoutX="60.0" layoutY="383.0" styleClass="labelled" text="-1" />
+                        <Label id="end-node-name" layoutX="88.0" layoutY="410.0" styleClass="labelled" text="default name" />
+                        <Line endX="9.0" endY="48.0" layoutX="86.0" layoutY="280.0" scaleX="4.0" startX="9.0" startY="-15.20001220703125" stroke="WHITE" />
+                        <Line endX="16.0" endY="30.0" layoutX="69.0" layoutY="301.0" rotate="-40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
+                        <Line endX="16.0" endY="30.0" layoutX="88.0" layoutY="300.0" rotate="40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
+                        <Button id="delete-link-button" layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
+                        <TextField id="id-link-color" layoutX="76.0" layoutY="99.0" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #555;" styleClass="labelled" text="#fff" />
+                        <Label layoutX="11.0" layoutY="105.0" styleClass="labelled" text="Color :" />
                      </children>
                   </Pane>
                </children>

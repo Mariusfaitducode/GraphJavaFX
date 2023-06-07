@@ -15,6 +15,8 @@ public class LinkPane {
     public Link selectedLink;
     public Node endNode;
 
+    public TextField textColor;
+
     public Label startNodeID;
     public Label startNodeName;
     public Label endNodeID;
@@ -32,6 +34,20 @@ public class LinkPane {
 
         endNodeID = (Label) linkRightPane.lookup("#end-node-id");
         endNodeName = (Label) linkRightPane.lookup("#end-node-name");
+
+        //Initialisation du champ de texte color
+        this.textColor = (TextField) linkRightPane.lookup("#id-link-color");
+        this.textColor.setOnKeyTyped(e ->{
+            try {
+                Color color = Color.valueOf(textColor.getText());
+                this.selectedLink.setColor(color);
+            }
+            catch (IllegalArgumentException event) {
+                // Gère l'erreur pour une couleur invalide
+                System.out.println("Couleur invalide : " + textColor);
+            }
+
+        });
 
         deleteLinkButton = (Button) linkRightPane.lookup("#delete-link-button");
 
@@ -58,6 +74,7 @@ public class LinkPane {
         }
         selectedLink = link;
         selectedLink.setSelection(true);
+        textColor.setText(NodePane.toHex(selectedLink.getColor()));
         linkView.setLink(selectedLink);
         linkView.setLinkColor(Color.RED);
     }

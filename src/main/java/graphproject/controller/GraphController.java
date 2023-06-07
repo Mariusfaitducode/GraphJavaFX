@@ -159,13 +159,16 @@ public class GraphController {
         });
         link.getLine().setOnMouseEntered(event ->{
 
-            linkView.setLinkColor(Color.RED);
-            event.consume();
+            if (!selectionPaneController.getSearchPathRightPane().isVisible()){
+                linkView.setLinkColor(Color.RED);
+                event.consume();
+            }
+
         });
         link.getLine().setOnMouseExited(event ->{
 
-            if (!link.isSelected()){
-                linkView.setLinkColor(Color.BLACK);
+            if (!link.isSelected() && !selectionPaneController.getSearchPathRightPane().isVisible()){
+                linkView.setLinkColor(link.getColor());
             }
             event.consume();
         });
