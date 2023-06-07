@@ -20,6 +20,7 @@ public class NodePane{
     public Node selectedNode;
     public TextField textId;
     public TextField textName;
+    public TextField textColor;
     public TextField textPosX;
     public TextField textPosY;
     public ChoiceBox<String> goingLinks;
@@ -41,6 +42,19 @@ public class NodePane{
         this.textName = (TextField) nodeRightPane.lookup("#id-node-name");
         this.textName.setOnKeyTyped(e ->{
             this.selectedNode.setName(textName.getText());
+        });
+        //Initialisation du champ de texte color
+        this.textColor = (TextField) nodeRightPane.lookup("#id-node-color");
+        this.textColor.setOnKeyTyped(e ->{
+            try {
+                Color color = Color.valueOf(textColor.getText());
+                this.selectedNode.setColor(color);
+            }
+            catch (IllegalArgumentException event) {
+                // Gère l'erreur pour une couleur invalide
+                System.out.println("Couleur invalide : " + textColor);
+            }
+
         });
         //Initialisation du champ de texte position X
         this.textPosX = (TextField) nodeRightPane.lookup("#id-node-posX");
@@ -89,6 +103,12 @@ public class NodePane{
         selectedNode.getCircle().setScaleY(1.1);
         selectedNode.getCircle().setStroke(Color.RED);
         selectedNode.getCircle().setStrokeWidth(2);
+
+        textId.setText(Integer.toString(selectedNode.getId()));
+        textName.setText(selectedNode.getName());
+        textColor.setText(toHex(selectedNode.getColor()));
+        textPosX.setText(Integer.toString(selectedNode.getX()));
+        textPosY.setText(Integer.toString(selectedNode.getY()));
 
         selectedNode.setSelection(true);
 
@@ -152,4 +172,24 @@ public class NodePane{
         });
     }
 
+
+    public static String toHex(Color color) {
+        // Convertit les composantes RGB en valeurs hexadécimales
+        String red = Integer.toHexString((int) (color.getRed() * 255));
+        String green = Integer.toHexString((int) (color.getGreen() * 255));
+        String blue = Integer.toHexString((int) (color.getBlue() * 255));
+
+        // Concatène les valeurs hexadécimales avec des zéros de remplissage si nécessaire
+        red = padZero(red);
+        green = padZero(green);
+        blue = padZero(blue);
+
+        // Crée la représentation hexadécimale complète de la couleur
+        String hexColor = "#" + red + green + blue;
+
+        return hexColor;
+    }
+    public static String padZero(String s) {
+        return (s.length() == 1) ? "0" + s : s;
+    }
 }

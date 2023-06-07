@@ -126,7 +126,7 @@ public class SearchPane{
                 //System.out.println("node");
                 if (node.getCircle().getFill() != Color.WHITE){
 
-                    node.getCircle().setFill(Color.WHITE);
+                    node.getCircle().setFill(node.getColor());
                 }
             }
             listVisitedNode.clear();

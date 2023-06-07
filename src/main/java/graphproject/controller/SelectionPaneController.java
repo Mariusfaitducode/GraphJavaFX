@@ -60,10 +60,7 @@ public class SelectionPaneController {
 
         nodePane.setSelectedNode(selectedNode);
 
-        nodePane.textId.setText(Integer.toString(selectedNode.getId()));
-        nodePane.textName.setText(selectedNode.getName());
-        nodePane.textPosX.setText(Integer.toString(selectedNode.getX()));
-        nodePane.textPosY.setText(Integer.toString(selectedNode.getY()));
+
 
         nodePane.setChoiceBox(this);
     }

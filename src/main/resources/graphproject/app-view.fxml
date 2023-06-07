@@ -91,26 +91,28 @@
          <right>
             <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #444;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
+                  <Pane fx:id="nodeRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
                      <children>
                         <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Node" />
-                        <Label layoutX="7.0" layoutY="77.0" styleClass="labelled" text="Id : " />
-                        <Label layoutX="5.0" layoutY="139.0" styleClass="labelled" text="Name : " />
+                        <Label layoutX="9.0" layoutY="61.0" styleClass="labelled" text="Id : " />
+                        <Label layoutX="4.0" layoutY="110.0" styleClass="labelled" text="Name : " />
                         <Label layoutX="10.0" layoutY="327.0" styleClass="labelled" text="Link --&gt; :" />
                         <Label layoutX="9.0" layoutY="201.0" styleClass="labelled" text="Pos :" />
                         <Label layoutX="36.0" layoutY="228.0" styleClass="labelled" text="X :" />
                         <Label layoutX="36.0" layoutY="278.0" styleClass="labelled" text="Y :" />
                         <Label layoutX="9.0" layoutY="444.0" styleClass="labelled" text="Link &lt;-- :" />
-                        <TextField id="id-node-id" layoutX="46.0" layoutY="71.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
-                        <TextField id="id-node-name" layoutX="66.0" layoutY="132.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="default name" />
+                        <TextField id="id-node-id" layoutX="48.0" layoutY="55.0" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
+                        <TextField id="id-node-name" layoutX="65.0" layoutY="103.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="default name" />
                         <TextField id="id-node-posX" layoutX="58.0" layoutY="222.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
                         <TextField id="id-node-posY" layoutX="58.0" layoutY="272.0" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #555;" styleClass="labelled" text="-1" />
                         <Button id="delete-node-button" layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
                         <ChoiceBox id="node-going-links" layoutX="26.0" layoutY="363.0" prefWidth="150.0" />
                         <ChoiceBox id="node-coming-links" layoutX="26.0" layoutY="481.0" prefWidth="150.0" />
+                        <Label layoutX="9.0" layoutY="159.0" styleClass="labelled" text="Color :" />
+                        <TextField id="id-node-color" layoutX="67.0" layoutY="153.0" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #555;" styleClass="labelled" text="#fff" />
                      </children>
                   </Pane>
-                  <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;">
+                  <Pane fx:id="linkRightPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #444;" visible="false">
                      <children>
                         <Label layoutX="79.0" layoutY="28.0" styleClass="labelled" text="Link" />
                         <Label layoutX="5.0" layoutY="118.0" styleClass="labelled" text="Node start : " />

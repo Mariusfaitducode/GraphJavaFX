@@ -86,9 +86,12 @@ public class Node {
         }
     }
 
+    public Color getColor(){return color;}
     public void setColor(Color color){
-        this.color = color;
-        circle.setFill(color);
+        if (color != null){
+            this.color = color;
+            circle.setFill(color);
+        }
     }
 
 
