@@ -94,7 +94,7 @@ public class Graph {
 
             for (int i = 0; i < links_count; i++){
 
-                Node linkedNode = nodes.get((int)(Math.random() * nodes.size()));
+                Node linkedNode = selectionRoulette(node);
 
                 Link link = new Link(linkedNode);
 
@@ -103,6 +103,33 @@ public class Graph {
                 linkedNode.linkedNodeList.add(node);
             }
         }
+    }
+
+    public Node selectionRoulette(Node selectedNode){
+        int total = 0;
+        double maxDistance = 0;
+
+        for (Node node : nodes) {
+            double distance = SearchPath.normeVect(selectedNode.x, selectedNode.y, node.x, node.y);
+            if (distance > maxDistance) {
+                maxDistance = distance;
+            }
+        }
+
+        for(Node node: nodes){
+            total += maxDistance - SearchPath.normeVect(selectedNode.x, selectedNode.y, node.x, node.y);
+        }
+        total *= 5;
+
+        int random = (int)(Math.random() * total);
+        int count = 0;
+        for(Node node: nodes){
+            count += 5 * (maxDistance - SearchPath.normeVect(selectedNode.x, selectedNode.y, node.x, node.y));
+            if(count >= random){
+                return node;
+            }
+        }
+        return nodes.get(0);
     }
 
     public void setRandomNodesAndLinks(int number, Pane centerPane) {

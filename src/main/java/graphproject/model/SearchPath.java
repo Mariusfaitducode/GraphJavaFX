@@ -67,7 +67,7 @@ public class SearchPath {
             //Choix de la node la plus intéressante
             actualChooseNode = chooseNodeToExplore(listPathNode);
 
-            actualChooseNode.node.getCircle().setFill(Color.RED);
+            //actualChooseNode.node.getCircle().setFill(Color.RED);
             listVisitedNode.add(actualChooseNode.node);
             listVisitedNodePath.add(actualChooseNode.node);
         }
@@ -132,7 +132,7 @@ public class SearchPath {
         return choosedPath;
     }
 
-    public float normeVect(int startX, int startY, int endX, int endY){
+    public static float normeVect(int startX, int startY, int endX, int endY){
 
         float a = endX - startX;
         float b = endY - startY;

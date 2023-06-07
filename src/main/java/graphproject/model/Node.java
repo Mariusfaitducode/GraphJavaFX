@@ -2,6 +2,7 @@ package graphproject.model;
 
 import graphproject.controller.graphics.Graphics;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
@@ -23,6 +24,8 @@ public class Node {
     //Liste des nodes ayant un lien avec cette node, permet de retrouver les liens entrant
     List<Node> linkedNodeList;
     Circle circle;
+
+    Color color;
 
     public Node(int id, String name, int x, int y)
     {
@@ -81,6 +84,11 @@ public class Node {
             Link.Arrow arrow = link.getArrow();
             Graphics.updateArrow(arrow, this, link.getNode());
         }
+    }
+
+    public void setColor(Color color){
+        this.color = color;
+        circle.setFill(color);
     }
 
 

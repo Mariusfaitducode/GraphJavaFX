@@ -207,7 +207,7 @@ public class SearchPane{
             }
         }
         if (this.startNode != null && this.endNode != null){
-            this.normDistance.setText("Norm dist: "+ (int)this.searchPath.normeVect(
+            this.normDistance.setText("Norm dist: "+ (int)SearchPath.normeVect(
                     this.startNode.getX(), this.startNode.getY(),
                     this.endNode.getX(), this.endNode.getY()));
 
