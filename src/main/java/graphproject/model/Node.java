@@ -1,6 +1,6 @@
 package graphproject.model;
 
-import graphproject.controller.graphics.Graphics;
+import graphproject.view.graphics.Graphics;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

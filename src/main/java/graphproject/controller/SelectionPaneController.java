@@ -1,21 +1,12 @@
 package graphproject.controller;
 
-import graphproject.controller.selection_pane.LinkPane;
-import graphproject.controller.selection_pane.NodePane;
-import graphproject.controller.selection_pane.SearchPane;
-import graphproject.model.Graph;
+import graphproject.view.selection_pane.LinkPane;
+import graphproject.view.selection_pane.NodePane;
+import graphproject.view.selection_pane.SearchPane;
 import graphproject.model.Link;
 import graphproject.model.Node;
-import graphproject.model.SearchPath;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SelectionPaneController {
 

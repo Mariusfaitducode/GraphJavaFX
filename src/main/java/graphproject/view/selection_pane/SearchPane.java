@@ -1,7 +1,6 @@
-package graphproject.controller.selection_pane;
+package graphproject.view.selection_pane;
 
 import graphproject.controller.SelectionPaneController;
-import graphproject.model.Graph;
 import graphproject.model.Link;
 import graphproject.model.Node;
 import graphproject.model.SearchPath;

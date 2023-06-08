@@ -1,20 +1,17 @@
 package graphproject.controller;
 
-import graphproject.controller.graphics.Graphics;
+import graphproject.view.graphics.Graphics;
 import graphproject.model.Graph;
 import graphproject.model.Link;
 import graphproject.model.Node;
 import graphproject.view.GraphView;
 import graphproject.view.LinkView;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 
 
 //Permet de modifier un graphe

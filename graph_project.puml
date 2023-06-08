@@ -1,0 +1,304 @@
+@startuml
+class graphproject.model.Graph {
+- String name
+- List<Node> nodes
++ List<Node> getNodes()
++ Node getNodeFromPos(int,int)
++ void setName(String)
++ String getName()
++ Node addNode(int,int)
++ void addLink(Node,Node)
++ Link getLinkFromIds(Node,Node)
++ void generateRandomNodes(int,Pane)
++ void generateRandomLinks()
++ Node selectionRoulette(Node)
++ void setRandomNodesAndLinks(int,Pane)
++ void displayGraph()
++ void saveGraph()
++ void loadGraph(File)
+}
+class graphproject.model.Node {
+~ int id
+~ String name
+~ int x
+~ int y
+~ List<Link> links
+~ boolean selected
+~ List<Node> linkedNodeList
+~ Circle circle
+~ Color color
++ int getId()
++ void setId(int)
++ int getX()
++ int getY()
++ void updateLinks()
++ void setX(int)
++ void setY(int)
++ void setPosition(int,int)
++ Color getColor()
++ void setColor(Color)
++ String getName()
++ void setName(String)
++ List<Link> getLinks()
++ List<Node> getLinkedNodeList()
++ void setCircle(Circle)
++ Circle getCircle()
++ void deleteCircle()
++ boolean isSelected()
++ void setSelection(boolean)
++ void deleteAllLinks(Pane)
++ void displayNode()
+}
+class graphproject.view.graphics.Graphics {
++ {static} Circle DesignCircle(int,int,int)
++ {static} Arrow DesignLineAndArrow(Node,Node,int)
++ {static} void updateArrow(Arrow,Node,Node)
++ {static} void setDesignArrowHead(Polygon,int,int,double)
+}
+class graphproject.controller.GraphController {
+- Pane centerPane
+- Pane parentCenterPane
+- HBox toolsBar
+- Pane nodeRightPane
+- Pane linkRightPane
+- Pane searchPathRightPane
+- MenuItem buttonSaveGraph
+- ToolsController toolsController
+- SelectionPaneController selectionPaneController
+- NodeController nodeController
+- Graph graph
+- GraphView graphView
+- Label graphTitle
+- Label zoomText
++ void setGraph(Graph)
++ void clearGraph()
++ boolean graphIsNull()
++ void closeGraph()
+- void listenerZoomGraph()
+- void listenerCoordinateOnMousePressed()
+- void listenerMoveOnGraph()
++ void listenerLink(Node,Link)
++ void openGraph(Graph)
++ void displayGraph()
++ void updateAllNodes()
++ void updateLinks()
+- void initializeCenterPaneSettings()
+- void listenerSaveGraph()
+}
+class graphproject.controller.ToolsController {
+- ToggleButton createNodesButton
+- ToggleButton createLinksButton
+- ToggleButton searchPathButton
+- ToggleButton deleteButton
+- SelectionPaneController selectionPaneController
++ boolean isSelected_createNodesButton()
++ boolean isSelected_createLinksButton()
++ boolean isSelected_deleteButton()
++ void listenerNodesButton()
++ void listenerLinksButton()
++ void listenerPathButton()
++ void listenerDeleteButton()
++ void setSelectedToggleButtons(ToggleButton,ToggleButton,ToggleButton,ToggleButton)
+}
+class graphproject.view.AppView {
+~ Pane popupPane
++ void showPopup()
++ void hidePopup()
+}
+class graphproject.model.Link {
+- Arrow arrow
+- Node linkedNode
+- boolean selected
++ Line getLine()
++ Polygon getArrowHead()
++ Arrow getArrow()
++ Node getNode()
++ void setOrientedLine(Arrow)
++ void setSelection(boolean)
++ boolean isSelected()
++ void deleteLink(Node)
++ Color getColor()
++ void setColor(Color)
++ void tempColor(Color)
+}
+class graphproject.model.Link$Arrow {
++ Line line
++ Polygon arrowHead
++ Color color
+}
+class graphproject.controller.AppController {
+- Pane centerPane
+- HBox toolsBar
+- Label graphTitle
+- MenuItem noRecentGraphMenuItem
+- Menu openGraphsMenu
+- Pane popupPane
+- RadioButton rbutton1
+- TextField nameGraph
+- App app
+- AppView appView
+- GraphController graphController
+- PopupController popupController
+- MenuController menuController
++ void initialize(java.net.URL,java.util.ResourceBundle)
++ void createNewGraphPopup()
++ void generateGraph()
++ void openExistingGraphsItems()
++ void closeGraph()
++ void openFileChooser()
+}
+class graphproject.view.LinkView {
+~ Link link
+~ Pane centerPane
++ void removeLink()
++ void setLinkColor(Color)
++ Link getLink()
++ void setLink(Link)
+}
+class graphproject.view.selection_pane.NodePane {
++ Node selectedNode
++ TextField textId
++ TextField textName
++ TextField textColor
++ TextField textPosX
++ TextField textPosY
++ ChoiceBox<String> goingLinks
++ ChoiceBox<String> comingLinks
+- ChangeListener<Number> choiceGoingBoxListener
+- ChangeListener<Number> choiceComingBoxListener
++ Button deleteNodeButton
++ void setSelectedNode(Node)
++ void deselectNode()
++ void setChoiceBox(SelectionPaneController)
++ void deleteNodeButtonListener(NodeController)
++ {static} String toHex(Color)
++ {static} String padZero(String)
+}
+class graphproject.view.selection_pane.LinkPane {
++ Node startNode
++ Link selectedLink
++ Node endNode
++ TextField textColor
++ Label startNodeID
++ Label startNodeName
++ Label endNodeID
++ Label endNodeName
++ Button deleteLinkButton
+- LinkView linkView
++ void setLinkPane(Node,Link,Node)
++ void deselectLink()
+}
+class graphproject.model.SearchPath {
++ float searchPath(Node,Node,List<Node>,List<Node>)
++ boolean areLinked(Node,Node)
++ {static} void resetPath(List<Node>)
++ {static} void resetLinkColor(Node)
++ PathNode chooseNodeToExplore(List<PathNode>)
++ {static} float normeVect(int,int,int,int)
+}
+class graphproject.model.SearchPath$PathNode {
++ Node node
++ float weight
++ float passedDistance
+}
+class graphproject.model.App {
+- List<Graph> graphs
++ List<Graph> getGraphs()
++ void createNewGraph(String)
++ Graph getLastGraph()
++ int getNumberOfGraphs()
+- void generateAllGraphsFromSave()
+}
+class graphproject.controller.MenuController {
+- Menu openGraphsMenu
+- MenuItem noRecentGraphMenuItem
++ void openExistingGraphsItem(App,GraphController)
+}
+class graphproject.controller.SelectionPaneController {
+- Pane nodeRightPane
+- HBox toolsBar
+- NodePane nodePane
+- SearchPane searchPane
+- LinkPane linkPane
++ void closeSelectionPane()
++ void setNodePane(Node)
++ void closeNodePane()
++ void closeLinkPane()
++ NodePane getNodePane()
++ Pane getSearchPathRightPane()
++ void setSearchPane()
++ void closeSearchPane()
++ void setSearchNode(Node)
++ void setLinkPane(Node,Link,Node)
+}
+class graphproject.controller.NodeController {
+- Graph graph
+- Pane centerPane
+- ToolsController toolsController
+- SelectionPaneController selectionPaneController
++ void setGraph(Graph)
++ void listenerAddNodeToGraph()
++ void updateNode(Node)
++ void listenerNode(Circle,Node)
++ void deleteNode(Node)
+}
+class graphproject.view.NodeView {
+- Circle circle
+- Node node
++ void setNodeBorderColor(Color)
++ void setNodeColor(Color)
++ void setNodeColor(Node,Color)
+}
+class graphproject.view.GraphView {
+- Pane centerPane
+- Label zoomText
+- double initialX
+- double initialY
++ void viewZoomGraph(double,double,double)
++ void setMouseCoordinate(double,double)
++ void viewMoveGraph(double,double)
++ void displaySaveAlert()
+}
+class graphproject.view.selection_pane.SearchPane {
++ Node startNode
++ Node endNode
++ List<Node> listVisitedNode
++ TextField textStartNode
++ TextField textEndNode
++ Label normDistance
++ Label pathDistance
++ Label pathFoundText
++ Button findButton
++ Button resetButton
++ ChoiceBox<String> pathFoundChoice
++ SearchPath searchPath
+- ChangeListener<Number> choicePathFoundListener
++ void searchFindButtonListener(HBox,SelectionPaneController)
++ void noPathSelected()
++ void setNodeStart(Node)
++ void setNodeEnd(Node)
++ void deselectStartNode()
++ void deselectEndNode()
++ void setSearchNode(Node)
+}
+class graphproject.controller.PopupController {
+- RadioButton rbutton1
+- TextField nameGraph
+- Label path
+- App app
+- File file
+- AppView appView
++ Graph generateGraph(Pane)
++ void openFileChooser(Stage)
+}
+class graphproject.StartApplication {
++ void start(Stage)
++ {static} void main(String[])
+}
+
+
+graphproject.model.Link +.. graphproject.model.Link$Arrow
+javafx.fxml.Initializable <|.. graphproject.controller.AppController
+graphproject.model.SearchPath +.. graphproject.model.SearchPath$PathNode
+javafx.application.Application <|-- graphproject.StartApplication
+@enduml

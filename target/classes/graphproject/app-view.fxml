@@ -165,7 +165,7 @@
                         <Line endX="16.0" endY="30.0" layoutX="69.0" layoutY="301.0" rotate="-40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
                         <Line endX="16.0" endY="30.0" layoutX="88.0" layoutY="300.0" rotate="40.0" scaleX="4.0" startX="16.0" startY="2.0" stroke="WHITE" />
                         <Button id="delete-link-button" layoutX="51.0" layoutY="579.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Delete" />
-                        <TextField id="id-link-color" layoutX="76.0" layoutY="99.0" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: #555;" styleClass="labelled" text="#fff" />
+                        <TextField id="id-link-color" layoutX="76.0" layoutY="99.0" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: #555;" styleClass="labelled" text="#fff" />
                         <Label layoutX="11.0" layoutY="105.0" styleClass="labelled" text="Color :" />
                      </children>
                   </Pane>

@@ -1,6 +1,6 @@
 package graphproject.controller;
 
-import graphproject.controller.graphics.Graphics;
+import graphproject.view.graphics.Graphics;
 import graphproject.model.Graph;
 import graphproject.model.Link;
 import graphproject.model.Node;

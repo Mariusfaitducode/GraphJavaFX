@@ -1,4 +1,4 @@
-package graphproject.controller.selection_pane;
+package graphproject.view.selection_pane;
 
 import graphproject.controller.NodeController;
 import graphproject.controller.SelectionPaneController;
@@ -9,7 +9,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
