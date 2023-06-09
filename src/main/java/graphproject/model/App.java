@@ -1,17 +1,17 @@
 package graphproject.model;
 
-import javafx.scene.layout.Pane;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class App {
 
+    // L'application contient seulement une liste de graphique
     private final List<Graph> graphs;
 
     public App() {
         graphs = new ArrayList<>(0);
+        // Lorsqu'on lance l'application, on génère tous les graphes qui sont sauvegardés dans le dossier "saves"
         generateAllGraphsFromSave();
     }
 
@@ -34,6 +34,7 @@ public class App {
     }
 
     private void generateAllGraphsFromSave() {
+        // Récupère tous les fichiers des graphes
         String directoryPath = "src\\main\\resources\\saves\\";
         File directory = new File(directoryPath);
         File[] files = directory.listFiles();
@@ -42,6 +43,7 @@ public class App {
         if (files != null) {
             System.out.println(files.length + " graph(s) loaded from save : ");
             for (File file : files) {
+                // Pour chaque fichier, il créé le graph
                 String fileName = file.getName();
                 String graphName = fileName.substring(0, fileName.length() - 4);
                 System.out.println(" - " + graphName);

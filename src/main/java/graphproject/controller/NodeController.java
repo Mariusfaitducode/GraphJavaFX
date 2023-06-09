@@ -74,9 +74,10 @@ public class NodeController {
 
     }
 
-    // Display the information of the node when clicked on it
+    // Cette fonction contient tous les listeners relatifs à une node
     public void listenerNode(Circle circle, Node node) {
         NodeView nodeView = new NodeView(node, circle);
+        //
         //fonctions qui sélectionne une node si on clique dessus
         circle.setOnMouseClicked(event -> {
 

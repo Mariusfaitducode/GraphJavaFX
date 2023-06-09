@@ -17,10 +17,12 @@ public class AppView {
         searchPathRightPane.setVisible(false);
     }
 
+    // Permet d'afficher la fenêtre de popup
     public void showPopup() {
         popupPane.setVisible(true);
     }
 
+    // Permet de cacher la fenêtre de popup
     public void hidePopup() {
         popupPane.setVisible(false);
     }

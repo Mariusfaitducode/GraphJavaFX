@@ -17,12 +17,4 @@ public class NodeView {
     public void setNodeBorderColor(Color color){
         circle.setStroke(color);
     }
-
-    public void setNodeColor(Color color){
-        circle.setFill(color);
-    }
-
-    public void setNodeColor(Node node, Color color){
-        node.getCircle().setFill(color);
-    }
 }

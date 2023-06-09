@@ -2,7 +2,7 @@ package graphproject.controller;
 
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+
 
 public class ToolsController {
 
@@ -41,30 +41,24 @@ public class ToolsController {
     }
 
     public void listenerNodesButton() {
-        //initialize the color of the button
-        //createNodesButton.setStyle("-fx-background-color: #222;");
 
-        // Add listeners
+        // Add listeners au toggle bouton "Créer des Nodes" pour déterminer son statut : appuyé / relaché
         createNodesButton.setOnMouseClicked(event -> {
             setSelectedToggleButtons(createNodesButton, searchPathButton, createLinksButton, deleteButton);
         });
     }
 
     public void listenerLinksButton() {
-        //initialize the color of the button
-        //createLinksButton.setStyle("-fx-background-color: #222;");
 
-        // Add listeners
+        // Add listeners au toggle bouton "Créer des Liens" pour déterminer son statut : appuyé / relaché
         createLinksButton.setOnMouseClicked(event2 -> {
             setSelectedToggleButtons(createLinksButton, searchPathButton,  createNodesButton, deleteButton);
         });
     }
 
     public void listenerPathButton() {
-        //initialize the color of the button
-        //searchPathButton.setStyle("-fx-background-color: #222;");
 
-        // Add listeners
+        // Add listeners au toggle bouton "Search Path" pour déterminer son statut : appuyé / relaché
         searchPathButton.setOnMouseClicked(event3 -> {
             setSelectedToggleButtons(searchPathButton, createLinksButton, createNodesButton, deleteButton);
             if (searchPathButton.isSelected()){
@@ -78,11 +72,13 @@ public class ToolsController {
 
     public void listenerDeleteButton(){
 
+        // Add listeners au toggle bouton "Supprimer des nodes et liens" pour déterminer son statut : appuyé / relaché
         deleteButton.setOnMouseClicked(event4 ->{
             setSelectedToggleButtons(deleteButton, createNodesButton, createLinksButton, searchPathButton);
         });
     }
 
+    // Définie la couleur des toggle bouton pour savoir si le bouton est sélectionner ou non
     public void setSelectedToggleButtons(ToggleButton t1, ToggleButton t2, ToggleButton t3, ToggleButton t4){
         if (t1.isSelected()) {
             t1.setStyle("-fx-background-color: red;");

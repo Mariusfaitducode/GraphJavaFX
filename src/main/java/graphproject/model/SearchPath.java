@@ -47,12 +47,8 @@ public class SearchPath {
                 //Si la node n'a pas déjà été visité
                 if (!listVisitedNode.contains(actualNode)){
 
-
                     distance = actualChooseNode.passedDistance + normeVect(actualChooseNode.node.getX(), actualChooseNode.node.getY(), actualNode.getX(), actualNode.getY());
                     weight = distance + normeVect(actualNode.getX(), actualNode.getY(), nodeEnd.getX(), nodeEnd.getY());
-
-                    //listToVisitNode.add(actualNode);
-                    //listWeightNode.add(weight);
 
                     listPathNode.add(new PathNode(actualNode, weight, distance));
                 }

@@ -18,9 +18,12 @@ public class MenuController {
         this.noRecentGraphMenuItem = noRecentGraphMenuItem;
     }
 
+    // Permet d'afficher tous les menu items des graphes sauvegardés dans l'application
     public void openExistingGraphsItem(App app, GraphController graphController){
+        // s'il existe des graphes à afficher dans le menu
         if (app.getNumberOfGraphs() > 0) {
             int i = 0;
+            // On récupère tous les graphes
             for (Graph graph : app.getGraphs()) {
 
                 String graphName = graph.getName();
@@ -32,6 +35,7 @@ public class MenuController {
                     }
                 }
 
+                // Si le menu items n'est pas encore créé pour ce graphe, alors il créé un nouveau menu item
                 if (!set) {
                     MenuItem menuItem = new MenuItem();
                     menuItem.setText(graphName);
@@ -44,8 +48,10 @@ public class MenuController {
                     openGraphsMenu.getItems().add(menuItem);
                 }
             }
+            // S'il y a un graphe à afficher, il cache le menu items avec écrit No Recent Graph
             noRecentGraphMenuItem.setVisible(false);
         } else {
+            // S'il n'y a pas de graph à afficher, il affiche No Recent Graph
             noRecentGraphMenuItem.setVisible(true);
         }
     }

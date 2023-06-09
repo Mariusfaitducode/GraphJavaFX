@@ -18,6 +18,7 @@ public class GraphView {
         this.initialY = 0;
     }
 
+    // Fonction mathématique pour modifier l'affichage lorsqu'on scroll
     public void viewZoomGraph(double d2Y, double X, double Y) {
         double zoomFactor;
 
@@ -80,6 +81,8 @@ public class GraphView {
         initialY = Y;
     }
 
+    // Fonction mathématique pour déplacer l'entièreté de graphe
+    // Et surtout pour limiter l'utilisateur pour e pas qu'il sorte du graphe maximal
     public void viewMoveGraph(double X, double Y) {
         double borderLeft = centerPane.getTranslateX() - 4000 * (centerPane.getScaleX()-0.1);
         double borderTop = centerPane.getTranslateY() - 3120 * (centerPane.getScaleX()-0.1);

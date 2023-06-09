@@ -97,10 +97,6 @@ public class GraphController {
         centerPane.getChildren().clear();
     }
 
-    public boolean graphIsNull() {
-        return graph == null;
-    }
-
     public void closeGraph() {
 
         // Deselecting current / opened graph
@@ -142,20 +138,25 @@ public class GraphController {
         Node linkedNode = link.getNode();
         LinkView linkView = new LinkView(link, centerPane);
 
+        // Recense tous les listeners lié à un lien
         link.getLine().setOnMouseClicked(event ->{
 
+            // Supprime le bouton si le toggle bouton est sélectionné
             if (toolsController.isSelected_deleteButton()){
                 link.deleteLink(node);
                 linkView.removeLink();
             }
             else{
+                // Sélectionne le lien cliqué
                 link.setSelection(true);
+                // Affiche les informations du lien sur la barre de droite
                 selectionPaneController.setLinkPane(node, link, linkedNode);
                 event.consume();
             }
         });
         link.getLine().setOnMouseEntered(event ->{
 
+            // Change la couleur du lien en rouge quand il est sélectionné ssi on n'est pas en train de chercher le chemin le plus court
             if (!selectionPaneController.getSearchPathRightPane().isVisible()){
                 linkView.setLinkColor(Color.RED);
                 event.consume();
@@ -164,6 +165,7 @@ public class GraphController {
         });
         link.getLine().setOnMouseExited(event ->{
 
+            // Remet la couleur initiale du lien lorsque le lien est déselectionné
             if (!link.isSelected() && !selectionPaneController.getSearchPathRightPane().isVisible()){
                 linkView.setLinkColor(link.getColor());
             }
@@ -229,6 +231,7 @@ public class GraphController {
         }
     }
 
+    // Initialise les dimensions du graphe
     private void initializeCenterPaneSettings() {
 
         double width = 8000.0;

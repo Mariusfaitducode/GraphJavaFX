@@ -39,10 +39,6 @@ public class PopupController {
         this.appView = appView;
     }
 
-//    public void setVisible(boolean statut) {
-//        popupPane.setVisible(statut);
-//    }
-
     public Graph generateGraph(Pane centerPane){
 
         // Create new Graph
@@ -56,9 +52,11 @@ public class PopupController {
 
         } else if (rbutton2.isSelected()) {
 
+            // Appelle la fonction pour créer un graph random
             app.getLastGraph().setRandomNodesAndLinks(Integer.parseInt(nodesNumber.getText()), centerPane);
 
         } else if (rbutton3.isSelected()) {
+            // Appelle la fonction pour charger le graphe entré par l'utilisateur
             app.getLastGraph().loadGraph(file);
         }
 
@@ -68,6 +66,7 @@ public class PopupController {
         return app.getLastGraph();
     }
 
+    // Fonction pour ouvrir l'explorateur de fichier
     public void openFileChooser(Stage mainStage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");

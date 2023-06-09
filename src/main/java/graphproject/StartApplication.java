@@ -16,7 +16,9 @@ public class StartApplication extends Application {
     public void start(Stage mainStage) throws IOException {
 
         //Permet de lancer l'application
+        // Récupère le fichier FXML
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("app-view.fxml")));
+        //Définie les paramètres de la fenêtre
         mainStage.setTitle("Graph Project");
         Scene scene = new Scene(root, 1000, 700);
         mainStage.setScene(scene);

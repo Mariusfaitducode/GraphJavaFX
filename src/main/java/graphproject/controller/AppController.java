@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class AppController implements Initializable {
 
-    //Tout les attributs de la scène qu'on va modifier
+    // Récupère tous les éléments du fichier FXML grâce à la fonction @FXML
 
     //id des éléments
     @FXML
@@ -43,16 +43,14 @@ public class AppController implements Initializable {
     private RadioButton rbutton1, rbutton2, rbutton3;
     @FXML
     private TextField nameGraph, nodesNumber;
-//    @FXML
-//    private Button fileChooser;
 
-    // attribut app qui stocke toutes les données de l'application
+    // On récupère les classes Modèle et Vue de APP pour appeler les fonctions de modification des attributs de l'application et d'affichage.
 
     private App app;
 
     private AppView appView;
 
-    //Tout ce qui contient les actions
+    //Tout ce qui contient les listeners des différentes parties de l'interface
 
     private GraphController graphController;
 
@@ -72,17 +70,20 @@ public class AppController implements Initializable {
     }
 
     //Tout ce qui déclenche les actions
-    //
+
+    // Créé et affiche la fenêtre de PopUp quand on appuit sur le bouton CreateNew Graph
     @FXML
     public void createNewGraphPopup() {
         popupController = new PopupController(rbutton1, rbutton2, rbutton3, nameGraph, nodesNumber, app, appView, path);
         appView.showPopup();
     }
 
+    // Créé le graph demandé par le bouton Générer
     public void generateGraph() {
         graphController.openGraph(popupController.generateGraph(centerPane));
     }
 
+    // Affiche tous les graphs quand on clique sur le bouton OpenGraph
     public void openExistingGraphsItems() {
         menuController.openExistingGraphsItem(app, graphController);
     }
@@ -91,6 +92,7 @@ public class AppController implements Initializable {
         graphController.closeGraph();
     }
 
+    // Fonction appliqué sur le bouton pour ouvrir l'explorateur de fichier
     @FXML
     public void openFileChooser() {
         popupController.openFileChooser((Stage)centerPane.getScene().getWindow());

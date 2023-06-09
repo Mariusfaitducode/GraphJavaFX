@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Graph {
 
+    // Les graphes sont simplement caractérisé par un nom et sa liste de node.
+    // Ce sont les nodes qui possède une list de liens
     private String name;
     private final List <Node> nodes;
 
@@ -21,15 +23,6 @@ public class Graph {
     }
 
     public List <Node> getNodes(){return nodes;}
-
-    public Node getNodeFromPos(int x, int y) {
-        for (Node node : nodes) {
-            if (node.getX()==x && node.getY()==y)
-                return node;
-        }
-        // By default, return the first node
-        return nodes.get(0);
-    }
 
     public void setName(String name){this.name = name;}
 
@@ -46,7 +39,6 @@ public class Graph {
 
     public void addLink(Node node, Node linkedNode) {
         node.links.add(new Link(linkedNode));
-        //linkedNode.links.add()
         linkedNode.linkedNodeList.add(node);
     }
 
@@ -84,10 +76,7 @@ public class Graph {
 
         for(int i = 0; i < number; i++){
 
-    // TODO : refaire avec getWidth(), ps : avec les modifs, pane est nulle
-    //            nodes.add(new Node((int)(Math.random() * (pane.getWidth())), (int)(Math.random() * (pane.getHeight())), i));
             nodes.add(new Node(i, "node" + i,(int)(4000 - (800 / scale) / 2 + Math.random() * (800 / scale)), (int)(3120 - (624 / scale) / 2 + Math.random() * (624 / scale))));
-
         }
     }
 
@@ -108,6 +97,8 @@ public class Graph {
         }
     }
 
+    // Pour créer des liens de manière pas trop aléatoire pour ne avoir des liens entre des nodes trop éloigné
+    // On a vu en IT45 une méthode de roulette pour avoir plus de chance de créer des liens avec des nodes proches.
     public Node selectionRoulette(Node selectedNode){
         int total = 0;
         double maxDistance = 0;
@@ -138,11 +129,6 @@ public class Graph {
     public void setRandomNodesAndLinks(int number, Pane centerPane) {
         generateRandomNodes(number, centerPane);
         generateRandomLinks();
-    }
-
-
-    public void displayGraph() {
-        System.out.println("Name of graph : " + name);
     }
 
     public void saveGraph(){

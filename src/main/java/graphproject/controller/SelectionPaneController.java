@@ -28,7 +28,6 @@ public class SelectionPaneController {
         this.toolsBar = toolsBar;
 
         nodePane = new NodePane(nodeRightPane);
-        //nodePane.deleteNodeButtonListener(nodeController);
 
         searchPane = new SearchPane(searchPathRightPane);
 
@@ -37,13 +36,14 @@ public class SelectionPaneController {
         linkPane = new LinkPane(linkRightPane, centerPane);
     }
 
+    // Cache toutes les barres de droites
     public void closeSelectionPane() {
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(false);
         searchPathRightPane.setVisible(false);
     }
 
-    //Node Pane
+    // Affiche la barre de droite qui contient les informations d'une node
     public void setNodePane(Node selectedNode){
         nodeRightPane.setVisible(true);
         linkRightPane.setVisible(false);
@@ -54,26 +54,30 @@ public class SelectionPaneController {
         nodePane.setChoiceBox(this);
     }
 
+    // Cache la barre de droite qui contient les informations d'une node
     public void closeNodePane(){
         nodeRightPane.setVisible(false);
         nodePane.deselectNode();
     }
 
+    // Cache la barre de droite qui contient les informations d'un lien
     public void closeLinkPane(){
         linkRightPane.setVisible(false);
         linkPane.deselectLink();
     }
+
     public NodePane getNodePane(){return this.nodePane;}
 
     public Pane getSearchPathRightPane(){return this.searchPathRightPane;}
 
-    //Search Pane
+    // Affiche la barre de droite relative à la recherche du plus court chemin
     public void setSearchPane(){
         searchPathRightPane.setVisible(true);
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(false);
     }
 
+    // Cache la barre de droite relative à la recherche du plus court chemin
     public void closeSearchPane(){
         searchPathRightPane.setVisible(false);
     }
@@ -84,8 +88,7 @@ public class SelectionPaneController {
         searchPane.setSearchNode(node);
     }
 
-
-    //Link Pane
+    // Affiche la barre de droite qui contient les informations d'un lien
     public void setLinkPane(Node startNode, Link link, Node endNode){
         nodeRightPane.setVisible(false);
         linkRightPane.setVisible(true);

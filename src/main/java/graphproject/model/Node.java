@@ -77,14 +77,6 @@ public class Node {
 
         updateLinks();
     }
-    public void setPosition(int x, int y){
-        this.x = x;
-        circle.setCenterX(x);
-        for (Link link : links){
-            Link.Arrow arrow = link.getArrow();
-            Graphics.updateArrow(arrow, this, link.getNode());
-        }
-    }
 
     public Color getColor(){return color;}
     public void setColor(Color color){
@@ -114,6 +106,7 @@ public class Node {
     public boolean isSelected(){return selected;}
     public void setSelection(boolean b){this.selected = b;}
 
+    // Cette fonction est utilisé par le toggle bouton delete pour supprimer tous les liens allé et retour lié à la node en question
     public void deleteAllLinks(Pane centerPane){
         for (Link link : links){
             Line line = link.getLine();
@@ -127,7 +120,6 @@ public class Node {
         }
         links.clear();
         for (Node node : linkedNodeList){
-            //List<Link> removeLink = new ArrayList<>(0);
 
             for (int i = 0; i < node.links.size(); i++){
                 Link link = node.links.get(i);
@@ -143,11 +135,4 @@ public class Node {
             }
         }
     }
-
-    //public List <Node> getLinks(){return linkNodes;}
-
-    public void displayNode(){
-        System.out.println("node : "+ x+ " "+y);
-    }
-
 }
