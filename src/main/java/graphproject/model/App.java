@@ -35,7 +35,8 @@ public class App {
 
     private void generateAllGraphsFromSave() {
         // Récupère tous les fichiers des graphes
-        String directoryPath = "src\\main\\resources\\saves\\";
+//        String directoryPath = "src\\main\\resources\\saves\\";
+        String directoryPath = ".\\saves\\";
         File directory = new File(directoryPath);
         File[] files = directory.listFiles();
 

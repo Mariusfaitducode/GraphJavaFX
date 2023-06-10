@@ -133,7 +133,8 @@ public class Graph {
 
     public void saveGraph(){
 
-        String path = "src\\main\\resources\\saves\\" + name + ".csv";
+//        String path = "src\\main\\resources\\saves\\" + name + ".csv";
+        String path = ".\\saves\\" + name + ".csv";
 
         StringBuilder text = new StringBuilder();
 
