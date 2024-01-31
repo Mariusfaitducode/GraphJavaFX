@@ -3,14 +3,4 @@ Projet de création et d'édition de graphe avec java, interface faite avec java
 
 Fait par : Victor GOUDAL et Marius DIGUAT
 
-### Indisplensable
-
-### Recommandé
- - valider une modification
-
-### Bonus
- - créer ou non un lien vers la même node
- - afficher sous différentes formes(cercle, en carré, NN, etc...)
- - plusieurs type de graphs (map, automate, NN)
- - selection multiples avec ctrl+
- - courber les liens
+Nous avons réutilisé ce projet pour représenter la résolution d'un problème complexe dans le projet <a href="https://github.com/Mariusfaitducode/SessadOptimisation">Sessad Optimisation</a>
